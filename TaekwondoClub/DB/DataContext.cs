@@ -6,10 +6,14 @@ namespace DB;
 
 public class DataContext : DbContext
 {
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+
+    public DataContext(DbContextOptions<DataContext> options)
+        : base(options) { }
+
+/*    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["pogconnectionstring2"].ConnectionString);
-    }
+    }*/
 
     public DbSet<Customer> Customers { get; set; }
     public DbSet<Event> Events { get; set; }
