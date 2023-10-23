@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DB;
+using DB.Entities;
+using DesktopWPF.Views;
 using Microsoft.EntityFrameworkCore;
 
 namespace DesktopWPF;
@@ -23,15 +26,20 @@ namespace DesktopWPF;
 /// </summary>
 public partial class MainWindow : Window
 {
+    public ObservableCollection<Customer> Customers;
     public MainWindow()
     {
         var optionsBuilder = new DbContextOptionsBuilder<DataContext>();
         optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["pogconnectionstring2"].ConnectionString);
         var dbContext = new DataContext(optionsBuilder.Options);
         dbContext.Customers.Load();
-        var data = dbContext.Customers.Local.ToObservableCollection();
-        this.DataContext = data;
+        Customers = dbContext.Customers.Local.ToObservableCollection();
 
         InitializeComponent();
+    }
+
+    private void ShowCustomersView(object sender, RoutedEventArgs e)
+    {
+        mainFrame.NavigationService.Navigate(new CustomerView(Customers));
     }
 }

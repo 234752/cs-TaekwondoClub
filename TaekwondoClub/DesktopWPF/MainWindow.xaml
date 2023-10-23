@@ -6,58 +6,13 @@
         xmlns:local="clr-namespace:DesktopWPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    
     <Grid>
-        <ListView Name="customerListView" Margin="10,10,471,10" ItemsSource="{Binding}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Surname" Width="120" DisplayMemberBinding="{Binding Surname}" />
-                </GridView>
-            </ListView.View>
-        </ListView>
-
-        <!-- Customer Details -->
-        <Border Name="customerDetailsBorder" Margin="347,10,10,10" BorderBrush="DarkGray" 
-                BorderThickness="1" CornerRadius="5" 
-                DataContext="{Binding SelectedItem, ElementName=customerListView}">
-            <Grid Margin="9,0,0,-1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-
-                <TextBlock Grid.Row="0" Text="Customer Details" FontWeight="Bold" Margin="10" FontSize="16" />
-
-                <Label Grid.Row="1" Content="Name:" Margin="10" />
-                <TextBox Grid.Row="1" Name="nameTextBox" Margin="120,10,10,10" Text="{Binding Name}" />
-
-                <Label Grid.Row="2" Content="Surname:" Margin="10" />
-                <TextBox Grid.Row="2" Name="surnameTextBox" Margin="120,10,10,10" Text="{Binding Surname}" />
-
-                <Label Grid.Row="3" Content="Email:" Margin="10" />
-                <TextBox Grid.Row="3" Name="emailTextBox" Margin="120,10,10,10" Text="{Binding Email}" />
-
-                <Label Grid.Row="4" Content="Address:" Margin="10" />
-                <TextBox Grid.Row="4" Name="addressTextBox" Margin="120,10,10,10" Text="{Binding Address}" />
-
-                <Label Grid.Row="5" Content="Account Number:" Margin="10" />
-                <TextBox Grid.Row="5" Name="accountNumberTextBox" Margin="120,10,10,10" Text="{Binding AccountNumber}" />
-
-
-                <!-- Save and Cancel Buttons -->
-                <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10,20">
-                    <TextBox Width="106" Name="pogBox" Text="not pog">
-                                             
-                    </TextBox>
-                    <Button Name="saveButton" Content="Save" Width="80" Margin="10" />
-                    <Button Name="cancelButton" Content="Cancel" Width="80" Margin="10" />
-                </StackPanel>
-            </Grid>
-        </Border>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,353">
+            <Button Content="Customers" Width="200"  Click="ShowCustomersView" />
+            <Button Content="Events" Width="200" />
+            <Button Content="Payments" Width="200" />
+        </StackPanel>
+        <Frame Name="mainFrame" NavigationUIVisibility="Hidden" Margin="0,99,0,0" />
     </Grid>
 </Window>
