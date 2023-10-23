@@ -34,19 +34,20 @@
                 <TextBlock Grid.Row="0" Text="Customer Details" FontWeight="Bold" Margin="10" FontSize="16" />
 
                 <Label Grid.Row="1" Content="Name:" Margin="10" />
-                <TextBox Grid.Row="1" Name="nameTextBox" Margin="120,10,10,10" />
+                <TextBox Grid.Row="1" Name="nameTextBox" Margin="120,10,10,10" Text="{Binding Name}" />
 
                 <Label Grid.Row="2" Content="Surname:" Margin="10" />
-                <TextBox Grid.Row="2" Name="surnameTextBox" Margin="120,10,10,10" />
+                <TextBox Grid.Row="2" Name="surnameTextBox" Margin="120,10,10,10" Text="{Binding Surname}" />
 
                 <Label Grid.Row="3" Content="Email:" Margin="10" />
-                <TextBox Grid.Row="3" Name="emailTextBox" Margin="120,10,10,10" />
+                <TextBox Grid.Row="3" Name="emailTextBox" Margin="120,10,10,10" Text="{Binding Email}" />
 
                 <Label Grid.Row="4" Content="Address:" Margin="10" />
-                <TextBox Grid.Row="4" Name="addressTextBox" Margin="120,10,10,10" />
+                <TextBox Grid.Row="4" Name="addressTextBox" Margin="120,10,10,10" Text="{Binding Address}" />
 
                 <Label Grid.Row="5" Content="Account Number:" Margin="10" />
-                <TextBox Grid.Row="5" Name="accountNumberTextBox" Margin="120,10,10,10" />
+                <TextBox Grid.Row="5" Name="accountNumberTextBox" Margin="120,10,10,10" Text="{Binding AccountNumber}" />
+
 
                 <!-- Save and Cancel Buttons -->
                 <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10,20">
