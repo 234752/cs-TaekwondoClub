@@ -1,4 +1,5 @@
 ﻿using DB.Entities;
+using DesktopWPF.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,9 +23,16 @@ namespace DesktopWPF.Views;
 /// </summary>
 public partial class CustomerView : Page
 {
-    public CustomerView(ObservableCollection<Customer> customers)
+    public CustomerViewModel CustomerViewModel;
+    public CustomerView(CustomerViewModel customerViewModel)
     {
-        this.DataContext = customers;
+        CustomerViewModel = customerViewModel;
+        this.DataContext = customerViewModel.Customers;
         InitializeComponent();
+    }
+
+    private void saveButton_Click(object sender, RoutedEventArgs e)
+    {
+        CustomerViewModel.SaveCustomersToDatabase();
     }
 }

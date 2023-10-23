@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DB;
 using DB.Entities;
+using DesktopWPF.ViewModels;
 using DesktopWPF.Views;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,20 +27,26 @@ namespace DesktopWPF;
 /// </summary>
 public partial class MainWindow : Window
 {
+    private DataContext _dataContext;
     public ObservableCollection<Customer> Customers;
     public MainWindow()
     {
         var optionsBuilder = new DbContextOptionsBuilder<DataContext>();
         optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["pogconnectionstring2"].ConnectionString);
-        var dbContext = new DataContext(optionsBuilder.Options);
-        dbContext.Customers.Load();
-        Customers = dbContext.Customers.Local.ToObservableCollection();
+        _dataContext = new DataContext(optionsBuilder.Options);
+        _dataContext.Customers.Load();
+        Customers = _dataContext.Customers.Local.ToObservableCollection();
 
         InitializeComponent();
     }
 
+    public async Task SaveChangesToDatabase()
+    {
+        _dataContext.SaveChangesAsync();
+    }
+
     private void ShowCustomersView(object sender, RoutedEventArgs e)
     {
-        mainFrame.NavigationService.Navigate(new CustomerView(Customers));
+        mainFrame.NavigationService.Navigate(new CustomerView(new CustomerViewModel(this, Customers)));
     }
 }

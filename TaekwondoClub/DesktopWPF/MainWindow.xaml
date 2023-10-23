@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesktopWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="1080" Width="1920" WindowState="Maximized">
     
     <Grid>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,353">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="100" VerticalAlignment="Top">
             <Button Content="Customers" Width="200"  Click="ShowCustomersView" />
             <Button Content="Events" Width="200" />
             <Button Content="Payments" Width="200" />
         </StackPanel>
-        <Frame Name="mainFrame" NavigationUIVisibility="Hidden" Margin="0,99,0,0" />
+        <Frame Name="mainFrame" NavigationUIVisibility="Hidden" Margin="0,100,0,0" />
     </Grid>
 </Window>
