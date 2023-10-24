@@ -49,4 +49,13 @@ public partial class MainWindow : Window
     {
         mainFrame.NavigationService.Navigate(new CustomerView(new CustomerViewModel(this, Customers)));
     }
+
+    public async Task ReloadCustomers()
+    {
+        Customers.Clear();
+        foreach (var customer in _dataContext.Customers)
+        {
+            _dataContext.Add(customer);
+        }
+    }
 }

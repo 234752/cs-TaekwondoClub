@@ -20,4 +20,9 @@ public class CustomerViewModel : BaseViewModel
         MainWindow.SaveChangesToDatabase();
     }
 
+    public async Task ReloadCustomers()
+    {
+       MainWindow.ReloadCustomers();
+    }
+
 }

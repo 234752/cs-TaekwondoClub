@@ -35,4 +35,9 @@ public partial class CustomerView : Page
     {
         CustomerViewModel.SaveCustomersToDatabase();
     }
+
+    private void cancelButton_Click(object sender, RoutedEventArgs e)
+    {
+        CustomerViewModel.ReloadCustomers();
+    }
 }

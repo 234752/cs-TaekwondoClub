@@ -12,8 +12,11 @@
         <ListView Name="customerListView" ItemsSource="{Binding}" Margin="10,10,700,10">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Surname" Width="120" DisplayMemberBinding="{Binding Surname}" />
+                    <GridViewColumn Header="Name" Width="Auto" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Surname" Width="Auto" DisplayMemberBinding="{Binding Surname}" />
+                    <GridViewColumn Header="Email" Width="Auto" DisplayMemberBinding="{Binding Email}" />
+                    <GridViewColumn Header="Address" Width="Auto" DisplayMemberBinding="{Binding Address}" />
+                    <GridViewColumn Header="Account Number" Width="Auto" DisplayMemberBinding="{Binding AccountNumber}" />
                 </GridView>
             </ListView.View>
         </ListView>
@@ -53,11 +56,8 @@
 
                 <!-- Save and Cancel Buttons -->
                 <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10,20">
-                    <TextBox Width="106" Name="pogBox" Text="not pog">
-
-                    </TextBox>
                     <Button Name="saveButton" Content="Save" Width="80" Height="30"  Margin="10" Click="saveButton_Click" />
-                    <Button Name="cancelButton" Content="Cancel" Width="80" Height="30" Margin="10" />
+                    <Button Name="cancelButton" Content="Cancel" Width="80" Height="30" Margin="10" Click="cancelButton_Click" />
                 </StackPanel>
             </Grid>
         </Border>
