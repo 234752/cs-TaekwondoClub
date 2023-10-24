@@ -29,13 +29,16 @@ public partial class MainWindow : Window
 {
     private DataContext _dataContext;
     public ObservableCollection<Customer> Customers;
+    public ObservableCollection<Event> Events;
     public MainWindow()
     {
         var optionsBuilder = new DbContextOptionsBuilder<DataContext>();
         optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["pogconnectionstring2"].ConnectionString);
         _dataContext = new DataContext(optionsBuilder.Options);
         _dataContext.Customers.Load();
+        _dataContext.Events.Load();
         Customers = _dataContext.Customers.Local.ToObservableCollection();
+        Events = _dataContext.Events.Local.ToObservableCollection();
 
         InitializeComponent();
     }
@@ -50,12 +53,26 @@ public partial class MainWindow : Window
         mainFrame.NavigationService.Navigate(new CustomerView(new CustomerViewModel(this, Customers)));
     }
 
+    private void ShowEventsView(object sender, RoutedEventArgs e)
+    {
+        mainFrame.NavigationService.Navigate(new EventView(new EventViewModel(this, Events)));
+    }
+
     public async Task ReloadCustomers()
     {
         Customers.Clear();
         foreach (var customer in _dataContext.Customers)
         {
             _dataContext.Add(customer);
+        }
+    }
+
+    public async Task ReloadEvents()
+    {
+        Events.Clear();
+        foreach (var e in _dataContext.Events)
+        {
+            _dataContext.Add(e);
         }
     }
 }

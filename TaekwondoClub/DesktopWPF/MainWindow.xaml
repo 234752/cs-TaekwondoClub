@@ -10,7 +10,7 @@
     <Grid>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="50" VerticalAlignment="Top">
             <Button Content="Customers" Width="200"  Click="ShowCustomersView" />
-            <Button Content="Events" Width="200" />
+            <Button Content="Events" Width="200" Click="ShowEventsView" />
             <Button Content="Payments" Width="200" />
             <TextBox Name="pogBox" Text="not pog" />
         </StackPanel>
