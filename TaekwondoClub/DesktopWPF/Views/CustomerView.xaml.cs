@@ -31,13 +31,32 @@ public partial class CustomerView : Page
         InitializeComponent();
     }
 
-    private void saveButton_Click(object sender, RoutedEventArgs e)
+    private async void saveButton_Click(object sender, RoutedEventArgs e)
     {
-        CustomerViewModel.SaveCustomersToDatabase();
+        await CustomerViewModel.SaveCustomersToDatabase();
     }
 
     private void cancelButton_Click(object sender, RoutedEventArgs e)
     {
         CustomerViewModel.ReloadCustomers();
+        
+    }
+
+    private void removeButton_Click(object sender, RoutedEventArgs e)
+    {
+        var customer = customerDetailsBorder.DataContext as Customer;
+        CustomerViewModel.RemoveCustomer(customer);
+    }
+
+    private void saveNewCustomerButton_Click(object sender, RoutedEventArgs e)
+    {
+        CustomerViewModel.AddCustomer(new Customer() 
+        { 
+            Name = newNameTextBox.Text,
+            Surname = newSurnameTextBox.Text,
+            Email = newEmailTextBox.Text,
+            Address = newAddressTextBox.Text,
+            AccountNumber = newAccountNumberTextBox.Text
+        });
     }
 }

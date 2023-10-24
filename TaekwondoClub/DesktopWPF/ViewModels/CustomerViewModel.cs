@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,12 +18,22 @@ public class CustomerViewModel : BaseViewModel
     }
     public async Task SaveCustomersToDatabase()
     {
-        MainWindow.SaveChangesToDatabase();
+        await MainWindow.SaveChangesToDatabase();
     }
 
-    public async Task ReloadCustomers()
+    public void ReloadCustomers()
     {
-       MainWindow.ReloadCustomers();
+       MainWindow.ReloadCustomers();   
+    }
+
+    public void AddCustomer(Customer customer)
+    {
+        MainWindow.Customers.Add(customer);
+    }
+
+    public void RemoveCustomer(Customer customer) 
+    {
+        MainWindow.Customers.Remove(customer);
     }
 
 }

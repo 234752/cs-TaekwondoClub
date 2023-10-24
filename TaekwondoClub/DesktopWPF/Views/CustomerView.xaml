@@ -22,10 +22,10 @@
         </ListView>
 
         <!-- Customer Details -->
-        <Border Name="customerDetailsBorder" Margin="1240,10,10,10" BorderBrush="DarkGray" 
+        <Border Name="customerDetailsBorder" Margin="1240,10,10,608" BorderBrush="DarkGray" 
             BorderThickness="1" CornerRadius="5" 
             DataContext="{Binding SelectedItem, ElementName=customerListView}">
-            <Grid Margin="9,0,0,79">
+            <Grid Margin="9,0,0,9">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -53,13 +53,50 @@
                 <Label Grid.Row="5" Content="Account Number:" Margin="10" />
                 <TextBox Grid.Row="5" Name="accountNumberTextBox" Margin="120,10,10,10" Text="{Binding AccountNumber}" />
 
+                <Button Grid.Row="6" Name="removeCustomerButton" Content="Remove Customer" Width="140" Height="30" Margin="509,10,10,10"  Click="removeButton_Click"/>
 
-                <!-- Save and Cancel Buttons -->
-                <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,-65">
-                    <Button Name="saveButton" Content="Save" Width="80" Height="30"  Margin="10" Click="saveButton_Click" />
-                    <Button Name="cancelButton" Content="Cancel" Width="80" Height="30" Margin="10" Click="cancelButton_Click" />
-                </StackPanel>
             </Grid>
         </Border>
+
+        <Border Name="addCustomerBorder" Margin="1240,364,10,258" BorderBrush="DarkGray" 
+            BorderThickness="1" CornerRadius="5">
+            <Grid Margin="9,0,0,9">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Text="Add New Customer" FontWeight="Bold" Margin="10" FontSize="16" />
+
+                <Label Grid.Row="1" Content="Name:" Margin="10" />
+                <TextBox Grid.Row="1" Name="newNameTextBox" Margin="120,10,10,10" />
+
+                <Label Grid.Row="2" Content="Surname:" Margin="10" />
+                <TextBox Grid.Row="2" Name="newSurnameTextBox" Margin="120,10,10,10" />
+
+                <Label Grid.Row="3" Content="Email:" Margin="10" />
+                <TextBox Grid.Row="3" Name="newEmailTextBox" Margin="120,10,10,10" />
+
+                <Label Grid.Row="4" Content="Address:" Margin="10" />
+                <TextBox Grid.Row="4" Name="newAddressTextBox" Margin="120,10,10,10" />
+
+                <Label Grid.Row="5" Content="Account Number:" Margin="10" />
+                <TextBox Grid.Row="5" Name="newAccountNumberTextBox" Margin="120,10,10,10" />
+
+
+                <!-- Save New Customer Button -->
+                <Button Grid.Row="6" Name="saveNewCustomerButton" Content="Add As New Customer" Width="140" Height="30" Margin="509,10,10,7" Click="saveNewCustomerButton_Click" />
+            </Grid>
+        </Border>
+        <!-- Save and Cancel Buttons -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10">
+            <Button Name="saveButton" Content="Save All" Width="100" Height="30"  Margin="10" Click="saveButton_Click" />
+            <Button Name="cancelButton" Content="Revert Changes" Width="100" Height="30" Margin="10" Click="cancelButton_Click" />
+        </StackPanel>
     </Grid>
 </Page>

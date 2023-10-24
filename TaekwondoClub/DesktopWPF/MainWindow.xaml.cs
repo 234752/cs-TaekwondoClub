@@ -28,13 +28,14 @@ namespace DesktopWPF;
 public partial class MainWindow : Window
 {
     private DataContext _dataContext;
-    public ObservableCollection<Customer> Customers;
-    public ObservableCollection<Event> Events;
+    private DbContextOptionsBuilder<DataContext> _optionsBuilder;
+    public ObservableCollection<Customer> Customers { get; set; }
+    public ObservableCollection<Event> Events { get; set; }
     public MainWindow()
     {
-        var optionsBuilder = new DbContextOptionsBuilder<DataContext>();
-        optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["pogconnectionstring2"].ConnectionString);
-        _dataContext = new DataContext(optionsBuilder.Options);
+        _optionsBuilder = new DbContextOptionsBuilder<DataContext>();
+        _optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["pogconnectionstring2"].ConnectionString);
+        _dataContext = new DataContext(_optionsBuilder.Options);
         _dataContext.Customers.Load();
         _dataContext.Events.Load();
         Customers = _dataContext.Customers.Local.ToObservableCollection();
@@ -43,9 +44,18 @@ public partial class MainWindow : Window
         InitializeComponent();
     }
 
+    private void ReloadData()
+    {
+        _dataContext = new DataContext(_optionsBuilder.Options);
+        _dataContext.Customers.Load();
+        _dataContext.Events.Load();
+        Customers = _dataContext.Customers.Local.ToObservableCollection();
+        Events = _dataContext.Events.Local.ToObservableCollection();
+    }
+
     public async Task SaveChangesToDatabase()
     {
-        _dataContext.SaveChangesAsync();
+        await _dataContext.SaveChangesAsync();
     }
 
     private void ShowCustomersView(object sender, RoutedEventArgs e)
@@ -58,21 +68,18 @@ public partial class MainWindow : Window
         mainFrame.NavigationService.Navigate(new EventView(new EventViewModel(this, Events)));
     }
 
-    public async Task ReloadCustomers()
+    public void ReloadCustomers()
     {
-        Customers.Clear();
-        foreach (var customer in _dataContext.Customers)
-        {
-            _dataContext.Add(customer);
-        }
+        ReloadData();
+        mainFrame.NavigationService.Navigate(new CustomerView(new CustomerViewModel(this, Customers)));
     }
 
-    public async Task ReloadEvents()
+    public void ReloadEvents()
     {
         Events.Clear();
         foreach (var e in _dataContext.Events)
         {
-            _dataContext.Add(e);
+            Events.Add(e);
         }
     }
 }
