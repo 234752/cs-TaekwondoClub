@@ -31,6 +31,7 @@ public partial class MainWindow : Window
     private DbContextOptionsBuilder<DataContext> _optionsBuilder;
     public ObservableCollection<Customer> Customers { get; set; }
     public ObservableCollection<Event> Events { get; set; }
+    public ObservableCollection<Payment> Payments { get; set; }
     public MainWindow()
     {
         _optionsBuilder = new DbContextOptionsBuilder<DataContext>();
@@ -38,8 +39,10 @@ public partial class MainWindow : Window
         _dataContext = new DataContext(_optionsBuilder.Options);
         _dataContext.Customers.Load();
         _dataContext.Events.Load();
+        _dataContext.Payments.Load();
         Customers = _dataContext.Customers.Local.ToObservableCollection();
         Events = _dataContext.Events.Local.ToObservableCollection();
+        Payments = _dataContext.Payments.Local.ToObservableCollection();
 
         InitializeComponent();
     }
@@ -49,8 +52,10 @@ public partial class MainWindow : Window
         _dataContext = new DataContext(_optionsBuilder.Options);
         _dataContext.Customers.Load();
         _dataContext.Events.Load();
+        _dataContext.Payments.Load();
         Customers = _dataContext.Customers.Local.ToObservableCollection();
         Events = _dataContext.Events.Local.ToObservableCollection();
+        Payments = _dataContext.Payments.Local.ToObservableCollection();
     }
 
     public async Task SaveChangesToDatabase()
@@ -68,6 +73,11 @@ public partial class MainWindow : Window
         mainFrame.NavigationService.Navigate(new EventView(new EventViewModel(this, Events)));
     }
 
+    private void ShowPaymentsView(object sender, RoutedEventArgs e)
+    {
+        mainFrame.NavigationService.Navigate(new PaymentView(new PaymentViewModel(this, Payments)));
+    }
+
     public void ReloadCustomers()
     {
         ReloadData();
@@ -81,5 +91,10 @@ public partial class MainWindow : Window
         {
             Events.Add(e);
         }
+    }
+    public void ReloadPayments()
+    {
+        ReloadData();
+        mainFrame.NavigationService.Navigate(new PaymentView(new PaymentViewModel(this, Payments)));
     }
 }

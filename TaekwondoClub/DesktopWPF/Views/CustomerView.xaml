@@ -12,11 +12,11 @@
         <ListView Name="customerListView" ItemsSource="{Binding}" Margin="10,10,700,10">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Name" Width="Auto" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Surname" Width="Auto" DisplayMemberBinding="{Binding Surname}" />
-                    <GridViewColumn Header="Email" Width="Auto" DisplayMemberBinding="{Binding Email}" />
-                    <GridViewColumn Header="Address" Width="Auto" DisplayMemberBinding="{Binding Address}" />
-                    <GridViewColumn Header="Account Number" Width="Auto" DisplayMemberBinding="{Binding AccountNumber}" />
+                    <GridViewColumn Header="Name" Width="240" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Surname" Width="240" DisplayMemberBinding="{Binding Surname}" />
+                    <GridViewColumn Header="Email" Width="240" DisplayMemberBinding="{Binding Email}" />
+                    <GridViewColumn Header="Address" Width="240" DisplayMemberBinding="{Binding Address}" />
+                    <GridViewColumn Header="Account Number" Width="240" DisplayMemberBinding="{Binding AccountNumber}" />
                 </GridView>
             </ListView.View>
         </ListView>
