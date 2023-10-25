@@ -8,14 +8,18 @@
       d:DesignHeight="950" d:DesignWidth="1920"
       Title="PaymentView">
 
+<Page.Resources>
+    <CollectionViewSource x:Key="CustomersCollectionViewSource" Source="{Binding DataContext.Customers, ElementName=paymentListView}" />
+</Page.Resources>
+
     <Grid>
-        <ListView Name="paymentListView" ItemsSource="{Binding}" Margin="10,10,700,10">
+        <ListView Name="paymentListView" ItemsSource="{Binding Payments}" Margin="10,10,700,10">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Month/Year" Width="240" DisplayMemberBinding="{Binding MonthYear}" />
                     <GridViewColumn Header="Due Date" Width="240" DisplayMemberBinding="{Binding DueDate}" />
                     <GridViewColumn Header="Paid" Width="240" DisplayMemberBinding="{Binding Paid}" />
-                    <GridViewColumn Header="Customer" Width="240" DisplayMemberBinding="{Binding Customer.Name}" />
+                    <GridViewColumn Header="Customer" Width="240" DisplayMemberBinding="{Binding Customer.Id}" />
                 </GridView>
             </ListView.View>
         </ListView>
@@ -46,7 +50,12 @@
                 <TextBox Grid.Row="3" Name="paidTextBox" Margin="120,10,10,10" Text="{Binding Paid}" />
 
                 <Label Grid.Row="4" Content="Customer:" Margin="10" />
-                <TextBox Grid.Row="4" Name="customerTextBox" Margin="120,10,10,10" Text="{Binding Customer.Name}" />
+                <ComboBox Grid.Row="4" Name="customerComboBox" Margin="120,10,10,10" 
+                  SelectedValue="{Binding CustomerId, Mode=TwoWay}"
+                  DisplayMemberPath="Name"
+                  SelectedValuePath="Id"
+                  ItemsSource="{Binding Source={StaticResource CustomersCollectionViewSource}}">
+                </ComboBox>
 
                 <Button Grid.Row="6" Name="removePaymentButton" Content="Remove Payment" Width="140" Height="30" Margin="509,10,10,10"  Click="removeButton_Click"/>
 

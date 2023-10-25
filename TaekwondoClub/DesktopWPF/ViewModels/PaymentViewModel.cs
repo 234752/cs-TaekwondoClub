@@ -11,9 +11,11 @@ namespace DesktopWPF.ViewModels;
 public class PaymentViewModel : BaseViewModel
 {
     public ObservableCollection<Payment> Payments { get; set; }
-    public PaymentViewModel(MainWindow mainWindow, ObservableCollection<Payment> payments) : base(mainWindow)
+    public ObservableCollection<Customer> Customers { get; set; }
+    public PaymentViewModel(MainWindow mainWindow, ObservableCollection<Payment> payments, ObservableCollection<Customer> customers) : base(mainWindow)
     {
         Payments = payments;
+        Customers = customers;
     }
     public async Task SavePaymentsToDatabase()
     {

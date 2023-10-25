@@ -75,7 +75,7 @@ public partial class MainWindow : Window
 
     private void ShowPaymentsView(object sender, RoutedEventArgs e)
     {
-        mainFrame.NavigationService.Navigate(new PaymentView(new PaymentViewModel(this, Payments)));
+        mainFrame.NavigationService.Navigate(new PaymentView(new PaymentViewModel(this, Payments, Customers)));
     }
 
     public void ReloadCustomers()
@@ -95,6 +95,6 @@ public partial class MainWindow : Window
     public void ReloadPayments()
     {
         ReloadData();
-        mainFrame.NavigationService.Navigate(new PaymentView(new PaymentViewModel(this, Payments)));
+        mainFrame.NavigationService.Navigate(new PaymentView(new PaymentViewModel(this, Payments, Customers)));
     }
 }

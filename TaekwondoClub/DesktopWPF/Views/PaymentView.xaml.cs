@@ -22,11 +22,11 @@ namespace DesktopWPF.Views;
 /// </summary>
 public partial class PaymentView : Page
 {
-    public PaymentViewModel PaymentViewModel;
+    public PaymentViewModel PaymentViewModel { get; set; }
     public PaymentView(PaymentViewModel paymentViewModel)
     {
         PaymentViewModel = paymentViewModel;
-        this.DataContext = paymentViewModel.Payments;
+        this.DataContext = PaymentViewModel;
         InitializeComponent();
     }
 
