@@ -10,12 +10,14 @@
 
 <Page.Resources>
     <CollectionViewSource x:Key="CustomersCollectionViewSource" Source="{Binding DataContext.Customers, ElementName=paymentListView}" />
+    <CollectionViewSource x:Key="CustomersCollectionViewSource2" Source="{Binding DataContext.Customers, ElementName=paymentListView}" />
 </Page.Resources>
 
     <Grid>
         <ListView Name="paymentListView" ItemsSource="{Binding Payments}" SelectedItem="{Binding SelectedPayment}" Margin="10,10,700,10">
             <ListView.View>
                 <GridView>
+                    <GridViewColumn Header="Name" Width="240" DisplayMemberBinding="{Binding Name}" />
                     <GridViewColumn Header="Month/Year" Width="240" DisplayMemberBinding="{Binding MonthYear}" />
                     <GridViewColumn Header="Due Date" Width="240" DisplayMemberBinding="{Binding DueDate}" />
                     <GridViewColumn Header="Paid" Width="240" DisplayMemberBinding="{Binding Paid}" />
@@ -35,27 +37,46 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0" Text="Payment Details" FontWeight="Bold" Margin="10" FontSize="16" />
 
-                <Label Grid.Row="1" Content="Month/Year:" Margin="10" />
-                <TextBox Grid.Row="1" Name="monthYearTextBox" Margin="120,10,10,10" Text="{Binding MonthYear}" />
+                <Label Grid.Row="1" Content="Name:" Margin="10" />
+                <TextBox Grid.Row="1" Name="nameTextBox" Margin="120,10,10,10" Text="{Binding Name}" />
 
-                <Label Grid.Row="2" Content="Due Date:" Margin="10" />
-                <DatePicker Grid.Row="2" Name="dueDatePicker" Margin="120,10,10,10" SelectedDate="{Binding DueDate}" />
+                <Label Grid.Row="2" Content="Month/Year:" Margin="10" />
+                <TextBox Grid.Row="2" Name="monthYearTextBox" Margin="120,10,10,10" Text="{Binding MonthYear}" />
 
-                <Label Grid.Row="3" Content="Paid:" Margin="10" />
-                <ComboBox Grid.Row="3" Name="paidComboBox" Margin="120,10,10,10" SelectedValue="{Binding Paid, Mode=TwoWay}">
+                <Label Grid.Row="3" Content="Due Date:" Margin="10" />
+                <DatePicker Grid.Row="3" Name="dueDatePicker" Margin="120,10,10,10" SelectedDate="{Binding DueDate}" />
+
+                <Label Grid.Row="4" Content="Paid:" Margin="10" />
+                <ComboBox Grid.Row="4" Name="paidComboBox" Margin="120,10,10,10" SelectedValue="{Binding Paid, Mode=TwoWay}">
                     <ComboBox.Items>
-                        <system:String>Yes</system:String>
-                        <system:String>No</system:String>
+                        <system:String>yes</system:String>
+                        <system:String>no</system:String>
                     </ComboBox.Items>
+                    <ComboBox.Style>
+                        <Style TargetType="ComboBox">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Paid}" Value="yes">
+                                    <Setter Property="SelectedIndex" Value="0" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Paid}" Value="no">
+                                    <Setter Property="SelectedIndex" Value="1" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Paid}" Value="yes">
+                                    <Setter Property="SelectedIndex" Value="0" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ComboBox.Style>
                 </ComboBox>
 
-                <Label Grid.Row="4" Content="Customer:" Margin="10" />
-                <ComboBox Grid.Row="4" Name="customerComboBox" Margin="120,10,10,10" 
+                <Label Grid.Row="5" Content="Customer:" Margin="10" />
+                <ComboBox Grid.Row="5" Name="customerComboBox" Margin="120,10,10,10" 
                   SelectedValue="{Binding CustomerId, Mode=TwoWay}"
                   SelectedValuePath="Id"
                   ItemsSource="{Binding Source={StaticResource CustomersCollectionViewSource}}">
@@ -67,9 +88,11 @@
         </Border>
 
         <Border Name="addPaymentBorder" Margin="1240,364,10,258" BorderBrush="DarkGray" 
-            BorderThickness="1" CornerRadius="5">
+            BorderThickness="1" CornerRadius="5"
+            DataContext="{Binding NewPayment}">
             <Grid Margin="9,0,0,9">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -80,19 +103,45 @@
 
                 <TextBlock Grid.Row="0" Text="Add New Payment" FontWeight="Bold" Margin="10" FontSize="16" />
 
-                <Label Grid.Row="1" Content="Month/Year:" Margin="10" />
-                <TextBox Grid.Row="1" Name="newMonthYearTextBox" Margin="120,10,10,10" />
+                <Label Grid.Row="1" Content="Name:" Margin="10" />
+                <TextBox Grid.Row="1" Name="newNameTextBox" Margin="120,10,10,10" Text="{Binding Name}" />
 
-                <Label Grid.Row="2" Content="Due Date:" Margin="10" />
-                <TextBox Grid.Row="2" Name="newDueDateTextBox" Margin="120,10,10,10" />
+                <Label Grid.Row="2" Content="Month/Year:" Margin="10" />
+                <TextBox Grid.Row="2" Name="newMonthYearTextBox" Margin="120,10,10,10" Text="{Binding MonthYear}" />
 
-                <Label Grid.Row="3" Content="Paid:" Margin="10" />
-                <TextBox Grid.Row="3" Name="newPaidTextBox" Margin="120,10,10,10" />
+                <Label Grid.Row="3" Content="Due Date:" Margin="10" />
+                <DatePicker Grid.Row="3" Name="newDueDatePicker" Margin="120,10,10,10" SelectedDate="{Binding DueDate}" />
 
-                <Label Grid.Row="4" Content="Customer:" Margin="10" />
-                <TextBox Grid.Row="4" Name="newCustomerTextBox" Margin="120,10,10,10" />                
+                <Label Grid.Row="4" Content="Paid:" Margin="10" />
+                <ComboBox Grid.Row="4" Name="newPaidComboBox" Margin="120,10,10,10" SelectedValue="{Binding Paid, Mode=TwoWay}">
+                    <ComboBox.Items>
+                        <system:String>yes</system:String>
+                        <system:String>no</system:String>
+                    </ComboBox.Items>
+                    <ComboBox.Style>
+                        <Style TargetType="ComboBox">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Paid}" Value="yes">
+                                    <Setter Property="SelectedIndex" Value="0" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Paid}" Value="no">
+                                    <Setter Property="SelectedIndex" Value="1" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Paid}" Value="yes">
+                                    <Setter Property="SelectedIndex" Value="0" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ComboBox.Style>
+                </ComboBox>
 
-                <!-- Save New Customer Button -->
+                <Label Grid.Row="5" Content="Customer:" Margin="10" />
+                <ComboBox Grid.Row="5" Name="newCustomerComboBox" Margin="120,10,10,10" 
+                  SelectedValue="{Binding CustomerId, Mode=TwoWay}"
+                  SelectedValuePath="Id"
+                  ItemsSource="{Binding Source={StaticResource CustomersCollectionViewSource2}}">
+                </ComboBox>
+
                 <Button Grid.Row="6" Name="saveNewPaymentButton" Content="Add As New Payment" Width="140" Height="30" Margin="509,10,10,7" Click="saveNewPaymentButton_Click" />
             </Grid>
         </Border>

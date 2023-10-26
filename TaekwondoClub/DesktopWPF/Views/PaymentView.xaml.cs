@@ -48,12 +48,6 @@ public partial class PaymentView : Page
 
     private void saveNewPaymentButton_Click(object sender, RoutedEventArgs e)
     {
-        PaymentViewModel.AddPayment(new Payment()
-        {
-            MonthYear = DateTime.ParseExact(newMonthYearTextBox.Text, "d", null),
-            DueDate = DateTime.ParseExact(newDueDateTextBox.Text, "d", null),
-            Paid = int.Parse(newPaidTextBox.Text),
-            Customer = newCustomerTextBox.DataContext as Customer
-        });
+        PaymentViewModel.AddPayment();
     }
 }

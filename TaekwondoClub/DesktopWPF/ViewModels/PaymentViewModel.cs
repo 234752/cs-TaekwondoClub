@@ -17,6 +17,7 @@ public class PaymentViewModel : BaseViewModel
     {
         Payments = payments;
         Customers = customers;
+        NewPayment = new() { Name = "", MonthYear = "00/0000", DueDate = DateTime.UtcNow, Paid = "no", CustomerId = Customers.First().Id };
     }
     private Payment selectedPayment;
     public Payment SelectedPayment
@@ -27,7 +28,18 @@ public class PaymentViewModel : BaseViewModel
             if (selectedPayment != value)
             {
                 selectedPayment = value;
-                selectedPayment.Customer = Customers.First(c => c.Id == selectedPayment.CustomerId);
+            }
+        }
+    }
+    private Payment newPayment;
+    public Payment NewPayment
+    {
+        get { return newPayment; }
+        set
+        {
+            if (newPayment != value)
+            {
+                newPayment = value;
             }
         }
     }
@@ -41,8 +53,10 @@ public class PaymentViewModel : BaseViewModel
         MainWindow.ReloadPayments();
     }
 
-    public void AddPayment(Payment payment)
+    public void AddPayment()
     {
+        var payment = NewPayment;
+        payment.Customer = Customers.First(c => c.Id == payment.CustomerId);
         MainWindow.Payments.Add(payment);
     }
 
