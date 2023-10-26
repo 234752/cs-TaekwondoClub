@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,19 @@ public class PaymentViewModel : BaseViewModel
     {
         Payments = payments;
         Customers = customers;
+    }
+    private Payment selectedPayment;
+    public Payment SelectedPayment
+    {
+        get { return selectedPayment; }
+        set
+        {
+            if (selectedPayment != value)
+            {
+                selectedPayment = value;
+                selectedPayment.Customer = Customers.First(c => c.Id == selectedPayment.CustomerId);
+            }
+        }
     }
     public async Task SavePaymentsToDatabase()
     {

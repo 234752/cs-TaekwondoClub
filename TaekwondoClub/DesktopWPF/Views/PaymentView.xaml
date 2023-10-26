@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:DesktopWPF.Views"
+      xmlns:local="clr-namespace:DesktopWPF.Views" xmlns:system="clr-namespace:System;assembly=System.Runtime"
       mc:Ignorable="d" 
       d:DesignHeight="950" d:DesignWidth="1920"
       Title="PaymentView">
@@ -13,13 +13,13 @@
 </Page.Resources>
 
     <Grid>
-        <ListView Name="paymentListView" ItemsSource="{Binding Payments}" Margin="10,10,700,10">
+        <ListView Name="paymentListView" ItemsSource="{Binding Payments}" SelectedItem="{Binding SelectedPayment}" Margin="10,10,700,10">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Month/Year" Width="240" DisplayMemberBinding="{Binding MonthYear}" />
                     <GridViewColumn Header="Due Date" Width="240" DisplayMemberBinding="{Binding DueDate}" />
                     <GridViewColumn Header="Paid" Width="240" DisplayMemberBinding="{Binding Paid}" />
-                    <GridViewColumn Header="Customer" Width="240" DisplayMemberBinding="{Binding Customer.Id}" />
+                    <GridViewColumn Header="Customer" Width="240" DisplayMemberBinding="{Binding CustomerId}" />
                 </GridView>
             </ListView.View>
         </ListView>
@@ -27,7 +27,7 @@
         <!-- Customer Details -->
         <Border Name="paymentDetailsBorder" Margin="1240,10,10,608" BorderBrush="DarkGray" 
             BorderThickness="1" CornerRadius="5" 
-            DataContext="{Binding SelectedItem, ElementName=paymentListView}">
+            DataContext="{Binding SelectedPayment}">
             <Grid Margin="9,0,0,9">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -44,15 +44,19 @@
                 <TextBox Grid.Row="1" Name="monthYearTextBox" Margin="120,10,10,10" Text="{Binding MonthYear}" />
 
                 <Label Grid.Row="2" Content="Due Date:" Margin="10" />
-                <TextBox Grid.Row="2" Name="dueDateTextBox" Margin="120,10,10,10" Text="{Binding DueDate}" />
+                <DatePicker Grid.Row="2" Name="dueDatePicker" Margin="120,10,10,10" SelectedDate="{Binding DueDate}" />
 
                 <Label Grid.Row="3" Content="Paid:" Margin="10" />
-                <TextBox Grid.Row="3" Name="paidTextBox" Margin="120,10,10,10" Text="{Binding Paid}" />
+                <ComboBox Grid.Row="3" Name="paidComboBox" Margin="120,10,10,10" SelectedValue="{Binding Paid, Mode=TwoWay}">
+                    <ComboBox.Items>
+                        <system:String>Yes</system:String>
+                        <system:String>No</system:String>
+                    </ComboBox.Items>
+                </ComboBox>
 
                 <Label Grid.Row="4" Content="Customer:" Margin="10" />
                 <ComboBox Grid.Row="4" Name="customerComboBox" Margin="120,10,10,10" 
                   SelectedValue="{Binding CustomerId, Mode=TwoWay}"
-                  DisplayMemberPath="Name"
                   SelectedValuePath="Id"
                   ItemsSource="{Binding Source={StaticResource CustomersCollectionViewSource}}">
                 </ComboBox>
