@@ -70,7 +70,7 @@ public partial class MainWindow : Window
 
     private void ShowEventsView(object sender, RoutedEventArgs e)
     {
-        mainFrame.NavigationService.Navigate(new EventView(new EventViewModel(this, Events)));
+        mainFrame.NavigationService.Navigate(new EventView(new EventViewModel(this, Events, Customers)));
     }
 
     private void ShowPaymentsView(object sender, RoutedEventArgs e)
@@ -86,11 +86,8 @@ public partial class MainWindow : Window
 
     public void ReloadEvents()
     {
-        Events.Clear();
-        foreach (var e in _dataContext.Events)
-        {
-            Events.Add(e);
-        }
+        ReloadData();
+        mainFrame.NavigationService.Navigate(new EventView(new EventViewModel(this, Events, Customers)));
     }
     public void ReloadPayments()
     {

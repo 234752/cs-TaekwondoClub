@@ -40,4 +40,14 @@ public partial class EventView : Page
     {
         EventViewModel.ReloadEvents();
     }
+    private void removeEventButton_Click(object sender, RoutedEventArgs e)
+    {
+        var ev = eventDetailsBorder.DataContext as Event;
+        EventViewModel.RemoveEvent(ev);
+    }
+
+    private void saveNewEventButton_Click(object sender, RoutedEventArgs e)
+    {
+        EventViewModel.AddEvent();
+    }
 }
