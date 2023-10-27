@@ -10,8 +10,8 @@
       Title="EventView">
 
     <Page.Resources>
-        <CollectionViewSource x:Key="CustomersCollectionViewSource" Source="{Binding DataContext.Customers, ElementName=paymentListView}" />
-        <CollectionViewSource x:Key="CustomersCollectionViewSource2" Source="{Binding DataContext.Customers, ElementName=paymentListView}" />
+        <CollectionViewSource x:Key="CustomersCollectionViewSource" Source="{Binding DataContext.Customers, ElementName=eventListView}" />
+        <CollectionViewSource x:Key="CustomersCollectionViewSource2" Source="{Binding DataContext.Customers, ElementName=eventListView}" />
     </Page.Resources>
 
     <Grid>
@@ -20,19 +20,7 @@
                 <GridView>
                     <GridViewColumn Header="Name" Width="240" DisplayMemberBinding="{Binding Name}" />
                     <GridViewColumn Header="Date" Width="240" DisplayMemberBinding="{Binding Date}" />
-                    <GridViewColumn Header="Customers" Width="240">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <ItemsControl ItemsSource="{Binding Customers}">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding Name}" />
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
+                    <GridViewColumn Header="Customers" Width="240" DisplayMemberBinding="{Binding}" />
                 </GridView>
             </ListView.View>
         </ListView>

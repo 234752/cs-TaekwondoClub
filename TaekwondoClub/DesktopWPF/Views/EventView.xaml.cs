@@ -27,7 +27,7 @@ public partial class EventView : Page
     public EventView(EventViewModel eventViewModel)
     {
         EventViewModel = eventViewModel;
-        this.DataContext = EventViewModel.Events;
+        this.DataContext = EventViewModel;
         InitializeComponent();
     }
 

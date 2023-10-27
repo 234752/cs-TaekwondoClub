@@ -15,4 +15,9 @@ public class Event
     public string Name { get; set; }
     public DateTime Date { get; set; }
     public List<Customer> Customers { get; set; }
+    public override string ToString()
+    {
+        if (Customers is null) return "0";
+        return Customers.Count.ToString();
+    }
 }
