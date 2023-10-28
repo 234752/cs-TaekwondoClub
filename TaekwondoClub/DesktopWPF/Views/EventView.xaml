@@ -47,14 +47,17 @@
                 <DatePicker Grid.Row="2" Name="eventDatePicker" Margin="120,10,10,10" SelectedDate="{Binding Date}" />
 
                 <Label Grid.Row="3" Content="Customers:" Margin="10" />
-                <ComboBox Grid.Row="3" Name="eventCustomersComboBox" Margin="120,10,10,10"
-                          SelectedValue="{Binding Customers, Mode=TwoWay}"
-                          DisplayMemberPath="Name"
-                          SelectedValuePath="Id"
-                          ItemsSource="{Binding Source={StaticResource CustomersCollectionViewSource}}">
-                </ComboBox>
+                <ListView Grid.Row="3" Name="eventCustomersListView" ItemsSource="{Binding Customers}" Margin="0,46,0,56" Grid.RowSpan="3">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding Name}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
 
-                <Button Grid.Row="6" Name="removeEventButton" Content="Remove Event" Width="140" Height="30" Margin="509,10,10,10" Click="removeEventButton_Click" />
+                <Button Grid.Row="5" Content="Edit Customers" Name="editCustomersButton" Width="140" Height="30" Click="editCustomersButton_Click" Margin="260,97,259,15" />
+
+                <Button Grid.Row="5" Name="removeEventButton" Content="Remove Event" Width="140" Height="30" Margin="509,102,10,10" Click="removeEventButton_Click" />
 
             </Grid>
         </Border>
@@ -81,12 +84,6 @@
                 <DatePicker Grid.Row="2" Name="newEventDatePicker" Margin="120,10,10,10" SelectedDate="{Binding Date}" />
 
                 <Label Grid.Row="3" Content="Customers:" Margin="10" />
-                <ComboBox Grid.Row="3" Name="newEventCustomersComboBox" Margin="120,10,10,10"
-                          SelectedValue="{Binding Customers, Mode=TwoWay}"
-                          DisplayMemberPath="Name"
-                          SelectedValuePath="Id"
-                          ItemsSource="{Binding Source={StaticResource CustomersCollectionViewSource2}}">
-                </ComboBox>
 
                 <Button Grid.Row="6" Name="saveNewEventButton" Content="Add As New Event" Width="140" Height="30" Margin="509,10,10,7" Click="saveNewEventButton_Click" />
             </Grid>

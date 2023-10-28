@@ -50,4 +50,9 @@ public partial class EventView : Page
     {
         EventViewModel.AddEvent();
     }
+
+    private void editCustomersButton_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
 }

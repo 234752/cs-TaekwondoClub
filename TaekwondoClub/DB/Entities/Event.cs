@@ -17,7 +17,7 @@ public class Event
     public List<Customer> Customers { get; set; }
     public override string ToString()
     {
-        if (Customers is null) return "0";
+        if (Customers is null) return "no participants";
         return Customers.Count.ToString();
     }
 }
