@@ -53,7 +53,11 @@ public partial class EventView : Page
 
     private void eventDetailsMoveLeftButton_Click(object sender, RoutedEventArgs e)
     {
-        (eventCustomersListView.DataContext as ObservableCollection<Customer>).Add(eventCustomersComplementListView.SelectedItem as Customer);
+        var customerToBeMoved = EventViewModel.RightSelectedCustomer;
+        EventViewModel.SelectedEvent.Customers.Add(customerToBeMoved);
+        EventViewModel.SelectedEventCustomersComplement.Remove(customerToBeMoved);
+        EventViewModel.LeftSelectedCustomer = customerToBeMoved;
+        EventViewModel.RightSelectedCustomer = null;
     }
 
     private void eventDetailsMoveRightButton_Click(object sender, RoutedEventArgs e)

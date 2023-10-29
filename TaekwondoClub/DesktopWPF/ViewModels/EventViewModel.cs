@@ -26,7 +26,6 @@ public class EventViewModel : BaseViewModel, INotifyPropertyChanged
         Events = events;
         Customers = customers;
         NewEvent = new() { Name = "", Date = DateTime.UtcNow, Customers = new List<Customer> { Customers.First() } };
-        SelectedEventCustomersComplement = Customers;
     }
 
     private Event selectedEvent;
@@ -43,7 +42,15 @@ public class EventViewModel : BaseViewModel, INotifyPropertyChanged
             }
         }
     }
-    public Customer LeftSelectedCustomer { get; set; }
+    private Customer leftSelectedCustomer;
+    public Customer LeftSelectedCustomer 
+    {
+        get { return leftSelectedCustomer; } 
+        set
+        {
+            leftSelectedCustomer = value;
+        }
+    }
     public Customer RightSelectedCustomer { get; set; }
 
     private ObservableCollection<Customer> selectedEventCustomersComplement;
