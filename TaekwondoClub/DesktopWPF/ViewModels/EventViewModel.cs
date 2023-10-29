@@ -37,8 +37,10 @@ public class EventViewModel : BaseViewModel, INotifyPropertyChanged
             if (selectedEvent != value)
             {
                 selectedEvent = value;
-                SelectedEventCustomersComplement = new ObservableCollection<Customer>(Customers.Except(selectedEvent.Customers));
-                OnPropertyChanged("SelectedEventCustomersComplement");
+                selectedEventLeftCustomers = new ObservableCollection<Customer>(selectedEvent.Customers);
+                selectedEventRightCustomers = new ObservableCollection<Customer>(Customers.Except(selectedEvent.Customers));
+                OnPropertyChanged("SelectedEventLeftCustomers");
+                OnPropertyChanged("SelectedEventRightCustomers");                
             }
         }
     }
@@ -53,15 +55,28 @@ public class EventViewModel : BaseViewModel, INotifyPropertyChanged
     }
     public Customer RightSelectedCustomer { get; set; }
 
-    private ObservableCollection<Customer> selectedEventCustomersComplement;
-    public ObservableCollection<Customer> SelectedEventCustomersComplement
+    private ObservableCollection<Customer> selectedEventRightCustomers;
+    public ObservableCollection<Customer> SelectedEventRightCustomers
     {
-        get { return selectedEventCustomersComplement; }
+        get { return selectedEventRightCustomers; }
         set
         {
-            if (selectedEventCustomersComplement != value)
+            if (selectedEventRightCustomers != value)
             {
-                selectedEventCustomersComplement = value;
+                selectedEventRightCustomers = value;
+            }
+        }
+    }
+
+    private ObservableCollection<Customer> selectedEventLeftCustomers;
+    public ObservableCollection<Customer> SelectedEventLeftCustomers
+    {
+        get { return selectedEventLeftCustomers; }
+        set
+        {
+            if (selectedEventLeftCustomers != value)
+            {
+                selectedEventLeftCustomers = value;
             }
         }
     }

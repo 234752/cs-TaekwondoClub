@@ -10,8 +10,8 @@
       Title="EventView">
 
     <Page.Resources>
-        <CollectionViewSource x:Key="SelectedEventCustomersComplement" Source="{Binding DataContext.SelectedEventCustomersComplement, ElementName=eventListView}" />
-        <CollectionViewSource x:Key="CustomersCollectionViewSource2" Source="{Binding DataContext.Customers, ElementName=eventListView}" />
+        <CollectionViewSource x:Key="SelectedEventRightCustomers" Source="{Binding DataContext.SelectedEventRightCustomers, ElementName=eventListView}" />
+        <CollectionViewSource x:Key="SelectedEventLeftCustomers" Source="{Binding DataContext.SelectedEventLeftCustomers, ElementName=eventListView}" />
     </Page.Resources>
 
     <Grid>
@@ -47,14 +47,14 @@
                 <DatePicker Grid.Row="2" Name="eventDatePicker" Margin="120,10,10,10" SelectedDate="{Binding Date}" />
 
                 <Label Grid.Row="3" Content="Customers:" Margin="10" />
-                <ListView Grid.Row="3" Name="eventCustomersListView" ItemsSource="{Binding Customers}" SelectedItem="{Binding Path=DataContext.LeftSelectedCustomer, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" Margin="0,46,500,56" Grid.RowSpan="3">
+                <ListView Grid.Row="3" Name="selectedEventLeftCustomers" ItemsSource="{Binding Source={StaticResource SelectedEventLeftCustomers}}" SelectedItem="{Binding Path=DataContext.LeftSelectedCustomer, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" Margin="0,46,500,56" Grid.RowSpan="3">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding}" />
                         </GridView>
                     </ListView.View>
                 </ListView>
-                <ListView Grid.Row="3" Name="eventCustomersComplementListView" ItemsSource="{Binding Source={StaticResource SelectedEventCustomersComplement}}" SelectedItem="{Binding Path=DataContext.RightSelectedCustomer, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" Margin="500,46,10,56" Grid.RowSpan="3">
+                <ListView Grid.Row="3" Name="selectedEventRightCustomers" ItemsSource="{Binding Source={StaticResource SelectedEventRightCustomers}}" SelectedItem="{Binding Path=DataContext.RightSelectedCustomer, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" Margin="500,46,10,56" Grid.RowSpan="3">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding}" />
