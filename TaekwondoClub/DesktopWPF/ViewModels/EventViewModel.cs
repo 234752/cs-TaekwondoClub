@@ -2,14 +2,22 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DesktopWPF.ViewModels;
 
-public class EventViewModel : BaseViewModel
+public class EventViewModel : BaseViewModel, INotifyPropertyChanged
 {
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
     public ObservableCollection<Event> Events { get; set; }
     public ObservableCollection<Customer> Customers { get; set; }
 
@@ -18,6 +26,7 @@ public class EventViewModel : BaseViewModel
         Events = events;
         Customers = customers;
         NewEvent = new() { Name = "", Date = DateTime.UtcNow, Customers = new List<Customer> { Customers.First() } };
+        SelectedEventCustomersComplement = Customers;
     }
 
     private Event selectedEvent;
@@ -29,11 +38,29 @@ public class EventViewModel : BaseViewModel
             if (selectedEvent != value)
             {
                 selectedEvent = value;
+                SelectedEventCustomersComplement = new ObservableCollection<Customer>(Customers.Except(selectedEvent.Customers));
+                OnPropertyChanged("SelectedEventCustomersComplement");
+            }
+        }
+    }
+    public Customer LeftSelectedCustomer { get; set; }
+    public Customer RightSelectedCustomer { get; set; }
+
+    private ObservableCollection<Customer> selectedEventCustomersComplement;
+    public ObservableCollection<Customer> SelectedEventCustomersComplement
+    {
+        get { return selectedEventCustomersComplement; }
+        set
+        {
+            if (selectedEventCustomersComplement != value)
+            {
+                selectedEventCustomersComplement = value;
             }
         }
     }
 
     private Event newEvent;
+
     public Event NewEvent
     {
         get { return newEvent; }

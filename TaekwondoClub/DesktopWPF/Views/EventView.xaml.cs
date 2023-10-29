@@ -51,7 +51,12 @@ public partial class EventView : Page
         EventViewModel.AddEvent();
     }
 
-    private void editCustomersButton_Click(object sender, RoutedEventArgs e)
+    private void eventDetailsMoveLeftButton_Click(object sender, RoutedEventArgs e)
+    {
+        (eventCustomersListView.DataContext as ObservableCollection<Customer>).Add(eventCustomersComplementListView.SelectedItem as Customer);
+    }
+
+    private void eventDetailsMoveRightButton_Click(object sender, RoutedEventArgs e)
     {
 
     }
