@@ -51,8 +51,8 @@ public partial class MainWindow : Window
     {
         _dataContext = new DataContext(_optionsBuilder.Options);
         _dataContext.Customers.Load();
-        _dataContext.Events.Load();
-        _dataContext.Payments.Load();
+        _dataContext.Events.Include(e => e.Customers).Load();
+        _dataContext.Payments.Include(p => p.Customer).Load();
         Customers = _dataContext.Customers.Local.ToObservableCollection();
         Events = _dataContext.Events.Local.ToObservableCollection();
         Payments = _dataContext.Payments.Local.ToObservableCollection();
