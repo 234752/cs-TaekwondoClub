@@ -76,4 +76,30 @@ public partial class EventView : Page
         EventViewModel.RightSelectedCustomer = customerToBeMoved;
         EventViewModel.LeftSelectedCustomer = null;
     }
+
+    private void newEventDetailsMoveLeftButton_Click(object sender, RoutedEventArgs e)
+    {
+        var customerToBeMoved = EventViewModel.RightSelectedCustomer;
+
+        EventViewModel.SelectedEvent.Customers.Add(customerToBeMoved);
+        EventViewModel.SelectedEventLeftCustomers.Add(customerToBeMoved);
+
+        EventViewModel.SelectedEventRightCustomers.Remove(customerToBeMoved);
+
+        EventViewModel.LeftSelectedCustomer = customerToBeMoved;
+        EventViewModel.RightSelectedCustomer = null;
+    }
+
+    private void newEventDetailsMoveRightButton_Click(object sender, RoutedEventArgs e)
+    {
+        var customerToBeMoved = EventViewModel.LeftSelectedCustomer;
+
+        EventViewModel.SelectedEvent.Customers.Remove(customerToBeMoved);
+        EventViewModel.SelectedEventLeftCustomers.Remove(customerToBeMoved);
+
+        EventViewModel.SelectedEventRightCustomers.Add(customerToBeMoved);
+
+        EventViewModel.RightSelectedCustomer = customerToBeMoved;
+        EventViewModel.LeftSelectedCustomer = null;
+    }
 }
