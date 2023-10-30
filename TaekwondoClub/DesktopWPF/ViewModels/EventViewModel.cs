@@ -25,7 +25,9 @@ public class EventViewModel : BaseViewModel, INotifyPropertyChanged
     {
         Events = events;
         Customers = customers;
-        NewEvent = new() { Name = "", Date = DateTime.UtcNow, Customers = new List<Customer> { Customers.First() } };
+        NewEvent = new() { Name = "", Date = DateTime.UtcNow };
+        newEventRightCustomers = new ObservableCollection<Customer>(Customers);
+        newEventLeftCustomers = new ObservableCollection<Customer>();
     }
 
     private Event selectedEvent;
@@ -44,15 +46,7 @@ public class EventViewModel : BaseViewModel, INotifyPropertyChanged
             }
         }
     }
-    private Customer leftSelectedCustomer;
-    public Customer LeftSelectedCustomer 
-    {
-        get { return leftSelectedCustomer; } 
-        set
-        {
-            leftSelectedCustomer = value;
-        }
-    }
+    public Customer LeftSelectedCustomer {  get; set; }
     public Customer RightSelectedCustomer { get; set; }
 
     private ObservableCollection<Customer> selectedEventRightCustomers;
@@ -80,6 +74,34 @@ public class EventViewModel : BaseViewModel, INotifyPropertyChanged
             }
         }
     }
+    private ObservableCollection<Customer> newEventRightCustomers;
+    public ObservableCollection<Customer> NewEventRightCustomers
+    {
+        get { return newEventRightCustomers; }
+        set
+        {
+            if (newEventRightCustomers != value)
+            {
+                newEventRightCustomers = value;
+            }
+        }
+    }
+
+    private ObservableCollection<Customer> newEventLeftCustomers;
+    public ObservableCollection<Customer> NewEventLeftCustomers
+    {
+        get { return newEventLeftCustomers; }
+        set
+        {
+            if (newEventLeftCustomers != value)
+            {
+                newEventLeftCustomers = value;
+            }
+        }
+    }
+
+    public Customer NewLeftCustomer { get; set; }
+    public Customer NewRightCustomer { get; set; }
 
     private Event newEvent;
 
@@ -108,7 +130,7 @@ public class EventViewModel : BaseViewModel, INotifyPropertyChanged
     public void AddEvent()
     {
         var ev = NewEvent;
-        ev.Customers = new List<Customer> { Customers.First(c => c.Id == ev.Customers.First().Id) };
+        ev.Customers = NewEventLeftCustomers.ToList();
         MainWindow.Events.Add(ev);
     }
 

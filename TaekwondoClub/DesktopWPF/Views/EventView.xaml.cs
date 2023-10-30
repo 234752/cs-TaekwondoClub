@@ -79,27 +79,27 @@ public partial class EventView : Page
 
     private void newEventDetailsMoveLeftButton_Click(object sender, RoutedEventArgs e)
     {
-        var customerToBeMoved = EventViewModel.RightSelectedCustomer;
+        var customerToBeMoved = EventViewModel.NewRightCustomer;
 
-        EventViewModel.SelectedEvent.Customers.Add(customerToBeMoved);
-        EventViewModel.SelectedEventLeftCustomers.Add(customerToBeMoved);
+        //EventViewModel.NewEvent.Customers.Add(customerToBeMoved);
+        EventViewModel.NewEventLeftCustomers.Add(customerToBeMoved);
 
-        EventViewModel.SelectedEventRightCustomers.Remove(customerToBeMoved);
+        EventViewModel.NewEventRightCustomers.Remove(customerToBeMoved);
 
-        EventViewModel.LeftSelectedCustomer = customerToBeMoved;
-        EventViewModel.RightSelectedCustomer = null;
+        EventViewModel.NewLeftCustomer = customerToBeMoved;
+        EventViewModel.NewRightCustomer = null;
     }
 
     private void newEventDetailsMoveRightButton_Click(object sender, RoutedEventArgs e)
     {
         var customerToBeMoved = EventViewModel.LeftSelectedCustomer;
 
-        EventViewModel.SelectedEvent.Customers.Remove(customerToBeMoved);
-        EventViewModel.SelectedEventLeftCustomers.Remove(customerToBeMoved);
+        //EventViewModel.NewEvent.Customers.Remove(customerToBeMoved);
+        EventViewModel.NewEventLeftCustomers.Remove(customerToBeMoved);
 
-        EventViewModel.SelectedEventRightCustomers.Add(customerToBeMoved);
+        EventViewModel.NewEventRightCustomers.Add(customerToBeMoved);
 
-        EventViewModel.RightSelectedCustomer = customerToBeMoved;
-        EventViewModel.LeftSelectedCustomer = null;
+        EventViewModel.NewRightCustomer = customerToBeMoved;
+        EventViewModel.NewLeftCustomer = null;
     }
 }

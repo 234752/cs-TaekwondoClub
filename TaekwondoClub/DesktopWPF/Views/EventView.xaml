@@ -67,13 +67,13 @@
                 <Button Grid.Row="5" Content="right" Name="eventDetailsMoveRightButton" Height="30" Click="eventDetailsMoveRightButton_Click" Margin="426,10,425,102" />
                 <Button Grid.Row="5" Content="left" Name="eventDetailsMoveLeftButton" Height="30" Click="eventDetailsMoveLeftButton_Click" Margin="426,51,425,61" />
 
-                <Button Grid.Row="5" Name="removeEventButton" Content="Remove Event" Width="140" Height="30" Margin="509,102,10,10" Click="removeEventButton_Click" />
+                <Button Grid.Row="5" Name="removeEventButton" Content="Remove Event" Width="140" Height="30" Margin="749,102,10,10" Click="removeEventButton_Click" />
 
             </Grid>
         </Border>
 
         <Border Name="newEventBorder" Margin="1000,382,10,236" BorderBrush="DarkGray" BorderThickness="1" CornerRadius="5"
-        DataContext="{Binding SelectedItem, ElementName=eventListView}">
+        DataContext="{Binding NewEvent}">
             <Grid Margin="9,0,0,9">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -110,6 +110,8 @@
 
                 <Button Grid.Row="5" Content="right" Name="newEventDetailsMoveRightButton" Height="30" Click="newEventDetailsMoveRightButton_Click" Margin="426,10,425,102" />
                 <Button Grid.Row="5" Content="left" Name="newEventDetailsMoveLeftButton" Height="30" Click="newEventDetailsMoveLeftButton_Click" Margin="426,51,425,61" />
+
+                <Button Grid.Row="5" Name="saveNewEventButton" Content="Add As New Event" Width="140" Height="30" Margin="749,102,10,10" Click="saveNewEventButton_Click" />
 
             </Grid>
         </Border>
