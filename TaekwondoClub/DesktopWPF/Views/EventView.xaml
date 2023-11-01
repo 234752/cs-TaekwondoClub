@@ -1,4 +1,5 @@
 ﻿<Page x:Class="DesktopWPF.Views.EventView"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -46,7 +47,7 @@
                 <TextBox Grid.Row="1" Name="eventNameTextBox" Margin="120,10,10,10" Text="{Binding Name}" />
 
                 <Label Grid.Row="2" Content="Date:" Margin="10" />
-                <DatePicker Grid.Row="2" Name="eventDatePicker" Margin="120,10,10,10" SelectedDate="{Binding Date}" />
+                <xctk:DateTimePicker Grid.Row="2" Name="eventDateTimePicker" Margin="120,10,10,10" Value="{Binding Date}" />
 
                 <Label Grid.Row="3" Content="Customers:" Margin="10" />
                 <ListView Grid.Row="3" Name="selectedEventLeftCustomers" ItemsSource="{Binding Source={StaticResource SelectedEventLeftCustomers}}" SelectedItem="{Binding Path=DataContext.LeftSelectedCustomer, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" Margin="0,46,500,56" Grid.RowSpan="3">
