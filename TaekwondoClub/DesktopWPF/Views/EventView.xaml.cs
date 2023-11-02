@@ -27,9 +27,13 @@ public partial class EventView : Page
     public EventView(EventViewModel eventViewModel)
     {
         EventViewModel = eventViewModel;
-        this.DataContext = EventViewModel;
+        this.DataContext = EventViewModel;        
         InitializeComponent();
+        eventDetailsMoveLeftButton.Visibility = Visibility.Collapsed;
+        eventDetailsMoveRightButton.Visibility = Visibility.Collapsed;
     }
+    private bool isLeftListViewChanging = false;
+    private bool isRightListViewChanging = false;
 
     private void saveButton_Click(object sender, RoutedEventArgs e)
     {
@@ -101,5 +105,39 @@ public partial class EventView : Page
 
         EventViewModel.NewRightCustomer = customerToBeMoved;
         EventViewModel.NewLeftCustomer = null;
+    }
+    private void selectedEventLeftCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (!isRightListViewChanging)
+        {
+            isLeftListViewChanging = true;
+            selectedEventRightCustomers.SelectedItem = null;
+            isLeftListViewChanging = false;
+        }
+        if (selectedEventLeftCustomers.SelectedItem != null)
+        {
+            eventDetailsMoveRightButton.Visibility = Visibility.Visible;
+        }
+        else
+        {
+            eventDetailsMoveRightButton.Visibility = Visibility.Collapsed;
+        }
+    }
+    private void selectedEventRightCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (!isLeftListViewChanging)
+        {
+            isRightListViewChanging = true;
+            selectedEventLeftCustomers.SelectedItem = null;
+            isRightListViewChanging = false;
+        }
+        if (selectedEventRightCustomers.SelectedItem != null)
+        {
+            eventDetailsMoveLeftButton.Visibility = Visibility.Visible;
+        }
+        else
+        {
+            eventDetailsMoveLeftButton.Visibility = Visibility.Collapsed;
+        }
     }
 }
