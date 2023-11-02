@@ -53,7 +53,7 @@
                 <ListView Grid.Row="3" Name="selectedEventLeftCustomers" ItemsSource="{Binding Source={StaticResource SelectedEventLeftCustomers}}" 
                           SelectedItem="{Binding Path=DataContext.LeftSelectedCustomer, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" 
                           SelectionChanged="selectedEventLeftCustomers_SelectionChanged"
-                          Margin="0,46,500,56" Grid.RowSpan="3">
+                          Margin="0,46,500,56" Grid.RowSpan="3" >
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding}" />
@@ -63,7 +63,7 @@
                 <ListView Grid.Row="3" Name="selectedEventRightCustomers" ItemsSource="{Binding Source={StaticResource SelectedEventRightCustomers}}" 
                           SelectedItem="{Binding Path=DataContext.RightSelectedCustomer, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" 
                           SelectionChanged="selectedEventRightCustomers_SelectionChanged"
-                          Margin="500,46,10,56" Grid.RowSpan="3">
+                          Margin="500,46,10,56" Grid.RowSpan="3" >
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding}" />
@@ -71,8 +71,10 @@
                     </ListView.View>
                 </ListView>
 
-                <Button Grid.Row="5" Content="&gt;&gt;&gt;" Name="eventDetailsMoveRightButton" Height="30" Click="eventDetailsMoveRightButton_Click" Margin="426,10,425,102" />
-                <Button Grid.Row="5" Content="&lt;&lt;&lt;" Name="eventDetailsMoveLeftButton" Height="30" Click="eventDetailsMoveLeftButton_Click" Margin="426,51,425,61" />
+                <Button Grid.Row="5" Content="&gt;&gt;&gt;" Name="eventDetailsMoveRightButton" Height="30" Click="eventDetailsMoveRightButton_Click" 
+                        Margin="426,10,425,102" Visibility="Collapsed"/>
+                <Button Grid.Row="5" Content="&lt;&lt;&lt;" Name="eventDetailsMoveLeftButton" Height="30" Click="eventDetailsMoveLeftButton_Click" 
+                        Margin="426,51,425,61" Visibility="Collapsed"/>
 
                 <Button Grid.Row="5" Name="removeEventButton" Content="Remove Event" Width="140" Height="30" Margin="749,102,10,10" Click="removeEventButton_Click" />
 
@@ -100,14 +102,20 @@
                 <xctk:DateTimePicker Grid.Row="2" Name="newEventDatePicker" Margin="120,10,10,10" Value="{Binding Date}" />
 
                 <Label Grid.Row="3" Content="Customers:" Margin="10" />
-                <ListView Grid.Row="3" Name="newEventLeftCustomers" ItemsSource="{Binding Source={StaticResource NewEventLeftCustomers}}" SelectedItem="{Binding Path=DataContext.NewLeftCustomer, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" Margin="0,46,500,56" Grid.RowSpan="3">
+                <ListView Grid.Row="3" Name="newEventLeftCustomers" ItemsSource="{Binding Source={StaticResource NewEventLeftCustomers}}" 
+                          SelectedItem="{Binding Path=DataContext.NewLeftCustomer, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" 
+                          SelectionChanged="newEventNewLeftCustomers_SelectionChanged"
+                          Margin="0,46,500,56" Grid.RowSpan="3" >
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding}" />
                         </GridView>
                     </ListView.View>
                 </ListView>
-                <ListView Grid.Row="3" Name="newEventRightCustomers" ItemsSource="{Binding Source={StaticResource NewEventRightCustomers}}" SelectedItem="{Binding Path=DataContext.NewRightCustomer, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" Margin="500,46,10,56" Grid.RowSpan="3">
+                <ListView Grid.Row="3" Name="newEventRightCustomers" ItemsSource="{Binding Source={StaticResource NewEventRightCustomers}}" 
+                          SelectedItem="{Binding Path=DataContext.NewRightCustomer, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" 
+                          SelectionChanged="newEventNewRightCustomers_SelectionChanged"
+                          Margin="500,46,10,56" Grid.RowSpan="3" >
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding}" />
@@ -115,8 +123,10 @@
                     </ListView.View>
                 </ListView>
 
-                <Button Grid.Row="5" Content="&gt;&gt;&gt;" Name="newEventDetailsMoveRightButton" Height="30" Click="newEventDetailsMoveRightButton_Click" Margin="426,10,425,102" />
-                <Button Grid.Row="5" Content="&lt;&lt;&lt;" Name="newEventDetailsMoveLeftButton" Height="30" Click="newEventDetailsMoveLeftButton_Click" Margin="426,51,425,61" />
+                <Button Grid.Row="5" Content="&gt;&gt;&gt;" Name="newEventDetailsMoveRightButton" Height="30" Click="newEventDetailsMoveRightButton_Click" 
+                        Margin="426,10,425,102" Visibility="Collapsed"/>
+                <Button Grid.Row="5" Content="&lt;&lt;&lt;" Name="newEventDetailsMoveLeftButton" Height="30" Click="newEventDetailsMoveLeftButton_Click" 
+                        Margin="426,51,425,61" Visibility="Collapsed"/>
 
                 <Button Grid.Row="5" Name="saveNewEventButton" Content="Add As New Event" Width="140" Height="30" Margin="749,102,10,10" Click="saveNewEventButton_Click" />
 

@@ -29,11 +29,11 @@ public partial class EventView : Page
         EventViewModel = eventViewModel;
         this.DataContext = EventViewModel;        
         InitializeComponent();
-        eventDetailsMoveLeftButton.Visibility = Visibility.Collapsed;
-        eventDetailsMoveRightButton.Visibility = Visibility.Collapsed;
     }
     private bool isLeftListViewChanging = false;
     private bool isRightListViewChanging = false;
+    private bool isNewLeftListViewChanging = false;
+    private bool isNewRightListViewChanging = false;
 
     private void saveButton_Click(object sender, RoutedEventArgs e)
     {
@@ -138,6 +138,40 @@ public partial class EventView : Page
         else
         {
             eventDetailsMoveLeftButton.Visibility = Visibility.Collapsed;
+        }
+    }
+    private void newEventNewLeftCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (!isNewRightListViewChanging)
+        {
+            isNewLeftListViewChanging = true;
+            newEventRightCustomers.SelectedItem = null;
+            isNewLeftListViewChanging = false;
+        }
+        if (newEventLeftCustomers.SelectedItem != null)
+        {
+            newEventDetailsMoveRightButton.Visibility = Visibility.Visible;
+        }
+        else
+        {
+            newEventDetailsMoveRightButton.Visibility = Visibility.Collapsed;
+        }
+    }
+    private void newEventNewRightCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (!isNewLeftListViewChanging)
+        {
+            isNewRightListViewChanging = true;
+            newEventLeftCustomers.SelectedItem = null;
+            isNewRightListViewChanging = false;
+        }
+        if (newEventRightCustomers.SelectedItem != null)
+        {
+            newEventDetailsMoveLeftButton.Visibility = Visibility.Visible;
+        }
+        else
+        {
+            newEventDetailsMoveLeftButton.Visibility = Visibility.Collapsed;
         }
     }
 }
