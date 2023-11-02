@@ -21,9 +21,8 @@
         <ListView Name="eventListView" ItemsSource="{Binding Events}" SelectedItem="{Binding SelectedEvent}" Margin="10,10,960,10">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Name" Width="240" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Date" Width="240" DisplayMemberBinding="{Binding Date}" />
-                    <GridViewColumn Header="Customers" Width="240" DisplayMemberBinding="{Binding Customers.Count}" />
+                    <GridViewColumn Header="Name" Width="420" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Date &amp; Time" Width="420" DisplayMemberBinding="{Binding Date}" />
                 </GridView>
             </ListView.View>
         </ListView>
@@ -31,7 +30,7 @@
         <!-- Event Details -->
         <Border Name="eventDetailsBorder" Margin="1000,10,10,608" BorderBrush="DarkGray" BorderThickness="1" CornerRadius="5"
                 DataContext="{Binding SelectedItem, ElementName=eventListView}">
-            <Grid Margin="9,0,0,9">
+            <Grid Margin="9,0,9,9">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -44,19 +43,19 @@
                 <TextBlock Grid.Row="0" Text="Event Details" FontWeight="Bold" Margin="10" FontSize="16" />
 
                 <Label Grid.Row="1" Content="Name:" Margin="10" />
-                <TextBox Grid.Row="1" Name="eventNameTextBox" Margin="120,10,10,10" Text="{Binding Name}" />
+                <TextBox Grid.Row="1" Name="eventNameTextBox" Margin="120,10,10,10" Text="{Binding Name}" TextAlignment="Center"/>
 
-                <Label Grid.Row="2" Content="Date:" Margin="10" />
-                <xctk:DateTimePicker Grid.Row="2" Name="eventDateTimePicker" Margin="120,10,10,10" Value="{Binding Date}" />
+                <Label Grid.Row="2" Content="Date &amp; Time:" Margin="10" />
+                <xctk:DateTimePicker Grid.Row="2" Name="eventDateTimePicker" Margin="120,10,10,10" Value="{Binding Date}" TextAlignment="Center" />
 
-                <Label Grid.Row="3" Content="Customers:" Margin="10" />
+                <Label Grid.Row="3" Content="Participants list:" Margin="10" />
                 <ListView Grid.Row="3" Name="selectedEventLeftCustomers" ItemsSource="{Binding Source={StaticResource SelectedEventLeftCustomers}}" 
                           SelectedItem="{Binding Path=DataContext.LeftSelectedCustomer, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" 
                           SelectionChanged="selectedEventLeftCustomers_SelectionChanged"
-                          Margin="0,46,500,56" Grid.RowSpan="3" >
+                          Margin="10,46,500,56" Grid.RowSpan="3" >
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding}" />
+                            <GridViewColumn Header="Name, Surname [identifier]" Width="370" DisplayMemberBinding="{Binding}" />
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -66,24 +65,24 @@
                           Margin="500,46,10,56" Grid.RowSpan="3" >
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding}" />
+                            <GridViewColumn Header="Name, Surname [identifier]" Width="370" DisplayMemberBinding="{Binding}" />
                         </GridView>
                     </ListView.View>
                 </ListView>
 
                 <Button Grid.Row="5" Content="&gt;&gt;&gt;" Name="eventDetailsMoveRightButton" Height="30" Click="eventDetailsMoveRightButton_Click" 
-                        Margin="426,10,425,102" Visibility="Collapsed"/>
+                        Margin="420,10,420,102" Visibility="Collapsed"/>
                 <Button Grid.Row="5" Content="&lt;&lt;&lt;" Name="eventDetailsMoveLeftButton" Height="30" Click="eventDetailsMoveLeftButton_Click" 
-                        Margin="426,51,425,61" Visibility="Collapsed"/>
+                        Margin="420,51,420,61" Visibility="Collapsed"/>
 
-                <Button Grid.Row="5" Name="removeEventButton" Content="Remove Event" Width="140" Height="30" Margin="749,102,10,10" Click="removeEventButton_Click" />
+                <Button Grid.Row="5" Name="removeEventButton" Content="Remove Event" Width="140" Height="30" Margin="740,102,10,10" Click="removeEventButton_Click" />
 
             </Grid>
         </Border>
 
         <Border Name="newEventBorder" Margin="1000,382,10,236" BorderBrush="DarkGray" BorderThickness="1" CornerRadius="5"
         DataContext="{Binding NewEvent}">
-            <Grid Margin="9,0,0,9">
+            <Grid Margin="9,0,9,9">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -96,19 +95,19 @@
                 <TextBlock Grid.Row="0" Text="Add New Event" FontWeight="Bold" Margin="10" FontSize="16" />
 
                 <Label Grid.Row="1" Content="Name:" Margin="10" />
-                <TextBox Grid.Row="1" Name="newEventNameTextBox" Margin="120,10,10,10" Text="{Binding Name}" />
+                <TextBox Grid.Row="1" Name="newEventNameTextBox" Margin="120,10,10,10" Text="{Binding Name}" TextAlignment="Center"/>
 
-                <Label Grid.Row="2" Content="Date:" Margin="10" />
-                <xctk:DateTimePicker Grid.Row="2" Name="newEventDatePicker" Margin="120,10,10,10" Value="{Binding Date}" />
+                <Label Grid.Row="2" Content="Date &amp; Time:" Margin="10" />
+                <xctk:DateTimePicker Grid.Row="2" Name="newEventDatePicker" Margin="120,10,10,10" Value="{Binding Date}" TextAlignment="Center"/>
 
-                <Label Grid.Row="3" Content="Customers:" Margin="10" />
+                <Label Grid.Row="3" Content="Participants list:" Margin="10" />
                 <ListView Grid.Row="3" Name="newEventLeftCustomers" ItemsSource="{Binding Source={StaticResource NewEventLeftCustomers}}" 
                           SelectedItem="{Binding Path=DataContext.NewLeftCustomer, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" 
                           SelectionChanged="newEventNewLeftCustomers_SelectionChanged"
-                          Margin="0,46,500,56" Grid.RowSpan="3" >
+                          Margin="10,46,500,56" Grid.RowSpan="3" >
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding}" />
+                            <GridViewColumn Header="Name, Surname [identifier]" Width="370" DisplayMemberBinding="{Binding}" />
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -118,17 +117,17 @@
                           Margin="500,46,10,56" Grid.RowSpan="3" >
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding}" />
+                            <GridViewColumn Header="Name, Surname [identifier]" Width="370" DisplayMemberBinding="{Binding}" />
                         </GridView>
                     </ListView.View>
                 </ListView>
 
                 <Button Grid.Row="5" Content="&gt;&gt;&gt;" Name="newEventDetailsMoveRightButton" Height="30" Click="newEventDetailsMoveRightButton_Click" 
-                        Margin="426,10,425,102" Visibility="Collapsed"/>
+                        Margin="420,10,420,102" Visibility="Collapsed"/>
                 <Button Grid.Row="5" Content="&lt;&lt;&lt;" Name="newEventDetailsMoveLeftButton" Height="30" Click="newEventDetailsMoveLeftButton_Click" 
-                        Margin="426,51,425,61" Visibility="Collapsed"/>
+                        Margin="420,51,420,61" Visibility="Collapsed"/>
 
-                <Button Grid.Row="5" Name="saveNewEventButton" Content="Add As New Event" Width="140" Height="30" Margin="749,102,10,10" Click="saveNewEventButton_Click" />
+                <Button Grid.Row="5" Name="saveNewEventButton" Content="Add As New Event" Width="140" Height="30" Margin="740,102,10,10" Click="saveNewEventButton_Click" />
 
             </Grid>
         </Border>
