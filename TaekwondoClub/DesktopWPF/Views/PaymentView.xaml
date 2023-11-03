@@ -47,7 +47,7 @@
                 <TextBox Grid.Row="1" Name="nameTextBox" Margin="120,10,10,10" Text="{Binding Name}" />
 
                 <Label Grid.Row="2" Content="Month/Year:" Margin="10" />
-                <TextBox Grid.Row="2" Name="monthYearTextBox" Margin="120,10,10,10" Text="{Binding MonthYear}" />
+                <TextBox Grid.Row="2" Name="monthYearTextBox" Margin="120,10,10,10" Text="{Binding MonthYear}" PreviewTextInput="MonthYearTextBox_PreviewTextInput"/>
 
                 <Label Grid.Row="3" Content="Due Date:" Margin="10" />
                 <DatePicker Grid.Row="3" Name="dueDatePicker" Margin="120,10,10,10" SelectedDate="{Binding DueDate}" />
@@ -107,7 +107,7 @@
                 <TextBox Grid.Row="1" Name="newNameTextBox" Margin="120,10,10,10" Text="{Binding Name}" />
 
                 <Label Grid.Row="2" Content="Month/Year:" Margin="10" />
-                <TextBox Grid.Row="2" Name="newMonthYearTextBox" Margin="120,10,10,10" Text="{Binding MonthYear}" />
+                <TextBox Grid.Row="2" Name="newMonthYearTextBox" Margin="120,10,10,10" Text="{Binding MonthYear}" PreviewTextInput="MonthYearTextBox_PreviewTextInput"/>
 
                 <Label Grid.Row="3" Content="Due Date:" Margin="10" />
                 <DatePicker Grid.Row="3" Name="newDueDatePicker" Margin="120,10,10,10" SelectedDate="{Binding DueDate}" />

@@ -10,7 +10,7 @@ namespace DesktopWPF.Validators;
 internal static class RegexValidator
 {
     private const string NumericPattern = @"^\d+$";
-    private const string MonthYearPattern = @"^(0[1-9]|1[0-2])/\d{4}$";
+    private const string MonthYearPattern = @"^(((0[1-9]?)|(1[0-2]?))(\/([1-2][0-9]{0,3})?)?)?$";
 
     private static readonly Regex _numericRegex = new Regex(NumericPattern, RegexOptions.Compiled);
     private static readonly Regex _monthYearRegex = new Regex(MonthYearPattern, RegexOptions.Compiled);
@@ -22,6 +22,11 @@ internal static class RegexValidator
 
     public static bool IsMonthYearPattern(string text)
     {
+        if (string.IsNullOrEmpty(text))
+        {
+            return true;
+        }
+
         return _monthYearRegex.IsMatch(text);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using DB.Entities;
+using DesktopWPF.Validators;
 using DesktopWPF.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -49,5 +50,13 @@ public partial class PaymentView : Page
     private void saveNewPaymentButton_Click(object sender, RoutedEventArgs e)
     {
         PaymentViewModel.AddPayment();
+    }
+    private void MonthYearTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+    {
+        var textbox = sender as TextBox;
+        if (!RegexValidator.IsMonthYearPattern(textbox.Text + e.Text))
+        {
+            e.Handled = true;
+        }
     }
 }
