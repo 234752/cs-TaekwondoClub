@@ -51,7 +51,7 @@
                 <TextBox Grid.Row="4" Name="addressTextBox" Margin="120,10,10,10" Text="{Binding Address}" />
 
                 <Label Grid.Row="5" Content="Account Number:" Margin="10" />
-                <TextBox Grid.Row="5" Name="accountNumberTextBox" Margin="120,10,10,10" Text="{Binding AccountNumber}" />
+                <TextBox Grid.Row="5" Name="accountNumberTextBox" Margin="120,10,10,10" Text="{Binding AccountNumber}" PreviewTextInput="NumericTextBox_PreviewTextInput"/>
 
                 <Button Grid.Row="6" Name="removeCustomerButton" Content="Remove Customer" Width="140" Height="30" Margin="509,10,10,10"  Click="removeButton_Click"/>
 

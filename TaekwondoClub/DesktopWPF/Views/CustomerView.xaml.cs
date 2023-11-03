@@ -1,5 +1,6 @@
 ﻿using DB.Entities;
 using DesktopWPF.ViewModels;
+using DesktopWPF.Validators;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -59,4 +60,12 @@ public partial class CustomerView : Page
             AccountNumber = newAccountNumberTextBox.Text
         });
     }
+    private void NumericTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+    {
+        if (!RegexValidator.IsNumeric(e.Text))
+        {
+            e.Handled = true;
+        }
+    }
+
 }
