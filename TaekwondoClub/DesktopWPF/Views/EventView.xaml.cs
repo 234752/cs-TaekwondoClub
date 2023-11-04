@@ -29,6 +29,10 @@ public partial class EventView : Page
         EventViewModel = eventViewModel;
         this.DataContext = EventViewModel;        
         InitializeComponent();
+        eventDetailsMoveRightButton.Visibility = Visibility.Collapsed;
+        eventDetailsMoveLeftButton.Visibility = Visibility.Collapsed;
+        newEventDetailsMoveRightButton.Visibility = Visibility.Collapsed;
+        newEventDetailsMoveLeftButton.Visibility = Visibility.Collapsed;
     }
     private bool isLeftListViewChanging = false;
     private bool isRightListViewChanging = false;
