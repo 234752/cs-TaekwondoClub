@@ -14,7 +14,7 @@
     </Page.Resources>
 
     <Grid>
-        <ListView Name="paymentListView" ItemsSource="{Binding Payments}" SelectedItem="{Binding SelectedPayment}" Margin="10,10,700,10">
+        <ListView Name="paymentListView" ItemsSource="{Binding Payments}" SelectedItem="{Binding SelectedPayment}" Margin="10,10,695,10">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Name" Width="240" DisplayMemberBinding="{Binding Name}" />

@@ -8,13 +8,14 @@
         Title="MainWindow" Height="1080" Width="1920" WindowState="Maximized"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         ui:WindowHelper.UseModernWindowStyle="True">
-    
+
     <Grid>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="50" VerticalAlignment="Top">
-            <Button Content="Customers" Width="200"  Click="ShowCustomersView" />
-            <Button Content="Events" Width="200" Click="ShowEventsView" />
-            <Button Content="Payments" Width="200" Click="ShowPaymentsView" />
-            <TextBox Name="pogBox" Text="not pog" />
+            <Button Content="Customers" Width="200"  Click="ShowCustomersView" BorderBrush="LightBlue" BorderThickness="3"/>
+            <Separator Opacity="0" Width="10"/>
+            <Button Content="Events" Width="200" Click="ShowEventsView" BorderBrush="LightBlue" BorderThickness="3"/>
+            <Separator Opacity="0" Width="10"/>
+            <Button Content="Payments" Width="200" Click="ShowPaymentsView" BorderBrush="LightBlue" BorderThickness="3"/>
         </StackPanel>
         <Frame Name="mainFrame" NavigationUIVisibility="Hidden" Margin="0,50,0,0" />
     </Grid>
