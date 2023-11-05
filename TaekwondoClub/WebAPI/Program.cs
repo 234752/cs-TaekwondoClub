@@ -19,6 +19,13 @@ app.MapGet("/payments", async (DataContext db) =>
     await db.Payments.Include(p => p.Customer).ToListAsync());
 
 app.MapGet("/customerswithduepayments", async (DataContext db) =>
-    await CustomerQueries.CustomersWithDuePayments(db));
+{
+    return await CustomerQueries.CustomersWithDuePayments(db);
+});
+
+app.MapGet("/customerswithduepayments/{days}", async (int days, DataContext db) =>
+{
+    return await EventQueries.UpcomingEvents(db, days);
+});
 
 app.Run();
