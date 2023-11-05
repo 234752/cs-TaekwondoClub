@@ -14,6 +14,6 @@ public static class CustomerQueries
     {
         var payments = await context.Payments.Where(p => p.Paid == "no").Include(p => p.Customer).ToListAsync();
         var customers = payments.Select(p => p.Customer).ToList();
-        return customers;
+        return customers.DistinctBy(c => c.Id).ToList();
     }
 }
