@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using DB;
+using DB.Queries;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<DataContext>(options =>
@@ -12,5 +13,12 @@ var app = builder.Build();
 
 app.MapGet("/customers", async (DataContext db) => 
     await db.Customers.ToListAsync());
+app.MapGet("/events", async (DataContext db) =>
+    await db.Events.Include(e => e.Customers).ToListAsync());
+app.MapGet("/payments", async (DataContext db) =>
+    await db.Payments.Include(p => p.Customer).ToListAsync());
+
+app.MapGet("/customerswithduepayments", async (DataContext db) =>
+    await CustomerQueries.CustomersWithDuePayments(db));
 
 app.Run();
