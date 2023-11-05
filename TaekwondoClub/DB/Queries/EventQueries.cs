@@ -12,7 +12,7 @@ public static class EventQueries
 {
     public static async Task<List<Event>> UpcomingEvents(DataContext context, int days)
     {
-        var events = await context.Events.Where(e => e.Date < DateTime.Now.AddDays(days)).Include(e => e.Customers).ToListAsync();
+        var events = await context.Events.Where(e => e.Date < DateTime.Now.AddDays(days) && e.Date > DateTime.Now).Include(e => e.Customers).ToListAsync();
         return events;
     }
 }

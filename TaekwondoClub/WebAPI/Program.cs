@@ -23,7 +23,7 @@ app.MapGet("/customerswithduepayments", async (DataContext db) =>
     return await CustomerQueries.CustomersWithDuePayments(db);
 });
 
-app.MapGet("/customerswithduepayments/{days}", async (int days, DataContext db) =>
+app.MapGet("/upcomingevents/{days}", async (int days, DataContext db) =>
 {
     return await EventQueries.UpcomingEvents(db, days);
 });
