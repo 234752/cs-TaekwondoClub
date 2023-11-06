@@ -9,7 +9,7 @@
             InitializeComponent();
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        private async void OnCounterClicked(object sender, EventArgs e)
         {
             count++;
 
@@ -19,6 +19,12 @@
                 CounterBtn.Text = $"Clicked {count} times";
 
             SemanticScreenReader.Announce(CounterBtn.Text);
+
+            if(count == 3) 
+            {
+                var service = new RestService();
+                await service.FetchDataContext();
+            }
         }
     }
 }

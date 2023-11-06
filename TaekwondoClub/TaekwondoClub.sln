@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "WebAPI\WebAPI.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DB", "DB\DB.csproj", "{4856749D-A87F-4AF2-B9B1-B3059ED2151B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopWPF", "DesktopWPF\DesktopWPF.csproj", "{241049C0-4CF0-4D93-B5EF-6A5F50A5A968}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesktopWPF", "DesktopWPF\DesktopWPF.csproj", "{241049C0-4CF0-4D93-B5EF-6A5F50A5A968}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
