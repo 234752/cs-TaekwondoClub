@@ -9,7 +9,7 @@
 
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
+        ContentTemplate="{DataTemplate pages:SummaryPage}"
         Route="MainPage" />
 
     <FlyoutItem Title="Upcoming Events">

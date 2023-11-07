@@ -1,10 +1,11 @@
-﻿namespace MobileMAUI
+﻿namespace MobileMAUI;
+
+public partial class AppShell : Shell
 {
-    public partial class AppShell : Shell
+    public RestService RestService { get; set; }
+    public AppShell()
     {
-        public AppShell()
-        {
-            InitializeComponent();
-        }
+        RestService = new RestService();
+        InitializeComponent();
     }
 }
