@@ -8,9 +8,9 @@
     Shell.FlyoutBehavior="Flyout">
 
     <ShellContent
-        Title="Home"
+        Title="Summary"
         ContentTemplate="{DataTemplate pages:SummaryPage}"
-        Route="MainPage" />
+        Route="SummaryPage" />
 
     <FlyoutItem Title="Upcoming Events">
         <Tab>

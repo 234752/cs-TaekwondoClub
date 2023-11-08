@@ -3,7 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobileMAUI.Pages.UpcomingEventsPage"
              Title="UpcomingEventsPage">
-    
 
+
+    <ListView ItemsSource="{Binding Events}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout>
+                        <Label Text="{Binding Name}" />
+                        <Label Text="{Binding Date, StringFormat='Date: {0:MM/dd/yyyy}'}" />
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
     
 </ContentPage>

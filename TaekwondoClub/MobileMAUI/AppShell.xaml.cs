@@ -4,8 +4,14 @@ public partial class AppShell : Shell
 {
     public RestService RestService { get; set; }
     public AppShell()
+    {        
+        InitializeComponent();
+    }
+    protected override async void OnAppearing()
     {
         RestService = new RestService();
-        InitializeComponent();
+        await RestService.FetchDataContext();
+        var binding = new BindingContext(RestService);
+        BindingContext = binding;
     }
 }
