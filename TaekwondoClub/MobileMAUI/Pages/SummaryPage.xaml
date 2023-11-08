@@ -3,19 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobileMAUI.Pages.SummaryPage">
 
-<ScrollView>
-    <VerticalStackLayout
-        Spacing="25"
-        Padding="30,0"
-        VerticalOptions="Center">
+    <ScrollView>
+        <VerticalStackLayout Spacing="25" Padding="30,0" VerticalOptions="Center">
 
-        <Label
-            Text="Welcome in notification center"
-            SemanticProperties.HeadingLevel="Level1"
-            FontSize="23"
-            HorizontalOptions="Center" />
+            <Label Text="Welcome in notification center" SemanticProperties.HeadingLevel="Level1" FontSize="23" HorizontalOptions="Center" />
 
-    </VerticalStackLayout>
-</ScrollView>
+            <Label Text="Amount of current customers:" FontSize="18" HorizontalOptions="Center" />
+            <Label Text="{Binding Customers.Count}" FontSize="18" HorizontalOptions="Center" />
+
+            <Label Text="Events upcoming:" FontSize="18" HorizontalOptions="Center" />
+            <Label Text="{Binding Events.Count}" FontSize="18" HorizontalOptions="Center" />
+
+            <Label Text="Amount of payments:" FontSize="18" HorizontalOptions="Center" />
+            <Label Text="{Binding Payments.Count}" FontSize="18" HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
 
 </ContentPage>
