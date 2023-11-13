@@ -11,7 +11,7 @@ public partial class AppShell : Shell
     {
         RestService = new RestService();
         await RestService.FetchDataContext();
-        var binding = new BindingContext(RestService);
+        var binding = new MainViewModel(RestService);
         BindingContext = binding;
     }
 }

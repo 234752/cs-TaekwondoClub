@@ -8,6 +8,11 @@
 
             <Label Text="Welcome in notification center" SemanticProperties.HeadingLevel="Level1" FontSize="23" HorizontalOptions="Center" />
 
+            <Picker x:Name="DaysPicker" Title="Select date range"
+                ItemsSource="{Binding DaysList}"
+                SelectedItem="{Binding Days, Mode=TwoWay}"
+                SelectedIndexChanged="OnDaysPickerSelectedIndexChanged">
+            </Picker>
             <Label Text="Amount of current customers:" FontSize="18" HorizontalOptions="Center" />
             <Label Text="{Binding Customers.Count}" FontSize="18" HorizontalOptions="Center" />
 
