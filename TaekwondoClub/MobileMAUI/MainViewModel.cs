@@ -23,7 +23,7 @@ public class MainViewModel
         DaysList = Enumerable.Range(1, 30).Select(i => i.ToString()).ToList();
         DaysList.Add("unlimited");
     }
-    public string Days { get; set; }
+    public string Days { get; set; } = "unlimited";
     public List<string> DaysList { get; set; }
     public void FilterEventsByDate()
     {

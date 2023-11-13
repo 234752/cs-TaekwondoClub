@@ -4,15 +4,33 @@
              x:Class="MobileMAUI.Pages.SummaryPage">
 
     <ScrollView>
-        <VerticalStackLayout Spacing="25" Padding="30,0" VerticalOptions="Center">
+        <VerticalStackLayout Spacing="10" Padding="10,0" >
 
-            <Label Text="Welcome in notification center" SemanticProperties.HeadingLevel="Level1" FontSize="23" HorizontalOptions="Center" />
+            
+            <Grid>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
-            <Picker x:Name="DaysPicker" Title="Select date range"
+                <Label Text="Date Range" FontSize="13" Grid.Column="0" Grid.Row="0" HorizontalTextAlignment="Center" Padding="20"/>
+                
+                <Picker x:Name="DaysPicker" Title="Select date range"
                 ItemsSource="{Binding DaysList}"
                 SelectedItem="{Binding Days, Mode=TwoWay}"
-                SelectedIndexChanged="OnDaysPickerSelectedIndexChanged">
+                SelectedIndexChanged="OnDaysPickerSelectedIndexChanged"
+                HorizontalTextAlignment="Center"
+                Grid.Column="1" Grid.Row="0">
             </Picker>
+            </Grid>
+            
+            <Label Text="Welcome in notification center" SemanticProperties.HeadingLevel="Level1" FontSize="23" HorizontalOptions="Center" />
             <Label Text="Amount of current customers:" FontSize="18" HorizontalOptions="Center" />
             <Label Text="{Binding Customers.Count}" FontSize="18" HorizontalOptions="Center" />
 
