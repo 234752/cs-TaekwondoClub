@@ -1,21 +1,35 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="MobileMAUI.Pages.UpcomingEventsPage"
              Title="UpcomingEventsPage">
 
 
-    <ListView ItemsSource="{Binding Events}">
-        <ListView.ItemTemplate>
+    <CollectionView ItemsSource="{Binding Events}">
+        <CollectionView.ItemTemplate>
             <DataTemplate>
-                <ViewCell>
+                <xct:Expander>
+                    <xct:Expander.Header>
+                        <Label Text="{Binding Name}" FontAttributes="Bold" />
+                    </xct:Expander.Header>
                     <StackLayout>
-                        <Label Text="{Binding Name}" />
                         <Label Text="{Binding Date, StringFormat='Date: {0:MM/dd/yyyy}'}" />
+                        <CollectionView ItemsSource="{Binding Customers}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <Label Text="{Binding Name}" />
+                                    </StackLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
                     </StackLayout>
-                </ViewCell>
+                </xct:Expander>
             </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
-    
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+
+
+
 </ContentPage>
