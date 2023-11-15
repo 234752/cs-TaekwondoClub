@@ -31,7 +31,7 @@
             </Grid>
 
             <!-- Welcome Message -->
-            <Label Text="Welcome to the Notification Center" FontSize="23" HorizontalOptions="Center" TextColor="DarkBlue" />
+            <Label Text="Welcome to the Notification Center" FontSize="23" HorizontalOptions="Center" TextColor="LightBlue" />
 
             <!-- Current Customers -->
             <StackLayout>
