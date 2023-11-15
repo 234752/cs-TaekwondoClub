@@ -20,28 +20,17 @@ public class MainViewModel
         Customers = new ObservableCollection<Customer>(restService.Customers);
         Events = new ObservableCollection<Event>(restService.Events);
         Payments = new ObservableCollection<Payment>(restService.Payments);
-        DaysList = Enumerable.Range(1, 30).Select(i => i.ToString()).ToList();
-        DaysList.Add("unlimited");
+        StartDate = DateTime.Now;
+        EndDate = StartDate.AddDays(30);
+        FilterEventsByDate();
     }
-    public string Days { get; set; } = "unlimited";
-    public List<string> DaysList { get; set; }
+
+    public DateTime StartDate { get; set; }
+    public DateTime EndDate { get; set; }
     public void FilterEventsByDate()
     {
-        if (Days == "unlimited")
-        {
-            Events.Clear();
-            foreach (var e in _restService.Events)
-            {
-                Events.Add(e);
-            }
-            return;
-        }
-
-        var currentTime = DateTime.Now;
-        var days = int.Parse(Days);
-
         Events.Clear();
-        foreach (var e in _restService.Events.Where(e => e.Date >= currentTime && e.Date <= currentTime.AddDays(days)))
+        foreach (var e in _restService.Events.Where(e => e.Date >= StartDate && e.Date <= EndDate))
         {
             Events.Add(e);
         }

@@ -10,8 +10,18 @@ public partial class SummaryPage : ContentPage
         ViewModel = BindingContext as MainViewModel;
         InitializeComponent();
     }
-    private void OnDaysPickerSelectedIndexChanged(object sender, EventArgs e)
+    private void OnStartDatePicker_DateSelected(object sender, DateChangedEventArgs e)
     {
+        if(StartDatePicker.Date > EndDatePicker.Date) { EndDatePicker.Date = StartDatePicker.Date; }
+        EndDatePicker.MinimumDate = StartDatePicker.Date;
+        if (BindingContext is MainViewModel viewModel)
+        {
+            viewModel.FilterEventsByDate();
+        }
+    }
+    private void OnEndDatePicker_DateSelected(object sender, DateChangedEventArgs e)
+    {
+        EndDatePicker.MinimumDate = StartDatePicker.Date;
         if (BindingContext is MainViewModel viewModel)
         {
             viewModel.FilterEventsByDate();
