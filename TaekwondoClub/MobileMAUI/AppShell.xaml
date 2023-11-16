@@ -16,7 +16,7 @@
             <ShellContent ContentTemplate="{DataTemplate pages:UpcomingEventsPage}" />
         </Tab>
         <Tab Title="Payments" Icon="payment.ico">
-            <ShellContent ContentTemplate="{DataTemplate pages:UpcomingEventsPage}" />
+            <ShellContent ContentTemplate="{DataTemplate pages:PaymentsPage}" />
         </Tab>
                    
 
