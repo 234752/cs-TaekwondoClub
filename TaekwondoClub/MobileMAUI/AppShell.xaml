@@ -5,18 +5,22 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pages="clr-namespace:MobileMAUI.Pages"
     xmlns:local="clr-namespace:MobileMAUI"
-    Shell.FlyoutBehavior="Flyout">
+    Shell.FlyoutBehavior="Disabled">
 
-    <ShellContent
-        Title="Summary"
-        ContentTemplate="{DataTemplate pages:SummaryPage}"
-        Route="SummaryPage" />
+    <TabBar>
 
-    <FlyoutItem Title="Upcoming Events">
-        <Tab>
+        <Tab Title="Summary" Icon="checklist.ico">
+        <ShellContent ContentTemplate="{DataTemplate pages:SummaryPage}" />
+        </Tab>
+        <Tab Title="Events" Icon="calendar.ico">
             <ShellContent ContentTemplate="{DataTemplate pages:UpcomingEventsPage}" />
         </Tab>
-    </FlyoutItem>
+        <Tab Title="Payments" Icon="payment.ico">
+            <ShellContent ContentTemplate="{DataTemplate pages:UpcomingEventsPage}" />
+        </Tab>
+                   
 
+    </TabBar>
+    
 
 </Shell>
