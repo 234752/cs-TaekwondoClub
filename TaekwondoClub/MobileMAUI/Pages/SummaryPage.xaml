@@ -5,47 +5,18 @@
     <ScrollView>
         <VerticalStackLayout Spacing="10" Padding="10,20" >
 
-            <!-- Date Range Picker -->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-
-                <Label Text="Date Range" FontSize="18" Grid.Column="0" Grid.Row="0" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-
-                <DatePicker x:Name="StartDatePicker"
-                            Date="{Binding StartDate, Mode=TwoWay}"
-                            Grid.Column="1" Grid.Row="0"
-                            DateSelected="OnStartDatePicker_DateSelected">
-                </DatePicker>
-                <DatePicker x:Name="EndDatePicker"
-                            Date="{Binding EndDate, Mode=TwoWay}"
-                            Grid.Column="2" Grid.Row="0"
-                            DateSelected="OnEndDatePicker_DateSelected">
-                </DatePicker>
-            </Grid>
-
-            <!-- Welcome Message -->
             <Label Text="Welcome to the Notification Center" FontSize="23" HorizontalOptions="Center" TextColor="LightBlue" />
 
-            <!-- Current Customers -->
             <StackLayout>
                 <Label Text="Amount of Current Customers:" FontSize="18" HorizontalOptions="Center" />
                 <Label Text="{Binding Customers.Count}" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
             </StackLayout>
 
-            <!-- Upcoming Events -->
             <StackLayout>
                 <Label Text="Upcoming Events:" FontSize="18" HorizontalOptions="Center" />
                 <Label Text="{Binding Events.Count}" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
             </StackLayout>
 
-            <!-- Payments -->
             <StackLayout>
                 <Label Text="Amount of Payments:" FontSize="18" HorizontalOptions="Center" />
                 <Label Text="{Binding Payments.Count}" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />

@@ -5,7 +5,33 @@
              x:Class="MobileMAUI.Pages.UpcomingEventsPage"
              Title="UpcomingEventsPage">
 
+<ScrollView>
+<VerticalStackLayout>
 
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Label Text="Date Range" FontSize="18" Grid.Column="0" Grid.Row="0" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+
+        <DatePicker x:Name="StartDatePicker"
+                            Date="{Binding StartDate, Mode=TwoWay}"
+                            Grid.Column="1" Grid.Row="0"
+                            DateSelected="OnStartDatePicker_DateSelected">
+        </DatePicker>
+        <DatePicker x:Name="EndDatePicker"
+                            Date="{Binding EndDate, Mode=TwoWay}"
+                            Grid.Column="2" Grid.Row="0"
+                            DateSelected="OnEndDatePicker_DateSelected">
+        </DatePicker>
+    </Grid>
+    
     <CollectionView ItemsSource="{Binding Events}">
         <CollectionView.ItemTemplate>
             <DataTemplate>
@@ -30,6 +56,6 @@
         </CollectionView.ItemTemplate>
     </CollectionView>
 
-
-
+</VerticalStackLayout>
+</ScrollView>
 </ContentPage>
