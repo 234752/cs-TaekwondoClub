@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="MobileMAUI.Pages.UpcomingEventsPage"
-             Title="UpcomingEventsPage">
+             Title="Event Calendar">
 
 <ScrollView>
 <VerticalStackLayout>
@@ -18,11 +18,11 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Label Text="Date Range" FontSize="18" Grid.Column="0" Grid.Row="0" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+        <Label Text="&lt;====&gt;" FontSize="18" Grid.Column="1" Grid.Row="0" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
 
-        <DatePicker x:Name="StartDatePicker"
+        <DatePicker x:Name="StartDatePicker" 
                             Date="{Binding StartDate, Mode=TwoWay}"
-                            Grid.Column="1" Grid.Row="0"
+                            Grid.Column="0" Grid.Row="0"
                             DateSelected="OnStartDatePicker_DateSelected">
         </DatePicker>
         <DatePicker x:Name="EndDatePicker"
@@ -31,21 +31,35 @@
                             DateSelected="OnEndDatePicker_DateSelected">
         </DatePicker>
     </Grid>
-    
-    <CollectionView ItemsSource="{Binding Events}">
+
+            <Label Text="Events upcoming in selected date range:" HorizontalTextAlignment="Center" Padding="20" FontSize="18"/>
+            <CollectionView ItemsSource="{Binding Events}" >
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <xct:Expander>
+                <xct:Expander Padding="0,0,0,20">
                     <xct:Expander.Header>
-                        <Label Text="{Binding Name}" FontAttributes="Bold" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                            </Grid.RowDefinitions>
+
+                        <Label Text="{Binding Name}" FontAttributes="Bold" Grid.Column="0" HorizontalTextAlignment="Center"/>
+                        <Label Text="{Binding Date, StringFormat='{0:MM/dd/yyyy, HH:mm}'}" Grid.Column="1" HorizontalTextAlignment="Center"/>
+                        <Label Text="{Binding}" Grid.Column="2" HorizontalTextAlignment="Center"/>
+                        </Grid>
+                                
                     </xct:Expander.Header>
                     <StackLayout>
-                        <Label Text="{Binding Date, StringFormat='Date: {0:MM/dd/yyyy}'}" />
                         <CollectionView ItemsSource="{Binding Customers}">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
                                     <StackLayout>
-                                        <Label Text="{Binding Name}" />
+                                        <Label Text="{Binding}" HorizontalTextAlignment="Center"/>
                                     </StackLayout>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
