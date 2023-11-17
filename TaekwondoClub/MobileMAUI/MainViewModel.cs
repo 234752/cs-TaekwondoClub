@@ -22,7 +22,10 @@ public class MainViewModel
         Payments = new ObservableCollection<Payment>(restService.Payments);
         StartDate = DateTime.Now;
         EndDate = StartDate.AddDays(30);
+        EndMonthYear = DateTime.Now;
+        StartMonthYear = EndMonthYear.AddMonths(-1);
         FilterEventsByDate();
+        FilterPaymentsByMonthYear();
     }
 
     public DateTime StartDate { get; set; }
@@ -35,6 +38,34 @@ public class MainViewModel
         foreach (var e in _restService.Events.Where(e => e.Date >= StartDate && e.Date <= EndDate))
         {
             Events.Add(e);
+        }
+    }
+
+    public void FilterPaymentsByMonthYear()
+    {
+        int MonthYearToMonth(string monthYear)
+        {
+            var month = monthYear.Substring(0, 2);
+            return int.Parse(month);
+        }
+        int MonthYearToYear(string monthYear)
+        {
+            var year = monthYear.Substring(3, 4);
+            return int.Parse(year);
+        }
+        bool IsInRange(string monthYear)
+        {
+            if (MonthYearToYear(monthYear) < StartMonthYear.Year || MonthYearToYear(monthYear) > EndMonthYear.Year) return false;
+            if (MonthYearToYear(monthYear) == StartMonthYear.Year && MonthYearToMonth(monthYear) < StartMonthYear.Month) return false;
+            if (MonthYearToYear(monthYear) == EndMonthYear.Year && MonthYearToMonth(monthYear) > EndMonthYear.Month) return false;
+
+            return true;
+        }
+
+        Payments.Clear();
+        foreach (var p in _restService.Payments.Where(p => IsInRange(p.MonthYear)))
+        {
+            Payments.Add(p);
         }
     }
 }
