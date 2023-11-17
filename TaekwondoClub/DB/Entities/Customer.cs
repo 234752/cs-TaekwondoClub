@@ -19,6 +19,9 @@ public class Customer
     [JsonIgnore]
     public List<Event> Events { get; set; }
 
+    [JsonIgnore]
+    public List<Payment> Payments { get; set; }
+
     public override string ToString()
     {
         return $"{Name}, {Surname}   [{Id}]";

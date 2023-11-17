@@ -27,6 +27,8 @@ public class MainViewModel
 
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
+    public DateTime StartMonthYear { get; set; }
+    public DateTime EndMonthYear { get; set; }
     public void FilterEventsByDate()
     {
         Events.Clear();
