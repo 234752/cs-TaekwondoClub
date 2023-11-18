@@ -9,11 +9,10 @@ public class EmailService
     public int SmtpPort { get; set; }
     public string UserName { get; set; }
     public string Password { get; set; }
-    public string Name { get; set; }
-    public void SendEmail(string to, string subject, string body)
+    public void SendEmail(EmailDTO dto)
     {
-        var fromAddress = new MailAddress(UserName, Name);
-        var toAddress = new MailAddress(to);
+        var fromAddress = new MailAddress(UserName);
+        var toAddress = new MailAddress(dto.Recipent);
 
         var smtp = new SmtpClient
         {
@@ -27,8 +26,8 @@ public class EmailService
 
         using (var message = new MailMessage(fromAddress, toAddress)
         {
-            Subject = subject,
-            Body = body
+            Subject = dto.Subject,
+            Body = dto.Body
         })
         {
             smtp.Send(message);

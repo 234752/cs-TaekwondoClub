@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using DB;
 using DB.Queries;
 using WebAPI;
+using DB.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<DataContext>(options =>
@@ -19,8 +20,7 @@ builder.Services.AddScoped<EmailService>(provider =>
         SmtpServer = emailConfig.SmtpServer,
         SmtpPort = emailConfig.SmtpPort,
         UserName = emailConfig.UserName,
-        Password = emailConfig.Password,
-        Name = emailConfig.Name,
+        Password = emailConfig.Password
     };
 });
 
@@ -43,17 +43,21 @@ app.MapGet("/upcomingevents/{days}", async (int days, DataContext db) =>
     return await EventQueries.UpcomingEvents(db, days);
 });
 
-app.MapPost("/api/email", (Pog recipent, EmailService emailService) =>
+app.MapPost("/api/email", (EmailDTO dto, EmailService emailService) =>
 {
-    try
-    {
-        emailService.SendEmail(recipent.email, "subject", "body");
-        return Results.Ok("Email sent successfully");
-    }
-    catch (Exception ex)
-    {
-        return Results.StatusCode(500);
-    }
+    //foreach (var payment in payments)
+    //{
+        try
+        {
+            emailService.SendEmail(dto);
+            return Results.Ok("Email sent successfully");
+        }
+        catch (Exception ex)
+        {
+            return Results.StatusCode(500);
+        }
+
+    //}
 });
 
 app.Run();
