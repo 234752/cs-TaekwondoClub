@@ -43,21 +43,21 @@ app.MapGet("/upcomingevents/{days}", async (int days, DataContext db) =>
     return await EventQueries.UpcomingEvents(db, days);
 });
 
-app.MapPost("/api/email", (EmailDTO dto, EmailService emailService) =>
+app.MapPost("/email/duepayments", (List<Payment> payments, EmailService emailService) =>
 {
-    //foreach (var payment in payments)
-    //{
-        try
+    try
+    {
+        foreach (var payment in payments)
         {
+            var dto = EmailWriter.UnpaidPaymentNotificationEmail(payment);
             emailService.SendEmail(dto);
-            return Results.Ok("Email sent successfully");
         }
-        catch (Exception ex)
-        {
-            return Results.StatusCode(500);
-        }
-
-    //}
+        return Results.Ok("Email sent successfully");
+    }
+    catch (Exception ex)
+    {
+        return Results.StatusCode(500);
+    }
 });
 
 app.Run();
