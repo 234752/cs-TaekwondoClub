@@ -63,4 +63,10 @@ public class RestService
         await _client.PostAsJsonAsync(uri, payments);
     }
 
+    public async Task SendEmailToEventParticipants(List<Event> events)
+    {
+        Uri uri = new Uri(string.Format("https://pogapi.azurewebsites.net/email/eventparticipants", string.Empty));
+        await _client.PostAsJsonAsync(uri, events);
+    }
+
 }

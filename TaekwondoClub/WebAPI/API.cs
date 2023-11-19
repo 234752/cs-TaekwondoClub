@@ -56,7 +56,7 @@ app.MapPost("/email/duepayments", (List<Payment> payments, EmailService emailSer
     }
     catch (Exception ex)
     {
-        return Results.StatusCode(500);
+        return Results.StatusCode(418);
     }
 });
 
@@ -76,7 +76,7 @@ app.MapPost("/email/eventparticipants", (List<Event> events, EmailService emailS
     }
     catch (Exception ex)
     {
-        return Results.StatusCode(500);
+        return Results.StatusCode(418);
     }
 });
 

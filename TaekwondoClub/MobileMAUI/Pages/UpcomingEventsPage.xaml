@@ -69,7 +69,7 @@
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>
-
-</VerticalStackLayout>
+            <Button x:Name="NotifyEventParticipantsButton" Text="Remind participants about the events" Clicked="OnNotifyEventParticipantsButton_Clicked"></Button>
+        </VerticalStackLayout>
 </ScrollView>
 </ContentPage>

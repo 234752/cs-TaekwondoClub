@@ -78,6 +78,10 @@ public class MainViewModel
     {
         await _restService.SendEmailToDuePayments(Payments.ToList());
     }
+    public async Task SendEmailToEventParticipants()
+    {
+        await _restService.SendEmailToEventParticipants(Events.ToList());
+    }
 
 
     #endregion

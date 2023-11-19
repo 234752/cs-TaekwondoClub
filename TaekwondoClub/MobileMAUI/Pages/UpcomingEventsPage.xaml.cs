@@ -25,4 +25,15 @@ public partial class UpcomingEventsPage : ContentPage
             viewModel.FilterEventsByDate();
         }
     }
+    private async void OnNotifyEventParticipantsButton_Clicked(object sender, EventArgs args)
+    {
+        var button = sender as Button;
+        if (BindingContext is MainViewModel viewModel)
+        {
+            button.IsEnabled = false;
+            await viewModel.SendEmailToEventParticipants();
+            button.IsEnabled = true;
+
+        }
+    }
 }
