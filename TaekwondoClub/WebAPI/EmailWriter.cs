@@ -19,4 +19,17 @@ public static class EmailWriter
         return email;
     }
 
+    public static EmailDTO EventParticipationNotificationEmail(Event e, Customer customer)
+    {
+        EmailDTO email = new()
+        {
+            Recipent = customer.Email,
+            Subject = $"Event participation reminder",
+            Body = $"Dear {customer.Name} {customer.Surname}," +
+            $"\nWe kindly remind you that you are enrolled as a participant of event {e.Name}, that is taking place on {e.Date}" +
+            $"\n\nYours sincerely, \nTaekwondo Club Management"
+        };
+        return email;
+    }
+
 }

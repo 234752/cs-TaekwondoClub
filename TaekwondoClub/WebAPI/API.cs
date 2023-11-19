@@ -60,4 +60,24 @@ app.MapPost("/email/duepayments", (List<Payment> payments, EmailService emailSer
     }
 });
 
+app.MapPost("/email/eventparticipants", (List<Event> events, EmailService emailService) =>
+{
+    try
+    {
+        foreach (var e in events)
+        {
+            foreach (var c in e.Customers)
+            {
+                var dto = EmailWriter.EventParticipationNotificationEmail(e, c);
+                emailService.SendEmail(dto);
+            }
+        }
+        return Results.Ok("Email sent successfully");
+    }
+    catch (Exception ex)
+    {
+        return Results.StatusCode(500);
+    }
+});
+
 app.Run();
