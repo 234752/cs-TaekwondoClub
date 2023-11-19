@@ -23,4 +23,15 @@ public partial class PaymentsPage : ContentPage
             viewModel.FilterPaymentsByMonthYear();
         }
     }
+    private async void OnNotifyDuePaymentsButton_Clicked(object sender, EventArgs args)
+    {
+        var button = sender as Button;
+        if (BindingContext is MainViewModel viewModel)
+        {
+            button.IsEnabled = false;
+            await viewModel.SendEmailToDuePayments();
+            button.IsEnabled = true;
+
+        }
+    }
 }

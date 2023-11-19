@@ -57,4 +57,10 @@ public class RestService
         }
     }
 
+    public async Task SendEmailToDuePayments(List<Payment> payments)
+    {
+        Uri uri = new Uri(string.Format("https://pogapi.azurewebsites.net/email/duepayments", string.Empty));
+        await _client.PostAsJsonAsync(uri, payments);
+    }
+
 }

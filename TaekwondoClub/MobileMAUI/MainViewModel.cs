@@ -32,6 +32,8 @@ public class MainViewModel
     public DateTime EndDate { get; set; }
     public DateTime StartMonthYear { get; set; }
     public DateTime EndMonthYear { get; set; }
+
+    #region data filters
     public void FilterEventsByDate()
     {
         Events.Clear();
@@ -68,4 +70,15 @@ public class MainViewModel
             Payments.Add(p);
         }
     }
+    #endregion
+
+    #region email notifications
+
+    public async Task SendEmailToDuePayments()
+    {
+        await _restService.SendEmailToDuePayments(Payments.ToList());
+    }
+
+
+    #endregion
 }
