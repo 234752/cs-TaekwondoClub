@@ -39,9 +39,12 @@ public partial class EventView : Page
     private bool isNewLeftListViewChanging = false;
     private bool isNewRightListViewChanging = false;
 
-    private void saveButton_Click(object sender, RoutedEventArgs e)
+    private async void saveButton_Click(object sender, RoutedEventArgs e)
     {
-        EventViewModel.SaveEventsToDatabase();
+        var button = sender as Button;
+        button.IsEnabled = false;
+        await EventViewModel.SaveEventsToDatabase();
+        button.IsEnabled = true;
     }
 
     private void cancelButton_Click(object sender, RoutedEventArgs e)

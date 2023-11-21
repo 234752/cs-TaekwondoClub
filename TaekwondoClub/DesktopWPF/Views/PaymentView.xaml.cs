@@ -33,7 +33,10 @@ public partial class PaymentView : Page
 
     private async void saveButton_Click(object sender, RoutedEventArgs e)
     {
+        var button = sender as Button;
+        button.IsEnabled = false;
         await PaymentViewModel.SavePaymentsToDatabase();
+        button.IsEnabled = true;
     }
 
     private void cancelButton_Click(object sender, RoutedEventArgs e)

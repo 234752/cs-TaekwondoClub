@@ -34,7 +34,10 @@ public partial class CustomerView : Page
 
     private async void saveButton_Click(object sender, RoutedEventArgs e)
     {
+        var button = sender as Button;
+        button.IsEnabled = false;
         await CustomerViewModel.SaveCustomersToDatabase();
+        button.IsEnabled = true;
     }
 
     private void cancelButton_Click(object sender, RoutedEventArgs e)
