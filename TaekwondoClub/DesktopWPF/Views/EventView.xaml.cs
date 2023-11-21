@@ -100,7 +100,7 @@ public partial class EventView : Page
 
     private void newEventDetailsMoveRightButton_Click(object sender, RoutedEventArgs e)
     {
-        var customerToBeMoved = EventViewModel.LeftSelectedCustomer;
+        var customerToBeMoved = EventViewModel.NewLeftCustomer;
 
         //EventViewModel.NewEvent.Customers.Remove(customerToBeMoved);
         EventViewModel.NewEventLeftCustomers.Remove(customerToBeMoved);
