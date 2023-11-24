@@ -34,4 +34,11 @@ public partial class PaymentsPage : ContentPage
 
         }
     }
+    void OnUnpaidOnlySwitch_Toggled(object sender, ToggledEventArgs e)
+    {
+        if (BindingContext is MainViewModel viewModel)
+        {
+            viewModel.FilterPaymentsByMonthYear();
+        }
+    }
 }

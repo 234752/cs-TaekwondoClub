@@ -32,6 +32,7 @@ public class MainViewModel
     public DateTime EndDate { get; set; }
     public DateTime StartMonthYear { get; set; }
     public DateTime EndMonthYear { get; set; }
+    public bool UnpaidOnly { get; set; }
 
     #region data filters
     public void FilterEventsByDate()
@@ -65,7 +66,7 @@ public class MainViewModel
         }
 
         Payments.Clear();
-        foreach (var p in _restService.Payments.Where(p => IsInRange(p.MonthYear)))
+        foreach (var p in _restService.Payments.Where(p => IsInRange(p.MonthYear) && (!UnpaidOnly || p.Paid=="no")))
         {
             Payments.Add(p);
         }
