@@ -18,36 +18,14 @@
     </Page.Resources>
 
     <Grid>
-        <Grid x:Name="calendarGrid" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,10,10">
-            <!-- Headers: Days of the Week -->
-            <!-- ... (unchanged) -->
-
-            <!-- Calendar Days -->
-            <ItemsControl x:Name="calendarItemsControl" Grid.Row="1" Grid.ColumnSpan="7" HorizontalAlignment="Left">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <UniformGrid Rows="6" Columns="7"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding Day}" HorizontalAlignment="Center"/>
-                            <ListBox ItemsSource="{Binding DataContext.Events, RelativeSource={RelativeSource AncestorType=Window}}" HorizontalAlignment="Center">
-                                <ListBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackPanel>
-                                            <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
-                                            <TextBlock Text="{Binding Date, StringFormat='HH:mm'}"/>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ListBox.ItemTemplate>
-                            </ListBox>
-                        </StackPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </Grid>
+        <ListView Name="eventListView" ItemsSource="{Binding Events}" SelectedItem="{Binding SelectedEvent}" Margin="10,10,1096,10">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" Width="400" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Date &amp; Time" Width="400" DisplayMemberBinding="{Binding Date}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
         <!-- Event Details -->
         <Border Name="eventDetailsBorder" Margin="850,10,10,550" BorderBrush="DarkGray" BorderThickness="1" CornerRadius="5"
                 DataContext="{Binding SelectedItem, ElementName=eventListView}">
