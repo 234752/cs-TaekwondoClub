@@ -18,14 +18,12 @@
     </Page.Resources>
 
     <Grid>
-        <ListView Name="eventListView" ItemsSource="{Binding Events}" SelectedItem="{Binding SelectedEvent}" Margin="10,10,1096,10">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Name" Width="400" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Date &amp; Time" Width="400" DisplayMemberBinding="{Binding Date}" />
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <DataGrid Name="eventListView" AutoGenerateColumns="False" ItemsSource="{Binding Events}" SelectedItem="{Binding SelectedEvent}" CanUserAddRows="False" Margin="10,10,1100,10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Date &amp; Time" Width="*" Binding="{Binding Date}" />
+            </DataGrid.Columns>
+        </DataGrid>
         <!-- Event Details -->
         <Border Name="eventDetailsBorder" Margin="850,10,10,550" BorderBrush="DarkGray" BorderThickness="1" CornerRadius="5"
                 DataContext="{Binding SelectedItem, ElementName=eventListView}">
