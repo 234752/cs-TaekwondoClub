@@ -39,10 +39,20 @@ public class EventViewModel : BaseViewModel, INotifyPropertyChanged
             if (selectedEvent != value)
             {
                 selectedEvent = value;
-                selectedEventLeftCustomers = new ObservableCollection<Customer>(selectedEvent.Customers);
-                selectedEventRightCustomers = new ObservableCollection<Customer>(Customers.Except(selectedEvent.Customers));
-                OnPropertyChanged("SelectedEventLeftCustomers");
-                OnPropertyChanged("SelectedEventRightCustomers");                
+                if(selectedEvent == null) 
+                {
+                    selectedEventLeftCustomers = null;
+                    selectedEventRightCustomers = null;
+                    OnPropertyChanged("SelectedEventLeftCustomers");
+                    OnPropertyChanged("SelectedEventRightCustomers");
+                }
+                else
+                {
+                    selectedEventLeftCustomers = new ObservableCollection<Customer>(selectedEvent.Customers);
+                    selectedEventRightCustomers = new ObservableCollection<Customer>(Customers.Except(selectedEvent.Customers));
+                    OnPropertyChanged("SelectedEventLeftCustomers");
+                    OnPropertyChanged("SelectedEventRightCustomers");                
+                }
             }
         }
     }
