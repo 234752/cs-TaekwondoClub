@@ -9,17 +9,17 @@
       Title="CustomerView">
 
     <Grid>
-        <ListView Name="customerListView" ItemsSource="{Binding}" Margin="10,10,694,10">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Name" Width="240" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Surname" Width="240" DisplayMemberBinding="{Binding Surname}" />
-                    <GridViewColumn Header="Email" Width="240" DisplayMemberBinding="{Binding Email}" />
-                    <GridViewColumn Header="Address" Width="240" DisplayMemberBinding="{Binding Address}" />
-                    <GridViewColumn Header="Account Number" Width="240" DisplayMemberBinding="{Binding AccountNumber}" />
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <DataGrid Name="customerListView" ItemsSource="{Binding}" Margin="10,10,694,10" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn  Header="Name" Width="*" Binding="{Binding Name}" IsReadOnly="True"/>
+                <DataGridTextColumn  Header="Surname" Width="*" Binding="{Binding Surname}" IsReadOnly="True"/>
+                <DataGridTextColumn  Header="Email" Width="*" Binding="{Binding Email}" IsReadOnly="True"/>
+                <DataGridTextColumn  Header="Address" Width="*" Binding="{Binding Address}" IsReadOnly="True"/>
+                <DataGridTextColumn  Header="Account Number" Width="*" Binding="{Binding AccountNumber}" IsReadOnly="True"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
 
         <!-- Customer Details -->
         <Border Name="customerDetailsBorder" Margin="1248,10,10,562" BorderBrush="DarkGray" 

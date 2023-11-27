@@ -20,8 +20,8 @@
     <Grid>
         <DataGrid Name="eventListView" AutoGenerateColumns="False" ItemsSource="{Binding Events}" SelectedItem="{Binding SelectedEvent}" CanUserAddRows="False" Margin="10,10,1100,10">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="Date &amp; Time" Width="*" Binding="{Binding Date}" />
+                <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Date &amp; Time" Width="*" Binding="{Binding Date}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
         <!-- Event Details -->

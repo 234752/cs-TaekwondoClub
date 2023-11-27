@@ -14,17 +14,17 @@
     </Page.Resources>
 
     <Grid>
-        <ListView Name="paymentListView" ItemsSource="{Binding Payments}" SelectedItem="{Binding SelectedPayment}" Margin="10,10,695,10">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Name" Width="240" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Month/Year" Width="240" DisplayMemberBinding="{Binding MonthYear}" />
-                    <GridViewColumn Header="Due Date" Width="240" DisplayMemberBinding="{Binding DueDate}" />
-                    <GridViewColumn Header="Paid" Width="240" DisplayMemberBinding="{Binding Paid}" />
-                    <GridViewColumn Header="Customer" Width="240" DisplayMemberBinding="{Binding CustomerId}" />
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <DataGrid Name="paymentListView" ItemsSource="{Binding Payments}" SelectedItem="{Binding SelectedPayment}" Margin="10,10,695,10" AutoGenerateColumns="False" CanUserAddRows="False" >
+            <DataGrid.Columns>
+
+                <DataGridTextColumn  Header="Name" Width="*" Binding="{Binding Name}" IsReadOnly="True"/>
+                <DataGridTextColumn  Header="Month/Year" Width="*" Binding="{Binding MonthYear}" IsReadOnly="True"/>
+                <DataGridTextColumn  Header="Due Date" Width="*" Binding="{Binding DueDate}" IsReadOnly="True"/>
+                <DataGridTextColumn  Header="Paid" Width="*" Binding="{Binding Paid}" IsReadOnly="True"/>
+                <DataGridTextColumn  Header="Customer" Width="*" Binding="{Binding CustomerId}" IsReadOnly="True"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
 
         <!-- Customer Details -->
         <Border Name="paymentDetailsBorder" Margin="1240,10,10,552" BorderBrush="DarkGray" 
