@@ -10,6 +10,15 @@ namespace DB.Entities;
 
 public class Payment
 {
+    public Payment() { }
+    public Payment(Payment payment) 
+    {
+        Name = payment.Name;
+        MonthYear = payment.MonthYear;
+        DueDate = payment.DueDate;
+        Paid = payment.Paid;
+        CustomerId = payment.CustomerId;
+    }
     public int Id { get; set; }
     public string Name { get; set; }
     public string MonthYear { get; set; }

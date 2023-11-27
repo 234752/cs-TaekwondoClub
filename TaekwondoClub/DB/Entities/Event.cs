@@ -11,6 +11,12 @@ namespace DB.Entities;
 
 public class Event
 {
+    public Event() { }
+    public Event(Event ev) 
+    {
+        Name = ev.Name;
+        Date = ev.Date;
+    }
     public int Id { get; set; }
     public string Name { get; set; }
     public DateTime Date { get; set; }

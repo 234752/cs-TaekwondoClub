@@ -55,7 +55,7 @@ public class PaymentViewModel : BaseViewModel
 
     public void AddPayment()
     {
-        var payment = NewPayment;
+        var payment = new Payment(NewPayment);
         payment.Customer = Customers.First(c => c.Id == payment.CustomerId);
         MainWindow.Payments.Add(payment);
     }
