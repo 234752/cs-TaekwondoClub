@@ -9,7 +9,7 @@
       Title="CustomerView">
 
     <Grid>
-        <DataGrid Name="customerListView" ItemsSource="{Binding}" Margin="10,10,694,10" AutoGenerateColumns="False" CanUserAddRows="False">
+        <DataGrid Name="customerListView" ItemsSource="{Binding}" Margin="10,10,276,10" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
 
                 <DataGridTextColumn  Header="Name" Width="*" Binding="{Binding Name}" IsReadOnly="True"/>
@@ -20,86 +20,14 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <Button Name="editCustomerButton" Content="Edit Customer" Width="250" Height="40" Click="EditCustomerButton_Click" VerticalAlignment="Top" Margin="1319,878,0,0"/>
-        <Button Name="removeCustomerButton" Content="Remove Customer" Width="250" Height="40" Margin="1248,813,0,0"  Click="RemoveCustomerButton_Click"/>
-        <Button Name="addCustomerButton" Content="Add As New Customer" Width="250" Height="40" Margin="1579,813,0,0" Click="AddCustomerButton_Click" />
-
-        <!-- Customer Details -->
-        <Border Name="customerDetailsBorder" Margin="1248,10,10,562" BorderBrush="DarkGray" 
-            BorderThickness="1" CornerRadius="5" 
-            DataContext="{Binding SelectedItem, ElementName=customerListView}">
-            <Grid Margin="9,0,0,9">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-
-                <TextBlock Grid.Row="0" Text="Customer Details" FontWeight="Bold" Margin="10" FontSize="16" />
-
-                <Label Grid.Row="1" Content="Name:" Margin="10" />
-                <TextBox Grid.Row="1" Name="nameTextBox" Margin="149,10,10,10" Text="{Binding Name}" TextAlignment="Center"/>
-
-                <Label Grid.Row="2" Content="Surname:" Margin="10" />
-                <TextBox Grid.Row="2" Name="surnameTextBox" Margin="149,10,10,10" Text="{Binding Surname}" TextAlignment="Center"/>
-
-                <Label Grid.Row="3" Content="Email:" Margin="10" />
-                <TextBox Grid.Row="3" Name="emailTextBox" Margin="149,10,10,10" Text="{Binding Email}" TextAlignment="Center"/>
-
-                <Label Grid.Row="4" Content="Address:" Margin="10" />
-                <TextBox Grid.Row="4" Name="addressTextBox" Margin="149,10,10,10" Text="{Binding Address}" TextAlignment="Center"/>
-
-                <Label Grid.Row="5" Content="Account Number:" Margin="10" />
-                <TextBox Grid.Row="5" Name="accountNumberTextBox" Margin="149,10,10,10" Text="{Binding AccountNumber}" TextAlignment="Center" PreviewTextInput="NumericTextBox_PreviewTextInput"/>
-
-
-
-            </Grid>
-        </Border>
-
-        <Border Name="addCustomerBorder" Margin="1248,414,10,153" BorderBrush="DarkGray" 
-            BorderThickness="1" CornerRadius="5">
-            <Grid Margin="9,0,0,9">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-
-                <TextBlock Grid.Row="0" Text="Add New Customer" FontWeight="Bold" Margin="10" FontSize="16" />
-
-                <Label Grid.Row="1" Content="Name:" Margin="10" />
-                <TextBox Grid.Row="1" Name="newNameTextBox" Margin="149,10,10,10" TextAlignment="Center"/>
-
-                <Label Grid.Row="2" Content="Surname:" Margin="10" />
-                <TextBox Grid.Row="2" Name="newSurnameTextBox" Margin="149,10,10,10" TextAlignment="Center"/>
-
-                <Label Grid.Row="3" Content="Email:" Margin="10" />
-                <TextBox Grid.Row="3" Name="newEmailTextBox" Margin="149,10,10,10" TextAlignment="Center"/>
-
-                <Label Grid.Row="4" Content="Address:" Margin="10" />
-                <TextBox Grid.Row="4" Name="newAddressTextBox" Margin="149,10,10,10" TextAlignment="Center"/>
-
-                <Label Grid.Row="5" Content="Account Number:" Margin="10" />
-                <TextBox Grid.Row="5" Name="newAccountNumberTextBox" Margin="149,10,10,10" TextAlignment="Center" PreviewTextInput="NumericTextBox_PreviewTextInput"/>
-
-
-                <!-- Save New Customer Button -->
-
-            </Grid>
-        </Border>
-        <!-- Save and Cancel Buttons -->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Width="300">
-            <Button Name="saveButton" Content="Save All" Width="135" Height="40"  Margin="10" Click="SaveButton_Click" />
-            <Button x:Name="revertButton" Content="Revert Changes" Width="135" Height="40" Click="RevertButton_Click" />
+        <StackPanel Margin="1659,10,10,752">
+            <Button x:Name="addCustomerButton" Content="Add Customer" Width="250" Height="40" Click="AddCustomerButton_Click" />
+            <Button x:Name="editCustomerButton" Content="Edit Selected Customer" Width="250" Height="40" Click="EditCustomerButton_Click" />
+            <Button x:Name="removeCustomerButton" Content="Remove Selected Customer" Width="250" Height="40" Click="RemoveCustomerButton_Click"/>
+        </StackPanel>
+        <StackPanel Margin="1659,0,10,10" VerticalAlignment="Bottom">
+            <Button x:Name="saveButton" Content="Save All" Width="250" Height="40" Click="SaveButton_Click"/>
+            <Button x:Name="revertButton" Content="Revert Changes" Width="250" Height="40" Click="RevertButton_Click"/>
         </StackPanel>
     </Grid>
 </Page>
