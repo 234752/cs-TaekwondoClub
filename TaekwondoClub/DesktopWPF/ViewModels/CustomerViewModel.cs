@@ -28,8 +28,9 @@ public class CustomerViewModel : BaseViewModel
        MainWindow.ReloadCustomers();   
     }
 
-    public void AddCustomer(Customer customer)
+    public void AddCustomer()
     {
+        var customer = new Customer(NewCustomer);
         MainWindow.Customers.Add(customer);
     }
 

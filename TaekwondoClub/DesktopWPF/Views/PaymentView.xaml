@@ -9,7 +9,7 @@
       Title="PaymentView">
 
     <Grid>
-        <DataGrid Name="paymentListView" ItemsSource="{Binding Payments}" SelectedItem="{Binding SelectedPayment}" Margin="10,10,275,10" AutoGenerateColumns="False" CanUserAddRows="False" >
+        <DataGrid Name="paymentListView" ItemsSource="{Binding Payments}" Margin="10,10,275,10" AutoGenerateColumns="False" CanUserAddRows="False" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Amount" Width="*" Binding="{Binding Amount}" IsReadOnly="True"/>

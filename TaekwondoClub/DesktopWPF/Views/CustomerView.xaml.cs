@@ -45,19 +45,6 @@ public partial class CustomerView : Page
         CustomerViewModel.ReloadCustomers();
         
     }
-
-    private void RemoveCustomerButton_Click(object sender, RoutedEventArgs e)
-    {
-        Customer selectedCustomer = (Customer)customerListView.SelectedItem;
-        if (selectedCustomer != null)
-        {
-            CustomerViewModel.RemoveCustomer(selectedCustomer);
-        }
-        else
-        {
-            MessageBox.Show("Please select a customer to delete.");
-        }
-    }
     private void AddCustomerButton_Click(object sender, RoutedEventArgs e)
     {
         Customer newCustomer = CustomerViewModel.NewCustomer;
@@ -65,7 +52,7 @@ public partial class CustomerView : Page
         customerDetailView.ShowDialog();
         if(customerDetailView.SaveChanges) 
         {
-            CustomerViewModel.AddCustomer(new Customer(CustomerViewModel.NewCustomer));
+            CustomerViewModel.AddCustomer();
         }
         CustomerViewModel.NewCustomer = new Customer();
     }
@@ -86,6 +73,18 @@ public partial class CustomerView : Page
         else
         {
             MessageBox.Show("Please select a customer to edit.");
+        }
+    }
+    private void RemoveCustomerButton_Click(object sender, RoutedEventArgs e)
+    {
+        Customer selectedCustomer = (Customer)customerListView.SelectedItem;
+        if (selectedCustomer != null)
+        {
+            CustomerViewModel.RemoveCustomer(selectedCustomer);
+        }
+        else
+        {
+            MessageBox.Show("Please select a customer to delete.");
         }
     }
 
