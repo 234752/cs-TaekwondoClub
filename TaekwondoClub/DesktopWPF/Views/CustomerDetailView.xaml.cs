@@ -1,4 +1,5 @@
 ﻿using DB.Entities;
+using DesktopWPF.Validators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,13 @@ namespace DesktopWPF.Views
         {
             SaveChanges = true;
             Close();
+        }
+        private void NumericTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!RegexValidator.IsNumeric(e.Text))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

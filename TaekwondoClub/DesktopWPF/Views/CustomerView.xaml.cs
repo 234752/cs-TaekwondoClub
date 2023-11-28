@@ -32,7 +32,7 @@ public partial class CustomerView : Page
         InitializeComponent();
     }
 
-    private async void saveButton_Click(object sender, RoutedEventArgs e)
+    private async void SaveButton_Click(object sender, RoutedEventArgs e)
     {
         var button = sender as Button;
         button.IsEnabled = false;
@@ -40,13 +40,13 @@ public partial class CustomerView : Page
         button.IsEnabled = true;
     }
 
-    private void cancelButton_Click(object sender, RoutedEventArgs e)
+    private void RevertButton_Click(object sender, RoutedEventArgs e)
     {
         CustomerViewModel.ReloadCustomers();
         
     }
 
-    private void removeButton_Click(object sender, RoutedEventArgs e)
+    private void RemoveCustomerButton_Click(object sender, RoutedEventArgs e)
     {
         Customer selectedCustomer = (Customer)customerListView.SelectedItem;
         if (selectedCustomer != null)
@@ -58,8 +58,7 @@ public partial class CustomerView : Page
             MessageBox.Show("Please select a customer to delete.");
         }
     }
-
-    private void saveNewCustomerButton_Click(object sender, RoutedEventArgs e)
+    private void AddCustomerButton_Click(object sender, RoutedEventArgs e)
     {
         Customer newCustomer = CustomerViewModel.NewCustomer;
         var customerDetailView = new CustomerDetailView(newCustomer);
@@ -70,14 +69,6 @@ public partial class CustomerView : Page
         }
         CustomerViewModel.NewCustomer = new Customer();
     }
-    private void NumericTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
-    {
-        if (!RegexValidator.IsNumeric(e.Text))
-        {
-            e.Handled = true;
-        }
-    }
-
     private void EditCustomerButton_Click(object sender, RoutedEventArgs e)
     {
         Customer selectedCustomer = (Customer)customerListView.SelectedItem;        

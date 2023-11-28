@@ -20,7 +20,7 @@
             <TextBox Text="{Binding Address, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
 
             <TextBlock Text="Account Number:"/>
-            <TextBox Text="{Binding AccountNumber, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
+            <TextBox Text="{Binding AccountNumber, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" PreviewTextInput="NumericTextBox_PreviewTextInput"/>
 
             <Button Content="Save" Click="SaveButton_Click"/>
         </StackPanel>
