@@ -17,49 +17,23 @@ public class PaymentViewModel : BaseViewModel
     {
         Payments = payments;
         Customers = customers;
-        NewPayment = new();
+        NewPayment = new Payment() { DueDate = DateTime.Now.Date };
     }
-    private Payment selectedPayment;
-    public Payment SelectedPayment
-    {
-        get { return selectedPayment; }
-        set
-        {
-            if (selectedPayment != value)
-            {
-                selectedPayment = value;
-            }
-        }
-    }
-    private Payment newPayment;
-    public Payment NewPayment
-    {
-        get { return newPayment; }
-        set
-        {
-            if (newPayment != value)
-            {
-                newPayment = value;
-            }
-        }
-    }
+    public Payment NewPayment { get; set; }
     public async Task SavePaymentsToDatabase()
     {
         await MainWindow.SaveChangesToDatabase();
     }
-
     public void ReloadPayments()
     {
         MainWindow.ReloadPayments();
     }
-
     public void AddPayment()
     {
         var payment = new Payment(NewPayment);
         payment.Customer = Customers.First(c => c.Id == payment.CustomerId);
         MainWindow.Payments.Add(payment);
     }
-
     public void RemovePayment(Payment payment)
     {
         MainWindow.Payments.Remove(payment);

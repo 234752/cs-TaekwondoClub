@@ -8,13 +8,8 @@
       d:DesignHeight="950" d:DesignWidth="1920"
       Title="PaymentView">
 
-    <Page.Resources>
-        <CollectionViewSource x:Key="CustomersCollectionViewSource" Source="{Binding DataContext.Customers, ElementName=paymentListView}" />
-        <CollectionViewSource x:Key="CustomersCollectionViewSource2" Source="{Binding DataContext.Customers, ElementName=paymentListView}" />
-    </Page.Resources>
-
     <Grid>
-        <DataGrid Name="paymentListView" ItemsSource="{Binding Payments}" SelectedItem="{Binding SelectedPayment}" Margin="10,10,695,10" AutoGenerateColumns="False" CanUserAddRows="False" >
+        <DataGrid Name="paymentListView" ItemsSource="{Binding Payments}" SelectedItem="{Binding SelectedPayment}" Margin="10,10,275,10" AutoGenerateColumns="False" CanUserAddRows="False" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Amount" Width="*" Binding="{Binding Amount}" IsReadOnly="True"/>
@@ -25,129 +20,6 @@
                 <DataGridTextColumn Header="Customer" Width="*" Binding="{Binding CustomerId}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
-
-        <!-- Customer Details -->
-        <Border Name="paymentDetailsBorder" Margin="1240,10,345,552" BorderBrush="DarkGray" 
-            BorderThickness="1" CornerRadius="5" 
-            DataContext="{Binding SelectedPayment}">
-            <Grid Margin="9,0,0,9">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-
-                <TextBlock Grid.Row="0" Text="Payment Details" FontWeight="Bold" Margin="10" FontSize="16" />
-
-                <Label Grid.Row="1" Content="Name:" Margin="10" />
-                <TextBox Grid.Row="1" Name="nameTextBox" Margin="150,10,10,10" Text="{Binding Name}" TextAlignment="Center"/>
-
-                <Label Grid.Row="2" Content="Month/Year:" Margin="10" />
-                <TextBox Grid.Row="2" Name="monthYearTextBox" Margin="150,10,10,10" Text="{Binding MonthYear}" TextAlignment="Center" />
-
-                <Label Grid.Row="3" Content="Due Date:" Margin="10" />
-                <DatePicker Grid.Row="3" Name="dueDatePicker" Margin="150,0,0,0" SelectedDate="{Binding DueDate}" Width="499" HorizontalContentAlignment="Center"/>
-
-                <Label Grid.Row="4" Content="Paid:" Margin="10" />
-                <ComboBox Grid.Row="4" Name="paidComboBox" Margin="150,10,10,10" SelectedValue="{Binding Paid, Mode=TwoWay}" HorizontalContentAlignment="Center">
-                    <ComboBox.Items>
-                        <system:String>yes</system:String>
-                        <system:String>no</system:String>
-                    </ComboBox.Items>
-                    <ComboBox.Style>
-                        <Style TargetType="ComboBox">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Paid}" Value="yes">
-                                    <Setter Property="SelectedIndex" Value="0" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Paid}" Value="no">
-                                    <Setter Property="SelectedIndex" Value="1" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Paid}" Value="yes">
-                                    <Setter Property="SelectedIndex" Value="0" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </ComboBox.Style>
-                </ComboBox>
-
-                <Label Grid.Row="5" Content="Customer:" Margin="10" />
-                <ComboBox Grid.Row="5" Name="customerComboBox" Margin="150,0,0,0" 
-                  SelectedValue="{Binding CustomerId, Mode=TwoWay}"
-                  SelectedValuePath="Id"
-                  ItemsSource="{Binding Source={StaticResource CustomersCollectionViewSource}}" VerticalAlignment="Center" Width="499"
-                  HorizontalContentAlignment="Center">
-                </ComboBox>
-
-                
-
-            </Grid>
-        </Border>
-
-        <Border Name="addPaymentBorder" Margin="1240,418,345,182" BorderBrush="DarkGray" 
-            BorderThickness="1" CornerRadius="5"
-            DataContext="{Binding NewPayment}">
-            <Grid Margin="9,0,0,9">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-
-                <TextBlock Grid.Row="0" Text="Add New Payment" FontWeight="Bold" Margin="10" FontSize="16" />
-
-                <Label Grid.Row="1" Content="Name:" Margin="10" />
-                <TextBox Grid.Row="1" Name="newNameTextBox" Margin="150,10,10,10" Text="{Binding Name}" TextAlignment="Center"/>
-
-                <Label Grid.Row="2" Content="Month/Year:" Margin="10" />
-                <TextBox Grid.Row="2" Name="newMonthYearTextBox" Margin="150,10,10,10" Text="{Binding MonthYear}" TextAlignment="Center" />
-
-                <Label Grid.Row="3" Content="Due Date:" Margin="10" />
-                <DatePicker Grid.Row="3" Name="newDueDatePicker" Margin="150,0,0,0" SelectedDate="{Binding DueDate}" Width="499" HorizontalContentAlignment="Center"/>
-
-                <Label Grid.Row="4" Content="Paid:" Margin="10" />
-                <ComboBox Grid.Row="4" Name="newPaidComboBox" Margin="150,10,10,10" SelectedValue="{Binding Paid, Mode=TwoWay}" HorizontalContentAlignment="Center">
-                    <ComboBox.Items>
-                        <system:String>yes</system:String>
-                        <system:String>no</system:String>
-                    </ComboBox.Items>
-                    <ComboBox.Style>
-                        <Style TargetType="ComboBox">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Paid}" Value="yes">
-                                    <Setter Property="SelectedIndex" Value="0" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Paid}" Value="no">
-                                    <Setter Property="SelectedIndex" Value="1" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Paid}" Value="yes">
-                                    <Setter Property="SelectedIndex" Value="0" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </ComboBox.Style>
-                </ComboBox>
-
-                <Label Grid.Row="5" Content="Customer:" Margin="10" />
-                <ComboBox Grid.Row="5" Name="newCustomerComboBox" Margin="150,0,0,0" 
-                  SelectedValue="{Binding CustomerId, Mode=TwoWay}"
-                  SelectedValuePath="Id"
-                  ItemsSource="{Binding Source={StaticResource CustomersCollectionViewSource2}}" VerticalAlignment="Center" Width="499"
-                  HorizontalContentAlignment="Center">
-                </ComboBox>
-
-                
-            </Grid>
-        </Border>
-        <!-- Save and Cancel Buttons -->
         <StackPanel Margin="1659,10,10,752">
             <Button x:Name="addPaymentButton" Content="Add Payment" Width="250" Height="40" Click="AddPaymentButton_Click" />
             <Button x:Name="editPaymentButton" Content="Edit Selected Payment" Width="250" Height="40" Click="EditPaymentButton_Click" />

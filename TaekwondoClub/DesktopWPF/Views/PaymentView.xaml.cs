@@ -52,8 +52,6 @@ public partial class PaymentView : Page
         {
             PaymentViewModel.AddPayment();
         }
-        PaymentViewModel.NewPayment = new Payment();
-        
     }
     private void EditPaymentButton_Click(object sender, RoutedEventArgs e)
     {
