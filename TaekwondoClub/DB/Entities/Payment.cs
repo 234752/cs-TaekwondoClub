@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
@@ -13,6 +14,16 @@ public class Payment
 {
     public Payment() { }
     public Payment(Payment payment) 
+    {
+        Name = payment.Name;
+        Amount = payment.Amount;
+        Price = payment.Price;
+        DueDate = payment.DueDate;
+        Paid = payment.Paid;
+        Type = payment.Type;
+        CustomerId = payment.CustomerId;
+    }
+    public void ReplaceProperties(Payment payment)
     {
         Name = payment.Name;
         Amount = payment.Amount;

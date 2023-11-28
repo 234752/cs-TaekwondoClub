@@ -31,7 +31,7 @@ public partial class PaymentView : Page
         InitializeComponent();
     }
 
-    private async void saveButton_Click(object sender, RoutedEventArgs e)
+    private async void SaveButton_Click(object sender, RoutedEventArgs e)
     {
         var button = sender as Button;
         button.IsEnabled = false;
@@ -39,27 +39,53 @@ public partial class PaymentView : Page
         button.IsEnabled = true;
     }
 
-    private void cancelButton_Click(object sender, RoutedEventArgs e)
+    private void RevertButton_Click(object sender, RoutedEventArgs e)
     {
         PaymentViewModel.ReloadPayments();
     }
-
-    private void removeButton_Click(object sender, RoutedEventArgs e)
+    private void AddPaymentButton_Click(object sender, RoutedEventArgs e)
     {
-        var payment = paymentDetailsBorder.DataContext as Payment;
-        PaymentViewModel.RemovePayment(payment);
-    }
-
-    private void saveNewPaymentButton_Click(object sender, RoutedEventArgs e)
-    {
-        PaymentViewModel.AddPayment();
-    }
-    private void MonthYearTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
-    {
-        var textbox = sender as TextBox;
-        if (!RegexValidator.IsMonthYearPattern(textbox.Text + e.Text))
+        Payment newPayment = PaymentViewModel.NewPayment;
+        var paymentDetailView = new PaymentDetailView(newPayment, PaymentViewModel.Customers.ToList());
+        paymentDetailView.ShowDialog();
+        if (paymentDetailView.SaveChanges)
         {
-            e.Handled = true;
+            PaymentViewModel.AddPayment();
+        }
+        PaymentViewModel.NewPayment = new Payment();
+        
+    }
+    private void EditPaymentButton_Click(object sender, RoutedEventArgs e)
+    {
+        Payment selectedPayment = (Payment)paymentListView.SelectedItem;
+        if (selectedPayment != null)
+        {
+            var editedPayment = new Payment(selectedPayment);
+            var paymentDetailView = new PaymentDetailView(editedPayment, PaymentViewModel.Customers.ToList());
+            paymentDetailView.ShowDialog();
+            if (paymentDetailView.SaveChanges)
+            {
+                selectedPayment.ReplaceProperties(editedPayment);
+                paymentListView.Items.Refresh();
+            }
+        }
+        else
+        {
+            MessageBox.Show("Please select a customer to edit.");
         }
     }
+    private void RemovePaymentButton_Click(object sender, RoutedEventArgs e)
+    {
+        Payment selectedPayment = (Payment)paymentListView.SelectedItem;
+        if (selectedPayment != null)
+        {
+            PaymentViewModel.RemovePayment(selectedPayment);
+        }
+        else
+        {
+            MessageBox.Show("Please select a payment to delete.");
+        }
+    }
+
+
 }

@@ -17,7 +17,7 @@ public class PaymentViewModel : BaseViewModel
     {
         Payments = payments;
         Customers = customers;
-        NewPayment = new() { Name = "", MonthYear = "00/0000", DueDate = DateTime.UtcNow, Paid = "no", CustomerId = Customers.First().Id };
+        NewPayment = new();
     }
     private Payment selectedPayment;
     public Payment SelectedPayment

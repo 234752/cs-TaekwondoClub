@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Customer Detail" Height="400" Width="600">
+        Title="Customer Detail" SizeToContent="Height" Width="300">
     <Grid>
         <StackPanel Margin="20">
             <TextBlock Text="Name:"/>

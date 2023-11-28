@@ -1,0 +1,35 @@
+﻿<!-- EventDetailView.xaml -->
+<Window x:Class="DesktopWPF.Views.PaymentDetailView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Event Detail" SizeToContent="Height" Width="300">
+    <Grid>
+        <StackPanel Margin="20">
+            <TextBlock Text="Name:"/>
+            <TextBox Text="{Binding Payment.Name, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Amount:"/>
+            <TextBox Text="{Binding Payment.Amount, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" PreviewTextInput="NumericTextBox_PreviewTextInput"/>
+
+            <TextBlock Text="Price:"/>
+            <TextBox Text="{Binding Payment.Price, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" PreviewTextInput="NumericTextBox_PreviewTextInput"/>
+
+            <TextBlock Text="Due Date:"/>
+            <DatePicker SelectedDate="{Binding Payment.DueDate, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Paid:"/>
+            <TextBox Text="{Binding Payment.Paid, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Type:"/>
+            <TextBox Text="{Binding Payment.Type, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Customer:"/>
+            <ComboBox ItemsSource="{Binding Customers}" DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding Payment.CustomerId}" Margin="0,0,0,10"/>
+
+            <Button Content="Save" Click="SaveButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
