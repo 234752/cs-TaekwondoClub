@@ -21,7 +21,23 @@ public class Customer
 
     [JsonIgnore]
     public List<Payment> Payments { get; set; }
-
+    public Customer() { }
+    public Customer(Customer customer)
+    {
+        Name = customer.Name;
+        Surname = customer.Surname;
+        Email = customer.Email;
+        Address = customer.Address;
+        AccountNumber = customer.AccountNumber;
+    }
+    public void ReplaceProperties(Customer customer)
+    {
+        Name = customer.Name;
+        Surname = customer.Surname;
+        Email = customer.Email;
+        Address = customer.Address;
+        AccountNumber = customer.AccountNumber;
+    }
     public override string ToString()
     {
         return $"{Name}, {Surname}   [{Id}]";

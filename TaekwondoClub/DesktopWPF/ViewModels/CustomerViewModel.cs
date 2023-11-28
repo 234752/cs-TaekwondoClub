@@ -15,7 +15,9 @@ public class CustomerViewModel : BaseViewModel
     public CustomerViewModel(MainWindow mainWindow, ObservableCollection<Customer> customers) : base(mainWindow)
     {
         Customers = customers;
+        NewCustomer = new Customer();
     }
+    public Customer NewCustomer { get; set; }
     public async Task SaveCustomersToDatabase()
     {
         await MainWindow.SaveChangesToDatabase();

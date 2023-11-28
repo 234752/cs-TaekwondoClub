@@ -48,26 +48,53 @@ public partial class CustomerView : Page
 
     private void removeButton_Click(object sender, RoutedEventArgs e)
     {
-        var customer = customerDetailsBorder.DataContext as Customer;
-        CustomerViewModel.RemoveCustomer(customer);
+        Customer selectedCustomer = (Customer)customerListView.SelectedItem;
+        if (selectedCustomer != null)
+        {
+            CustomerViewModel.RemoveCustomer(selectedCustomer);
+        }
+        else
+        {
+            MessageBox.Show("Please select a customer to delete.");
+        }
     }
 
     private void saveNewCustomerButton_Click(object sender, RoutedEventArgs e)
     {
-        CustomerViewModel.AddCustomer(new Customer() 
-        { 
-            Name = newNameTextBox.Text,
-            Surname = newSurnameTextBox.Text,
-            Email = newEmailTextBox.Text,
-            Address = newAddressTextBox.Text,
-            AccountNumber = newAccountNumberTextBox.Text
-        });
+        Customer newCustomer = CustomerViewModel.NewCustomer;
+        var customerDetailView = new CustomerDetailView(newCustomer);
+        customerDetailView.ShowDialog();
+        if(customerDetailView.SaveChanges) 
+        {
+            CustomerViewModel.AddCustomer(new Customer(CustomerViewModel.NewCustomer));
+        }
+        CustomerViewModel.NewCustomer = new Customer();
     }
     private void NumericTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
     {
         if (!RegexValidator.IsNumeric(e.Text))
         {
             e.Handled = true;
+        }
+    }
+
+    private void EditCustomerButton_Click(object sender, RoutedEventArgs e)
+    {
+        Customer selectedCustomer = (Customer)customerListView.SelectedItem;        
+        if (selectedCustomer != null)
+        {
+            var editedCustomer = new Customer(selectedCustomer);
+            var customerDetailView = new CustomerDetailView(editedCustomer);
+            customerDetailView.ShowDialog();
+            if(customerDetailView.SaveChanges) 
+            {
+                selectedCustomer.ReplaceProperties(editedCustomer);
+                customerListView.Items.Refresh();
+            }
+        }
+        else
+        {
+            MessageBox.Show("Please select a customer to edit.");
         }
     }
 
