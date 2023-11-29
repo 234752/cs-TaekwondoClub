@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json.Serialization;
+using Microsoft.VisualBasic;
+using System.Diagnostics;
 
 namespace DB.Entities;
 
@@ -16,10 +18,18 @@ public class Event
     {
         Name = ev.Name;
         Date = ev.Date;
+        Type = ev.Type;
+    }
+    public void ReplaceProperties(Event ev)
+    {
+        Name = ev.Name;
+        Date = ev.Date;
+        Type = ev.Type;
     }
     public int Id { get; set; }
     public string Name { get; set; }
     public DateTime Date { get; set; }
+    public string Type { get; set; }
     public List<Customer> Customers { get; set; }
     public override string ToString()
     {
