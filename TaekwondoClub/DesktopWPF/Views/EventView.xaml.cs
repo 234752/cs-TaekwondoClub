@@ -30,13 +30,7 @@ public partial class EventView : Page
         EventViewModel = eventViewModel;
         this.DataContext = EventViewModel;        
         InitializeComponent();
-        newEventDetailsMoveRightButton.Visibility = Visibility.Collapsed;
-        newEventDetailsMoveLeftButton.Visibility = Visibility.Collapsed;
     }
-    private bool isLeftListViewChanging = false;
-    private bool isRightListViewChanging = false;
-    private bool isNewLeftListViewChanging = false;
-    private bool isNewRightListViewChanging = false;
 
     private async void SaveButton_Click(object sender, RoutedEventArgs e)
     {
@@ -50,93 +44,7 @@ public partial class EventView : Page
     {
         EventViewModel.ReloadEvents();
     }
-    private void eventDetailsMoveLeftButton_Click(object sender, RoutedEventArgs e)
-    {
-        var customerToBeMoved = EventViewModel.RightSelectedCustomer;
-
-        EventViewModel.SelectedEvent.Customers.Add(customerToBeMoved);
-        EventViewModel.SelectedEventLeftCustomers.Add(customerToBeMoved);
-
-        EventViewModel.SelectedEventRightCustomers.Remove(customerToBeMoved);
-
-        EventViewModel.LeftSelectedCustomer = customerToBeMoved;
-        EventViewModel.RightSelectedCustomer = null;
-    }
-
-    private void eventDetailsMoveRightButton_Click(object sender, RoutedEventArgs e)
-    {
-        var customerToBeMoved = EventViewModel.LeftSelectedCustomer;
-
-        EventViewModel.SelectedEvent.Customers.Remove(customerToBeMoved);
-        EventViewModel.SelectedEventLeftCustomers.Remove(customerToBeMoved);
-
-        EventViewModel.SelectedEventRightCustomers.Add(customerToBeMoved);
-
-        EventViewModel.RightSelectedCustomer = customerToBeMoved;
-        EventViewModel.LeftSelectedCustomer = null;
-    }
-
-    private void newEventDetailsMoveLeftButton_Click(object sender, RoutedEventArgs e)
-    {
-        var customerToBeMoved = EventViewModel.NewRightCustomer;
-
-        //EventViewModel.NewEvent.Customers.Add(customerToBeMoved);
-        EventViewModel.NewEventLeftCustomers.Add(customerToBeMoved);
-
-        EventViewModel.NewEventRightCustomers.Remove(customerToBeMoved);
-
-        EventViewModel.NewLeftCustomer = customerToBeMoved;
-        EventViewModel.NewRightCustomer = null;
-    }
-
-    private void newEventDetailsMoveRightButton_Click(object sender, RoutedEventArgs e)
-    {
-        var customerToBeMoved = EventViewModel.NewLeftCustomer;
-
-        //EventViewModel.NewEvent.Customers.Remove(customerToBeMoved);
-        EventViewModel.NewEventLeftCustomers.Remove(customerToBeMoved);
-
-        EventViewModel.NewEventRightCustomers.Add(customerToBeMoved);
-
-        EventViewModel.NewRightCustomer = customerToBeMoved;
-        EventViewModel.NewLeftCustomer = null;
-    }
-    private void newEventNewLeftCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if (!isNewRightListViewChanging)
-        {
-            isNewLeftListViewChanging = true;
-            newEventRightCustomers.SelectedItem = null;
-            isNewLeftListViewChanging = false;
-        }
-        if (newEventLeftCustomers.SelectedItem != null)
-        {
-            newEventDetailsMoveRightButton.Visibility = Visibility.Visible;
-        }
-        else
-        {
-            newEventDetailsMoveRightButton.Visibility = Visibility.Collapsed;
-        }
-    }
-    private void newEventNewRightCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if (!isNewLeftListViewChanging)
-        {
-            isNewRightListViewChanging = true;
-            newEventLeftCustomers.SelectedItem = null;
-            isNewRightListViewChanging = false;
-        }
-        if (newEventRightCustomers.SelectedItem != null)
-        {
-            newEventDetailsMoveLeftButton.Visibility = Visibility.Visible;
-        }
-        else
-        {
-            newEventDetailsMoveLeftButton.Visibility = Visibility.Collapsed;
-        }
-    }
-    //new implementation
-
+    
     private void AddEventButton_Click(object sender, RoutedEventArgs e)
     {
         Event newEvent = EventViewModel.NewEvent;
@@ -154,11 +62,13 @@ public partial class EventView : Page
         if (selectedEvent != null)
         {
             var editedEvent = new Event(selectedEvent);
+            editedEvent.Customers = new List<Customer>(selectedEvent.Customers);
             var eventDetailView = new EventDetailView(editedEvent, EventViewModel.Customers.ToList());
             eventDetailView.ShowDialog();
             if (eventDetailView.SaveChanges)
             {
                 selectedEvent.ReplaceProperties(editedEvent);
+                selectedEvent.Customers = editedEvent.Customers;
                 eventListView.Items.Refresh();
             }
         }

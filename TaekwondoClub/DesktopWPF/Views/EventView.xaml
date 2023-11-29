@@ -11,15 +11,8 @@
       d:DesignHeight="950" d:DesignWidth="1920"
       Title="EventView">
 
-    <Page.Resources>
-        <CollectionViewSource x:Key="SelectedEventRightCustomers" Source="{Binding DataContext.SelectedEventRightCustomers, ElementName=eventListView}" />
-        <CollectionViewSource x:Key="SelectedEventLeftCustomers" Source="{Binding DataContext.SelectedEventLeftCustomers, ElementName=eventListView}" />
-        <CollectionViewSource x:Key="NewEventRightCustomers" Source="{Binding DataContext.NewEventRightCustomers, ElementName=eventListView}" />
-        <CollectionViewSource x:Key="NewEventLeftCustomers" Source="{Binding DataContext.NewEventLeftCustomers, ElementName=eventListView}" />
-    </Page.Resources>
-
     <Grid>
-        <DataGrid Name="eventListView" AutoGenerateColumns="False" ItemsSource="{Binding Events}" SelectedItem="{Binding SelectedEvent}" CanUserAddRows="False" Margin="10,10,1100,10">
+        <DataGrid Name="eventListView" AutoGenerateColumns="False" ItemsSource="{Binding Events}" CanUserAddRows="False" Margin="10,10,275,10">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Date" Width="*" Binding="{Binding Date}" IsReadOnly="True"/>
@@ -27,59 +20,6 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Border Name="newEventBorder" Margin="850,460,337,100" BorderBrush="DarkGray" BorderThickness="1" CornerRadius="5"
-        DataContext="{Binding NewEvent}">
-            <Grid Margin="9,0,-1,9">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-
-                <TextBlock Grid.Row="0" Text="Add New Event" FontWeight="Bold" Margin="10" FontSize="16" />
-
-                <Label Grid.Row="1" Content="Name:" Margin="10" />
-                <TextBox Grid.Row="1" Name="newEventNameTextBox" Margin="190,10,10,10" Text="{Binding Name}" TextAlignment="Center"/>
-
-                <Label Grid.Row="2" Content="Date &amp; Time:" Margin="10" />
-                <xctk:DateTimePicker Grid.Row="2" Name="newEventDatePicker" Margin="190,10,10,10" Value="{Binding Date}" TextAlignment="Center"/>
-
-                <Label Grid.Row="3" Content="Participants list:" Margin="10" />
-                <ListView Grid.Row="5" Name="newEventLeftCustomers" ItemsSource="{Binding Source={StaticResource NewEventLeftCustomers}}" 
-                          SelectedItem="{Binding Path=DataContext.NewLeftCustomer, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" 
-                          SelectionChanged="newEventNewLeftCustomers_SelectionChanged"
-                          Margin="10,7,600,80" >
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Name, Surname [identifier]" Width="420" DisplayMemberBinding="{Binding}" />
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-                <ListView Grid.Row="5" Name="newEventRightCustomers" ItemsSource="{Binding Source={StaticResource NewEventRightCustomers}}" 
-                          SelectedItem="{Binding Path=DataContext.NewRightCustomer, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" 
-                          SelectionChanged="newEventNewRightCustomers_SelectionChanged"
-                          Margin="600,7,10,80" >
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Name, Surname [identifier]" Width="420" DisplayMemberBinding="{Binding}" />
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-
-                <Button Grid.Row="5" Content="&gt;&gt;&gt;" Name="newEventDetailsMoveRightButton" Height="30" Click="newEventDetailsMoveRightButton_Click" 
-                        Margin="0,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <Button Grid.Row="5" Content="&lt;&lt;&lt;" Name="newEventDetailsMoveLeftButton" Height="30" Click="newEventDetailsMoveLeftButton_Click" 
-                        HorizontalAlignment="Center" Margin="0,73,0,0" VerticalAlignment="Top"/>
-
-                
-
-            </Grid>
-        </Border>
-
-        <!-- Save and Cancel Buttons -->
         <StackPanel Margin="1659,10,10,752">
             <Button x:Name="addEventButton" Content="Add Event" Width="250" Height="40" Click="AddEventButton_Click" />
             <Button x:Name="editEventButton" Content="Edit Selected Event" Width="250" Height="40" Click="EditEventButton_Click" />
