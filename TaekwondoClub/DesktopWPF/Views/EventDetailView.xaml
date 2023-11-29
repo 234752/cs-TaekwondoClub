@@ -17,14 +17,11 @@
             <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                 <ComboBox ItemsSource="{Binding HourOptions}" SelectedItem="{Binding SelectedHour}" />
                 <TextBlock Text=" : " FontSize="20"/>
-                <ComboBox Name="MinutesComboBox"  ItemsSource="{Binding MinuteOptions}" SelectedItem="{Binding SelectedMinute}" ToolTip="{Binding (Validation.Errors)[0].ErrorContent, RelativeSource={RelativeSource Self}}"/>
-                <ToggleButton Content="Detailed" IsChecked="{Binding IsDetailedMinutes, Mode=TwoWay}" Margin="20,0,0,0" Checked="IsDetailedMinutesToggleButton_Checked" Unchecked="IsDetailedMinutesToggleButton_Checked"/>
+                <ComboBox Name="MinutesComboBox"  ItemsSource="{Binding MinuteOptions}" SelectedItem="{Binding SelectedMinute}" />
             </StackPanel>
 
             <TextBlock Text="Type:"/>
             <TextBox Text="{Binding Event.Type, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
-
-            <!-- Add more controls for other properties if needed -->
 
             <Button Content="Save" Click="SaveButton_Click"/>
         </StackPanel>

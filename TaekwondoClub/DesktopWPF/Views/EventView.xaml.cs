@@ -52,17 +52,6 @@ public partial class EventView : Page
     {
         EventViewModel.ReloadEvents();
     }
-    private void RemoveEventButton_Click(object sender, RoutedEventArgs e)
-    {
-        var ev = eventDetailsBorder.DataContext as Event;
-        EventViewModel.RemoveEvent(ev);
-    }
-
-    private void EditEventButton_Click(object sender, RoutedEventArgs e)
-    {
-        EventViewModel.AddEvent();
-    }
-
     private void eventDetailsMoveLeftButton_Click(object sender, RoutedEventArgs e)
     {
         var customerToBeMoved = EventViewModel.RightSelectedCustomer;
@@ -194,35 +183,35 @@ public partial class EventView : Page
             EventViewModel.AddEvent();
         }
     }
-/*    private void EditPaymentButton_Click(object sender, RoutedEventArgs e)
+    private void EditEventButton_Click(object sender, RoutedEventArgs e)
     {
-        Payment selectedPayment = (Payment)paymentListView.SelectedItem;
-        if (selectedPayment != null)
+        Event selectedEvent = (Event)eventListView.SelectedItem;
+        if (selectedEvent != null)
         {
-            var editedPayment = new Payment(selectedPayment);
-            var paymentDetailView = new PaymentDetailView(editedPayment, PaymentViewModel.Customers.ToList());
-            paymentDetailView.ShowDialog();
-            if (paymentDetailView.SaveChanges)
+            var editedEvent = new Event(selectedEvent);
+            var eventDetailView = new EventDetailView(editedEvent);
+            eventDetailView.ShowDialog();
+            if (eventDetailView.SaveChanges)
             {
-                selectedPayment.ReplaceProperties(editedPayment);
-                paymentListView.Items.Refresh();
+                selectedEvent.ReplaceProperties(editedEvent);
+                eventListView.Items.Refresh();
             }
         }
         else
         {
-            MessageBox.Show("Please select a payment to edit.");
+            MessageBox.Show("Please select an event to edit.");
         }
     }
-    private void RemovePaymentButton_Click(object sender, RoutedEventArgs e)
+    private void RemoveEventButton_Click(object sender, RoutedEventArgs e)
     {
-        Payment selectedPayment = (Payment)paymentListView.SelectedItem;
-        if (selectedPayment != null)
+        Event selectedEvent = (Event)eventListView.SelectedItem;
+        if (selectedEvent != null)
         {
-            PaymentViewModel.RemovePayment(selectedPayment);
+            EventViewModel.RemoveEvent(selectedEvent);
         }
         else
         {
-            MessageBox.Show("Please select a payment to delete.");
+            MessageBox.Show("Please select an event to delete.");
         }
-    }*/
+    }
 }

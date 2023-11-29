@@ -48,8 +48,14 @@ namespace DesktopWPF.Views
             DataContext = model;
             model.HourOptions = new ObservableCollection<int>();
             model.MinuteOptions = new ObservableCollection<int>();
-            GenerateHourOptions();
-            GenerateMinuteOptions();
+            for (int hour = 0; hour < 24; hour++)
+            {
+                model.HourOptions.Add(hour);
+            }
+            for (int minute = 0; minute < 60; minute++)
+            {
+                model.MinuteOptions.Add(minute);
+            }
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -61,39 +67,6 @@ namespace DesktopWPF.Views
 
             SaveChanges = true;
             Close();
-        }
-
-        private void GenerateHourOptions()
-        {
-            model.HourOptions.Clear();
-            for (int hour = 0; hour < 24; hour++)
-            {
-                model.HourOptions.Add(hour);
-            }
-        }
-
-        private void GenerateMinuteOptions()
-        {
-            model.MinuteOptions.Clear();
-            if (model.IsDetailedMinutes)
-            {
-                for (int minute = 0; minute < 60; minute++)
-                {
-                    model.MinuteOptions.Add(minute);
-                }
-            }
-            else
-            {
-                for (int minute = 0; minute < 60; minute += 15)
-                {
-                    model.MinuteOptions.Add(minute);
-                }
-            }
-        }
-
-        private void IsDetailedMinutesToggleButton_Checked(object sender, RoutedEventArgs e)
-        {            
-            GenerateMinuteOptions();
         }
     }
 }
