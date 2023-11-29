@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Event Detail" SizeToContent="Height" Width="300">
+        Title="Event Detail" SizeToContent="Height" Width="1090">
     <Grid>
         <StackPanel Margin="20">
             <TextBlock Text="Name:"/>
@@ -23,7 +23,32 @@
             <TextBlock Text="Type:"/>
             <TextBox Text="{Binding Event.Type, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
 
-            <Button Content="Save" Click="SaveButton_Click"/>
+            <TextBlock Text="Participants list:"/>
+            <StackPanel Orientation="Horizontal">
+                
+            <ListView Name="includedCustomersList" ItemsSource="{Binding IncludedCustomers}" SelectedItem="{Binding SelectedIncludedCustomer}" 
+                        SelectionChanged="IncludedCustomersList_SelectionChanged" Width="450">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Name, Surname [identifier]" Width="430" DisplayMemberBinding="{Binding}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+                <StackPanel Width="150" Height="200" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Button Name="includeCustomerButton" Content="Include" Click="IncludeCustomerButton_Click" Width="100" Height="40" Margin="25,40,25,40"/>
+                    <Button Name="excludeCustomerButton" Content="Exclude" Click="ExcludeCustomerButton_Click" Width="100" Height="40" Margin="25,0,25,40"/>
+                </StackPanel>
+            <ListView Name="excludedCustomersList" ItemsSource="{Binding ExcludedCustomers}" SelectedItem="{Binding SelectedExcludedCustomer}" 
+                        SelectionChanged="ExcludedCustomersList_SelectionChanged" Width="450">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Name, Surname [identifier]" Width="430" DisplayMemberBinding="{Binding}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            </StackPanel>
+
+            <Button Content="Save" Click="SaveButton_Click" Margin="0,20,0,0"/>
         </StackPanel>
     </Grid>
 </Window>

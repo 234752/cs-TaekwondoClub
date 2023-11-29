@@ -25,7 +25,7 @@ public class EventViewModel : BaseViewModel, INotifyPropertyChanged
     {
         Events = events;
         Customers = customers;
-        NewEvent = new() { Name = "", Date = DateTime.UtcNow };
+        NewEvent = new() { Date = DateTime.UtcNow };
         newEventRightCustomers = new ObservableCollection<Customer>(Customers);
         newEventLeftCustomers = new ObservableCollection<Customer>();
     }

@@ -30,8 +30,6 @@ public partial class EventView : Page
         EventViewModel = eventViewModel;
         this.DataContext = EventViewModel;        
         InitializeComponent();
-        eventDetailsMoveRightButton.Visibility = Visibility.Collapsed;
-        eventDetailsMoveLeftButton.Visibility = Visibility.Collapsed;
         newEventDetailsMoveRightButton.Visibility = Visibility.Collapsed;
         newEventDetailsMoveLeftButton.Visibility = Visibility.Collapsed;
     }
@@ -103,40 +101,6 @@ public partial class EventView : Page
         EventViewModel.NewRightCustomer = customerToBeMoved;
         EventViewModel.NewLeftCustomer = null;
     }
-    private void selectedEventLeftCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if (!isRightListViewChanging)
-        {
-            isLeftListViewChanging = true;
-            selectedEventRightCustomers.SelectedItem = null;
-            isLeftListViewChanging = false;
-        }
-        if (selectedEventLeftCustomers.SelectedItem != null)
-        {
-            eventDetailsMoveRightButton.Visibility = Visibility.Visible;
-        }
-        else
-        {
-            eventDetailsMoveRightButton.Visibility = Visibility.Collapsed;
-        }
-    }
-    private void selectedEventRightCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if (!isLeftListViewChanging)
-        {
-            isRightListViewChanging = true;
-            selectedEventLeftCustomers.SelectedItem = null;
-            isRightListViewChanging = false;
-        }
-        if (selectedEventRightCustomers.SelectedItem != null)
-        {
-            eventDetailsMoveLeftButton.Visibility = Visibility.Visible;
-        }
-        else
-        {
-            eventDetailsMoveLeftButton.Visibility = Visibility.Collapsed;
-        }
-    }
     private void newEventNewLeftCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (!isNewRightListViewChanging)
@@ -176,7 +140,8 @@ public partial class EventView : Page
     private void AddEventButton_Click(object sender, RoutedEventArgs e)
     {
         Event newEvent = EventViewModel.NewEvent;
-        var eventDetailView = new EventDetailView(newEvent);
+        newEvent.Customers = new();
+        var eventDetailView = new EventDetailView(newEvent, EventViewModel.Customers.ToList());
         eventDetailView.ShowDialog();
         if (eventDetailView.SaveChanges)
         {
@@ -189,7 +154,7 @@ public partial class EventView : Page
         if (selectedEvent != null)
         {
             var editedEvent = new Event(selectedEvent);
-            var eventDetailView = new EventDetailView(editedEvent);
+            var eventDetailView = new EventDetailView(editedEvent, EventViewModel.Customers.ToList());
             eventDetailView.ShowDialog();
             if (eventDetailView.SaveChanges)
             {

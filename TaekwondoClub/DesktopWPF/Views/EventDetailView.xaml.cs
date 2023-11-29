@@ -23,6 +23,7 @@ namespace DesktopWPF.Views
     {
         private MinimalViewModel model;
         public bool SaveChanges { get; set; } = false;
+        private bool isUpdatingSelection = false;
         private class MinimalViewModel()
         {
             public Event Event { get; set; }
@@ -31,19 +32,25 @@ namespace DesktopWPF.Views
             public int SelectedHour { get; set; }
             public int SelectedMinute { get; set; }
             public bool IsDetailedMinutes { get; set; }
-            public List<Customer> Customers { get; set; }
+            public ObservableCollection<Customer> IncludedCustomers { get; set; }
+            public ObservableCollection<Customer> ExcludedCustomers { get; set; }
+            public Customer SelectedIncludedCustomer { get; set; }
+            public Customer SelectedExcludedCustomer { get; set; }
         }
 
-        public EventDetailView(Event ev)
+        public EventDetailView(Event ev, List<Customer> customers)
         {
             InitializeComponent();
 
+            var excludedCustomers = customers.Except(ev.Customers);
             model = new MinimalViewModel
             {
                 Event = ev,
                 SelectedHour = ev.Date.Hour,
                 SelectedMinute = ev.Date.Minute,
-                IsDetailedMinutes = true
+                IsDetailedMinutes = true,
+                IncludedCustomers = new ObservableCollection<Customer>(ev.Customers),
+                ExcludedCustomers = new ObservableCollection<Customer>(excludedCustomers)
             };
             DataContext = model;
             model.HourOptions = new ObservableCollection<int>();
@@ -56,6 +63,9 @@ namespace DesktopWPF.Views
             {
                 model.MinuteOptions.Add(minute);
             }
+
+            excludeCustomerButton.IsEnabled = false;
+            includeCustomerButton.IsEnabled = false;
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -67,6 +77,52 @@ namespace DesktopWPF.Views
 
             SaveChanges = true;
             Close();
+        }
+        private void IncludedCustomersList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (isUpdatingSelection) return;
+
+            isUpdatingSelection = true;
+            excludedCustomersList.SelectedItem = null;
+            isUpdatingSelection = false;
+            UpdateButtonsState();
+
+        }
+
+        private void ExcludedCustomersList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (isUpdatingSelection) return;
+
+            isUpdatingSelection = true;
+            includedCustomersList.SelectedItem = null;
+            isUpdatingSelection = false;
+            UpdateButtonsState();
+        }
+
+        private void IncludeCustomerButton_Click(object sender, RoutedEventArgs e)
+        {
+            var customer = model.SelectedExcludedCustomer;
+            model.Event.Customers.Add(customer);
+            model.IncludedCustomers.Add(customer);
+            model.ExcludedCustomers.Remove(customer);
+            UpdateButtonsState();
+        }
+
+        private void ExcludeCustomerButton_Click(object sender, RoutedEventArgs e)
+        {
+            var customer = model.SelectedIncludedCustomer;
+            model.Event.Customers.Remove(customer);
+            model.ExcludedCustomers.Add(customer);
+            model.IncludedCustomers.Remove(customer);
+            UpdateButtonsState();
+        }
+        private void UpdateButtonsState()
+        {
+            if (includedCustomersList.SelectedItem != null) excludeCustomerButton.IsEnabled = true;
+            else excludeCustomerButton.IsEnabled = false;
+
+            if (excludedCustomersList.SelectedItem != null) includeCustomerButton.IsEnabled = true;
+            else includeCustomerButton.IsEnabled = false;
         }
     }
 }

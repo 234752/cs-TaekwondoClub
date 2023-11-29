@@ -22,61 +22,10 @@
         <DataGrid Name="eventListView" AutoGenerateColumns="False" ItemsSource="{Binding Events}" SelectedItem="{Binding SelectedEvent}" CanUserAddRows="False" Margin="10,10,1100,10">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Date &amp; Time" Width="*" Binding="{Binding Date}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Date" Width="*" Binding="{Binding Date}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Type" Width="*" Binding="{Binding Type}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
-        <!-- Event Details -->
-        <Border Name="eventDetailsBorder" Margin="850,10,337,550" BorderBrush="DarkGray" BorderThickness="1" CornerRadius="5"
-                DataContext="{Binding SelectedItem, ElementName=eventListView}">
-            <Grid Margin="9,0,-1,9">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-
-                <TextBlock Grid.Row="0" Text="Event Details" FontWeight="Bold" Margin="10" FontSize="16" />
-
-                <Label Grid.Row="1" Content="Name:" Margin="10" />
-                <TextBox Grid.Row="1" Name="eventNameTextBox" Margin="179,10,10,10" Text="{Binding Name}" TextAlignment="Center"/>
-
-                <Label Grid.Row="2" Content="Date &amp; Time:" Margin="10" />
-                <xctk:DateTimePicker Grid.Row="2" Name="eventDateTimePicker" Margin="179,10,10,10" Value="{Binding Date}" TextAlignment="Center" />
-
-                <Label Grid.Row="3" Content="Participants list:" Margin="10" />
-                <ListView Grid.Row="5" Name="selectedEventLeftCustomers" ItemsSource="{Binding Source={StaticResource SelectedEventLeftCustomers}}" 
-                          SelectedItem="{Binding Path=DataContext.LeftSelectedCustomer, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" 
-                          SelectionChanged="selectedEventLeftCustomers_SelectionChanged"
-                          Margin="10,7,600,80" >
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Name, Surname [identifier]" Width="420" DisplayMemberBinding="{Binding}" />
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-                <ListView Grid.Row="5" Name="selectedEventRightCustomers" ItemsSource="{Binding Source={StaticResource SelectedEventRightCustomers}}" 
-                          SelectedItem="{Binding Path=DataContext.RightSelectedCustomer, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" 
-                          SelectionChanged="selectedEventRightCustomers_SelectionChanged"
-                          Margin="600,7,10,80" >
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Name, Surname [identifier]" Width="420" DisplayMemberBinding="{Binding}" />
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-
-                <Button Grid.Row="5" Content="&gt;&gt;&gt;" Name="eventDetailsMoveRightButton" Height="30" Click="eventDetailsMoveRightButton_Click" 
-                        Margin="0,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <Button Grid.Row="5" Content="&lt;&lt;&lt;" Name="eventDetailsMoveLeftButton" Height="30" Click="eventDetailsMoveLeftButton_Click" 
-                        Margin="0,73,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-
-          
-
-            </Grid>
-        </Border>
 
         <Border Name="newEventBorder" Margin="850,460,337,100" BorderBrush="DarkGray" BorderThickness="1" CornerRadius="5"
         DataContext="{Binding NewEvent}">
