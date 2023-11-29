@@ -6,6 +6,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:DesktopWPF.Views"
       xmlns:system="clr-namespace:System;assembly=System.Runtime"
+      xmlns:mw="http://modernwpf.com"
       mc:Ignorable="d"
       d:DesignHeight="950" d:DesignWidth="1920"
       Title="EventView">
@@ -25,7 +26,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <!-- Event Details -->
-        <Border Name="eventDetailsBorder" Margin="850,10,10,550" BorderBrush="DarkGray" BorderThickness="1" CornerRadius="5"
+        <Border Name="eventDetailsBorder" Margin="850,10,337,550" BorderBrush="DarkGray" BorderThickness="1" CornerRadius="5"
                 DataContext="{Binding SelectedItem, ElementName=eventListView}">
             <Grid Margin="9,0,-1,9">
                 <Grid.RowDefinitions>
@@ -72,12 +73,12 @@
                 <Button Grid.Row="5" Content="&lt;&lt;&lt;" Name="eventDetailsMoveLeftButton" Height="30" Click="eventDetailsMoveLeftButton_Click" 
                         Margin="0,73,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
-                <Button Grid.Row="5" Name="removeEventButton" Content="Remove Event" Width="300" Height="40" Margin="740,157,0,0" Click="removeEventButton_Click" VerticalAlignment="Top" />
+          
 
             </Grid>
         </Border>
 
-        <Border Name="newEventBorder" Margin="850,460,10,100" BorderBrush="DarkGray" BorderThickness="1" CornerRadius="5"
+        <Border Name="newEventBorder" Margin="850,460,337,100" BorderBrush="DarkGray" BorderThickness="1" CornerRadius="5"
         DataContext="{Binding NewEvent}">
             <Grid Margin="9,0,-1,9">
                 <Grid.RowDefinitions>
@@ -124,15 +125,20 @@
                 <Button Grid.Row="5" Content="&lt;&lt;&lt;" Name="newEventDetailsMoveLeftButton" Height="30" Click="newEventDetailsMoveLeftButton_Click" 
                         HorizontalAlignment="Center" Margin="0,73,0,0" VerticalAlignment="Top"/>
 
-                <Button Grid.Row="5" Name="saveNewEventButton" Content="Add As New Event" Width="298" Height="40" Margin="742,166,0,0" Click="saveNewEventButton_Click" VerticalAlignment="Top" />
+                
 
             </Grid>
         </Border>
 
         <!-- Save and Cancel Buttons -->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Width="302">
-            <Button Name="saveButton" Content="Save All" Width="135" Height="40" Margin="10" Click="saveButton_Click" />
-            <Button Name="cancelButton" Content="Revert Changes" Width="135" Height="40" Margin="10" Click="cancelButton_Click" />
+        <StackPanel Margin="1659,10,10,752">
+            <Button x:Name="addEventButton" Content="Add Event" Width="250" Height="40" Click="AddEventButton_Click" />
+            <Button x:Name="editEventButton" Content="Edit Selected Event" Width="250" Height="40" Click="EditEventButton_Click" />
+            <Button x:Name="removeEventButton" Content="Remove Selected Event" Width="250" Height="40" Click="RemoveEventButton_Click"/>
+        </StackPanel>
+        <StackPanel Margin="1659,0,10,10" VerticalAlignment="Bottom">
+            <Button x:Name="saveButton" Content="Save All" Width="250" Height="40" Click="SaveButton_Click"/>
+            <Button x:Name="revertButton" Content="Revert Changes" Width="250" Height="40" Click="RevertButton_Click"/>
         </StackPanel>
     </Grid>
 </Page>

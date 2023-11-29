@@ -69,7 +69,7 @@ public partial class PaymentView : Page
         }
         else
         {
-            MessageBox.Show("Please select a customer to edit.");
+            MessageBox.Show("Please select a payment to edit.");
         }
     }
     private void RemovePaymentButton_Click(object sender, RoutedEventArgs e)

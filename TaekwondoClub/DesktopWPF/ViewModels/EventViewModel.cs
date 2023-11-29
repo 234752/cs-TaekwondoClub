@@ -140,7 +140,7 @@ public class EventViewModel : BaseViewModel, INotifyPropertyChanged
     public void AddEvent()
     {
         var ev = new Event(NewEvent);
-        ev.Customers = NewEventLeftCustomers.ToList();
+        //ev.Customers = NewEventLeftCustomers.ToList();
         MainWindow.Events.Add(ev);
     }
 
