@@ -32,6 +32,10 @@ namespace DesktopWPF.Views
                 Event = ev;
                 AttendingCustomers = attendingCustomers;
             }
+            public string GetAttendanceStatus(Customer customer)
+            {
+                return AttendingCustomers.Any(a => a.CustomerId == customer.Id) ? "Attending" : "Not Attending";
+            }
         }
         public AttendanceView(Event selectedEvent, List<Attendance> attendingCustomers)
         {
@@ -41,10 +45,37 @@ namespace DesktopWPF.Views
             DataContext = model;
         }
 
-        private void SaveAttendanceButton_Click(object sender, RoutedEventArgs e)
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            var att = model.AttendingCustomers;
             SaveChanges = true;
             Close();
+        }
+        private void ToggleAttendanceButton_Click(object sender, RoutedEventArgs e)
+        {
+            var dataGrid = attendanceList as DataGrid;
+            if (dataGrid.SelectedItem is Customer selectedCustomer)
+            {
+                var attendance = model.AttendingCustomers.FirstOrDefault(a => a.CustomerId == selectedCustomer.Id);
+
+                if (attendance != null)
+                {
+                    model.AttendingCustomers.Remove(attendance);
+                }
+                else
+                {
+                    model.AttendingCustomers.Add(new Attendance { EventId = model.Event.Id, CustomerId = selectedCustomer.Id });
+                }
+                dataGrid.Items.Refresh();
+            }
+        }
+        private void AttendanceListDataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            if (e.Row.Item is Customer customer)
+            {
+                bool isAttending = model.AttendingCustomers.Any(a => a.CustomerId == customer.Id);
+                e.Row.Background = isAttending ? Brushes.LightGreen : Brushes.White;
+            }
         }
     }
 }
