@@ -29,9 +29,13 @@ var app = builder.Build();
 app.MapGet("/customers", async (DataContext db) => 
     await db.Customers.ToListAsync());
 app.MapGet("/events", async (DataContext db) =>
-    await db.Events.Include(e => e.Customers).ToListAsync());
+    await db.Events.Where(e => e.Type != "class")
+    .Include(e => e.Customers).ToListAsync());
 app.MapGet("/payments", async (DataContext db) =>
-    await db.Payments.Include(p => p.Customer).ToListAsync());
+    await db.Payments.Where(p => p.Customer != null)
+    .Include(p => p.Customer).ToListAsync());
+app.MapGet("/expenses", async (DataContext db) =>
+    await db.Payments.Where(p => p.Customer == null).ToListAsync());
 
 app.MapGet("/customerswithduepayments", async (DataContext db) =>
 {

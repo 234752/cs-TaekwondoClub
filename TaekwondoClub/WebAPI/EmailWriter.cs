@@ -10,9 +10,9 @@ public static class EmailWriter
         EmailDTO email = new()
         {
             Recipent = payment.Customer.Email,
-            Subject = $"Payment due for month {payment.MonthYear}",
+            Subject = $"Payment due for month {payment.Type}",
             Body = $"Dear {payment.Customer.Name} {payment.Customer.Surname}," +
-            $"\n\nWe are reaching to you regarding your due payment for membership in our Teakwondo club (Month: {payment.MonthYear})." +
+            $"\n\nWe are reaching to you regarding your due payment for membership in our Teakwondo club (Month: {payment.Type}), the outstanding amount is: {payment.Price} PLN." +
             $"\nWe kindly remind you that the deadline for your payment is {payment.DueDate}." +
             $"\n\nYours sincerely, \nTaekwondo Club Management"
         };
