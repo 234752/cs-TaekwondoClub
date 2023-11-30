@@ -23,8 +23,10 @@ namespace DesktopWPF.Views
     {
         private MinimalViewModel model;
         public bool SaveChanges { get; set; } = false;
+        
         private class MinimalViewModel()
         {
+            public bool IsItClubsExpense { get; set; }
             public Payment Payment { get; set; }
             public List<Customer> Customers { get; set; }
         }
@@ -32,7 +34,8 @@ namespace DesktopWPF.Views
         public PaymentDetailView(Payment payment, List<Customer> customers)
         {
             InitializeComponent();
-            model = new() { Payment = payment, Customers = customers };
+            var clubExpense = payment.Customer is null;
+            model = new() { Payment = payment, Customers = customers, IsItClubsExpense = clubExpense };
             DataContext = model;
         }
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -45,6 +48,24 @@ namespace DesktopWPF.Views
             if (!RegexValidator.IsNumeric(e.Text))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void ToggleButton_CheckedUnchecked(object sender, RoutedEventArgs e)
+        {
+            if(model.IsItClubsExpense) 
+            {
+                model.Payment.Customer = null;
+                model.Payment.CustomerId = null;
+                customerSelectionComboBox.SelectedItem = null;
+                customerSelectionTextBlock.Visibility = Visibility.Collapsed;
+                customerSelectionComboBox.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                customerSelectionComboBox.SelectedItem = model.Customers.FirstOrDefault();
+                customerSelectionTextBlock.Visibility = Visibility.Visible;
+                customerSelectionComboBox.Visibility = Visibility.Visible;
             }
         }
     }

@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Event Detail" SizeToContent="Height" Width="300">
+        Title="Payment Detail" SizeToContent="Height" Width="300">
     <Grid>
         <StackPanel Margin="20">
             <TextBlock Text="Name:"/>
@@ -26,8 +26,11 @@
             <TextBlock Text="Type:"/>
             <TextBox Text="{Binding Payment.Type, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
 
-            <TextBlock Text="Customer:"/>
-            <ComboBox ItemsSource="{Binding Customers}" DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding Payment.CustomerId}" Margin="0,0,0,10"/>
+            <ToggleButton Content="Is it club's expense?" IsChecked="{Binding IsItClubsExpense}" Checked="ToggleButton_CheckedUnchecked" Unchecked="ToggleButton_CheckedUnchecked" Margin="0,0,0,10"/>
+            
+
+            <TextBlock Text="Customer:" Name="customerSelectionTextBlock"/>
+            <ComboBox Name="customerSelectionComboBox" ItemsSource="{Binding Customers}" SelectedValuePath="Id" SelectedValue="{Binding Payment.CustomerId}" Margin="0,0,0,10"/>
 
             <Button Content="Save" Click="SaveButton_Click"/>
         </StackPanel>

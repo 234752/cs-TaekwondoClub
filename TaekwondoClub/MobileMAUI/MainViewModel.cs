@@ -66,7 +66,7 @@ public class MainViewModel
         }
 
         Payments.Clear();
-        foreach (var p in _restService.Payments.Where(p => IsInRange(p.MonthYear) && (!UnpaidOnly || p.Paid=="no")))
+        foreach (var p in _restService.Payments.Where(p => IsInRange(p.Type) && (!UnpaidOnly || p.Paid=="no")))
         {
             Payments.Add(p);
         }
