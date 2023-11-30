@@ -52,7 +52,7 @@ public partial class EventView : Page
         var eventDetailView = new EventDetailView(newEvent, EventViewModel.Customers.ToList());
         eventDetailView.ShowDialog();
         if (eventDetailView.SaveChanges)
-        {
+        {            
             EventViewModel.AddEvent();
         }
     }

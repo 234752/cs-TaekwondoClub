@@ -42,6 +42,7 @@ public class EventViewModel : BaseViewModel, INotifyPropertyChanged
     public void AddEvent()
     {
         var ev = new Event(NewEvent);
+        ev.Customers = NewEvent.Customers;
         MainWindow.Events.Add(ev);
     }
 

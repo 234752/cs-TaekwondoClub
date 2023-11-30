@@ -17,6 +17,7 @@
                 <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Date" Width="*" Binding="{Binding Date}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Type" Width="*" Binding="{Binding Type}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Participants" Width="*" Binding="{Binding}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
 

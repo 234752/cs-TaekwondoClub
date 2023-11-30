@@ -72,7 +72,7 @@ namespace DesktopWPF.Views
         {
             DateTime selectedDateTime = (DateTime)model.Event.Date;
             selectedDateTime = selectedDateTime.Date + TimeSpan.FromHours(model.SelectedHour) + TimeSpan.FromMinutes(model.SelectedMinute);
-
+            //var modelref = model.Event;
             model.Event.Date = selectedDateTime;
 
             SaveChanges = true;
