@@ -21,6 +21,8 @@ public class Customer
 
     [JsonIgnore]
     public List<Payment> Payments { get; set; }
+    [JsonIgnore]
+    public List<Attendance> Attendances { get; set; }
     public Customer() { }
     public Customer(Customer customer)
     {

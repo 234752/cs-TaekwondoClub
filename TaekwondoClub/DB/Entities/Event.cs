@@ -31,6 +31,7 @@ public class Event
     public DateTime Date { get; set; }
     public string Type { get; set; }
     public List<Customer> Customers { get; set; }
+    public List<Attendance> Attendances { get; set; }
     public override string ToString()
     {
         if (Customers is null) return "no participants";

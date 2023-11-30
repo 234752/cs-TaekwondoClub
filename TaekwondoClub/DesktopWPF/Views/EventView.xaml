@@ -25,6 +25,7 @@
             <Button x:Name="addEventButton" Content="Add Event" Width="250" Height="40" Click="AddEventButton_Click" />
             <Button x:Name="editEventButton" Content="Edit Selected Event" Width="250" Height="40" Click="EditEventButton_Click" />
             <Button x:Name="removeEventButton" Content="Remove Selected Event" Width="250" Height="40" Click="RemoveEventButton_Click"/>
+            <Button x:Name="checkAttendanceButton" Content="Check Attendance" Width="250" Height="40" Click="CheckAttendanceButton_Click"/>
         </StackPanel>
         <StackPanel Margin="1659,0,10,10" VerticalAlignment="Bottom">
             <Button x:Name="saveButton" Content="Save All" Width="250" Height="40" Click="SaveButton_Click"/>

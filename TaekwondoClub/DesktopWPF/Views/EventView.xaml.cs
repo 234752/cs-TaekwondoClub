@@ -89,4 +89,18 @@ public partial class EventView : Page
             MessageBox.Show("Please select an event to delete.");
         }
     }
+    private void CheckAttendanceButton_Click(object sender, RoutedEventArgs e)
+    {
+        Event selectedEvent = (Event)eventListView.SelectedItem;
+        var attendances = EventViewModel.Attendances.Where(a => a.EventId == selectedEvent.Id).ToList();
+        if (selectedEvent != null)
+        {
+            var attendanceView = new AttendanceView(selectedEvent, attendances);
+            attendanceView.ShowDialog();
+        }
+        else
+        {
+            MessageBox.Show("Please select an event to check the attendance.");
+        }
+    }
 }
