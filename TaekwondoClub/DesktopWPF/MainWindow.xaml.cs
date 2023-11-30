@@ -32,6 +32,7 @@ public partial class MainWindow : Window
     public ObservableCollection<Customer> Customers { get; set; }
     public ObservableCollection<Event> Events { get; set; }
     public ObservableCollection<Payment> Payments { get; set; }
+    public ObservableCollection<Attendance> Attendances { get; set; }
     public MainWindow()
     {
         _optionsBuilder = new DbContextOptionsBuilder<DataContext>();
@@ -40,9 +41,11 @@ public partial class MainWindow : Window
         _dataContext.Customers.Load();
         _dataContext.Events.Include(e => e.Customers).Load();
         _dataContext.Payments.Include(p => p.Customer).Load();
+        _dataContext.Attendances.Include(a => a.Event).Include(a => a.Customer).Load();
         Customers = _dataContext.Customers.Local.ToObservableCollection();
         Events = _dataContext.Events.Local.ToObservableCollection();
         Payments = _dataContext.Payments.Local.ToObservableCollection();
+        Attendances = _dataContext.Attendances.Local.ToObservableCollection();
 
         InitializeComponent();
     }
@@ -53,9 +56,11 @@ public partial class MainWindow : Window
         _dataContext.Customers.Load();
         _dataContext.Events.Include(e => e.Customers).Load();
         _dataContext.Payments.Include(p => p.Customer).Load();
+        _dataContext.Attendances.Include(a => a.Event).Include(a => a.Customer).Load();
         Customers = _dataContext.Customers.Local.ToObservableCollection();
         Events = _dataContext.Events.Local.ToObservableCollection();
         Payments = _dataContext.Payments.Local.ToObservableCollection();
+        Attendances = _dataContext.Attendances.Local.ToObservableCollection();
     }
 
     public async Task SaveChangesToDatabase()
@@ -70,7 +75,7 @@ public partial class MainWindow : Window
 
     private void ShowEventsView(object sender, RoutedEventArgs e)
     {
-        mainFrame.NavigationService.Navigate(new EventView(new EventViewModel(this, Events, Customers)));
+        mainFrame.NavigationService.Navigate(new EventView(new EventViewModel(this, Events, Customers, Attendances)));
     }
 
     private void ShowPaymentsView(object sender, RoutedEventArgs e)
@@ -87,7 +92,7 @@ public partial class MainWindow : Window
     public void ReloadEvents()
     {
         ReloadData();
-        mainFrame.NavigationService.Navigate(new EventView(new EventViewModel(this, Events, Customers)));
+        mainFrame.NavigationService.Navigate(new EventView(new EventViewModel(this, Events, Customers, Attendances)));
     }
     public void ReloadPayments()
     {

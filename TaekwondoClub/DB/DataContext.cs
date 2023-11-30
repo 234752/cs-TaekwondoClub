@@ -17,5 +17,6 @@ public class DataContext : DbContext
     public DbSet<Customer> Customers { get; set; }
     public DbSet<Event> Events { get; set; }
     public DbSet<Payment> Payments { get; set; }
+    public DbSet<Attendance> Attendances { get; set; }
 
 }

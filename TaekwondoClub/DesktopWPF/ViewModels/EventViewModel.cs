@@ -10,22 +10,20 @@ using System.Threading.Tasks;
 
 namespace DesktopWPF.ViewModels;
 
-public class EventViewModel : BaseViewModel, INotifyPropertyChanged
+public class EventViewModel : BaseViewModel
 {
-    public event PropertyChangedEventHandler? PropertyChanged;
-
-    protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
     public ObservableCollection<Event> Events { get; set; }
     public ObservableCollection<Customer> Customers { get; set; }
+    public ObservableCollection<Attendance> Attendances { get; set; }
 
-    public EventViewModel(MainWindow mainWindow, ObservableCollection<Event> events, ObservableCollection<Customer> customers) : base(mainWindow)
+    public EventViewModel(MainWindow mainWindow, ObservableCollection<Event> events, ObservableCollection<Customer> customers, 
+        ObservableCollection<Attendance> attendances) : base(mainWindow)
     {
         Events = events;
         Customers = customers;
+        Attendances = attendances;
         NewEvent = new() { Date = DateTime.UtcNow };
+        Attendances = attendances;
     }
     public Event NewEvent {  get; set; }
 
