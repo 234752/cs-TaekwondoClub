@@ -82,6 +82,10 @@ public partial class MainWindow : Window
     {
         mainFrame.NavigationService.Navigate(new PaymentView(new PaymentViewModel(this, Payments, Customers)));
     }
+    private void ShowDocumentsView(object sender, RoutedEventArgs e)
+    {
+        mainFrame.NavigationService.Navigate(new DocumentsView(new DocumentsViewModel(Customers.ToList(), Events.ToList(), Payments.ToList(), Attendances.ToList())));
+    }
 
     public void ReloadCustomers()
     {

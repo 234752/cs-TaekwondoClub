@@ -16,6 +16,8 @@
             <Button Content="Events" Width="200" Click="ShowEventsView" BorderBrush="LightBlue" BorderThickness="3"/>
             <Separator Opacity="0" Width="10"/>
             <Button Content="Payments" Width="200" Click="ShowPaymentsView" BorderBrush="LightBlue" BorderThickness="3"/>
+            <Separator Opacity="0" Width="10"/>
+            <Button Content="Documents" Width="200" Click="ShowDocumentsView" BorderBrush="LightBlue" BorderThickness="3"/>
         </StackPanel>
         <Frame Name="mainFrame" NavigationUIVisibility="Hidden" Margin="0,50,0,0" />
     </Grid>
