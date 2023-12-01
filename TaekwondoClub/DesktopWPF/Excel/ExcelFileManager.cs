@@ -9,13 +9,14 @@ namespace DesktopWPF.Excel;
 
 internal static class ExcelFileManager
 {
-    internal static void WriteMessage(string fileName, string message)
+    internal static void WriteMessage(string folderPath, string filename)
     {
+        string fullPath = System.IO.Path.Combine(folderPath, filename);
         ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-        using (var package = new ExcelPackage($"{fileName}.xlsx"))
+        using (var package = new ExcelPackage($"{fullPath}.xlsx"))
         {
             var sheet = package.Workbook.Worksheets.Add("My Sheet");
-            sheet.Cells["A1"].Value = message;
+            sheet.Cells["A1"].Value = "hello";
 
             package.Save();
         }
