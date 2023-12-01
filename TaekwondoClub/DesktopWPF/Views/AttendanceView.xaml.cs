@@ -32,10 +32,6 @@ namespace DesktopWPF.Views
                 Event = ev;
                 AttendingCustomers = attendingCustomers;
             }
-            public string GetAttendanceStatus(Customer customer)
-            {
-                return AttendingCustomers.Any(a => a.CustomerId == customer.Id) ? "Attending" : "Not Attending";
-            }
         }
         public AttendanceView(Event selectedEvent, List<Attendance> attendingCustomers)
         {
@@ -47,7 +43,7 @@ namespace DesktopWPF.Views
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            var att = model.AttendingCustomers;
+            model.Event.Attendances = model.AttendingCustomers;
             SaveChanges = true;
             Close();
         }

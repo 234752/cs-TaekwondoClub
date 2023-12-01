@@ -48,6 +48,20 @@ public class EventViewModel : BaseViewModel
     {
         MainWindow.Events.Remove(ev);
     }
+    public void UpdateAttendance(Event ev, List<Attendance> attendances)
+    {
+        var oldAttendance = Attendances.Where(a => a.EventId == ev.Id).ToList();
+        var attendanceRecordsToAdd = attendances.Except(oldAttendance).ToList();
+        var attendanceRecordsToRemove = oldAttendance.Except(attendances).ToList();
+        foreach (var attendance in attendanceRecordsToAdd)
+        {
+            MainWindow.Attendances.Add(attendance);
+        }
+        foreach (var attendance in attendanceRecordsToRemove)
+        {
+            MainWindow.Attendances.Remove(attendance);
+        }
+    }
 }
 
 

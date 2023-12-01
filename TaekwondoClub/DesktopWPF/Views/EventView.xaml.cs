@@ -92,11 +92,15 @@ public partial class EventView : Page
     private void CheckAttendanceButton_Click(object sender, RoutedEventArgs e)
     {
         Event selectedEvent = (Event)eventListView.SelectedItem;
-        var attendances = EventViewModel.Attendances.Where(a => a.EventId == selectedEvent.Id).ToList();
         if (selectedEvent != null)
         {
+            var attendances = EventViewModel.Attendances.Where(a => a.EventId == selectedEvent.Id).ToList();
             var attendanceView = new AttendanceView(selectedEvent, attendances);
             attendanceView.ShowDialog();
+            if(attendanceView.SaveChanges) 
+            {
+                EventViewModel.UpdateAttendance(selectedEvent, attendances);
+            }
         }
         else
         {
