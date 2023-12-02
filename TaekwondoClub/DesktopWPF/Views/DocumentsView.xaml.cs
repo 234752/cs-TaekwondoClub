@@ -49,7 +49,9 @@ namespace DesktopWPF.Views
                 MessageBox.Show($"Please enter the name of file");
                 return;
             }
-            ExcelFileManager.WriteMessage(folder, filename);
+            string fullPath = System.IO.Path.Combine(folder, filename);
+            ExcelFileManager.GenerateTimetable(fullPath, DocumentsViewModel.Events);
+            //ExcelFileManager.WriteMessage(folder, filename);
             MessageBox.Show($$"""File saved in: {{folder}}, as "{{filename}}.xslx" """);
         }
     }
