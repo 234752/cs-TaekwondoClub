@@ -9,6 +9,27 @@
       Title="DocumentsView">
 
     <Grid>
-        <Button HorizontalAlignment="Center" Content="generate doc" Click="Button_Click"/>
+    <Grid Width="620" Height="150">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Content="Document type:" Width="300" Height="40" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5"/>
+            <ComboBox Grid.Row="0" Grid.Column="1" Name="documentTypeComboBox" ItemsSource="{Binding DocumentTypes}" SelectedIndex="0" Width="300" Height="40" Margin="5"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="Filename:" Width="300" Height="40" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Name="filenameTextBox" Text="{Binding Filename}" Width="300" Height="40" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5"/>
+            <Button Grid.Row="2" Grid.Column="0" Content="Pick output folder" Click="PickOutputFolderButton_Click" Width="300" Height="40" FontSize="20" Margin="5"/>
+            <Label Grid.Row="2" Grid.Column="2" Name="outputFolderLabel" Width="300" Height="40" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5"/>
+
+        </Grid>
+        <StackPanel Margin="1659,0,10,10" VerticalAlignment="Bottom">
+            <Button x:Name="generateDocumentButton" Content="Generate Document" Width="250" Height="40" Click="GenerateDocumentButton_Click"/>
+        </StackPanel>
     </Grid>
 </Page>

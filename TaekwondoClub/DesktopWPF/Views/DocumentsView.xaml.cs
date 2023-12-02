@@ -21,9 +21,11 @@ namespace DesktopWPF.Views
         {
             DocumentsViewModel = documentsViewModel;
             InitializeComponent();
+            DataContext = DocumentsViewModel;
+            generateDocumentButton.IsEnabled = false;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void PickOutputFolderButton_Click(object sender, RoutedEventArgs e)
         {
             using (var folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog())
             {
@@ -32,12 +34,23 @@ namespace DesktopWPF.Views
                 if (result == System.Windows.Forms.DialogResult.OK && !string.IsNullOrWhiteSpace(folderBrowserDialog.SelectedPath))
                 {
                     string selectedFolder = folderBrowserDialog.SelectedPath;
-                    
-                    ExcelFileManager.WriteMessage(selectedFolder, "testWorkBook");
-                    MessageBox.Show($"File saved in: {selectedFolder}");
+                    DocumentsViewModel.FolderPath = selectedFolder;
+                    outputFolderLabel.Content = selectedFolder;
+                    generateDocumentButton.IsEnabled = true;
                 }
             }
-            
+        }
+        private void GenerateDocumentButton_Click(object sender, RoutedEventArgs e)
+        {
+            var filename = DocumentsViewModel.Filename;
+            var folder = DocumentsViewModel.FolderPath;
+            if(string.IsNullOrWhiteSpace(filename)) 
+            {
+                MessageBox.Show($"Please enter the name of file");
+                return;
+            }
+            ExcelFileManager.WriteMessage(folder, filename);
+            MessageBox.Show($$"""File saved in: {{folder}}, as "{{filename}}.xslx" """);
         }
     }
 }
