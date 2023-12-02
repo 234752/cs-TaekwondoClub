@@ -28,9 +28,13 @@ internal static class ExcelFileManager
         ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
         using (var package = new ExcelPackage($"{filepath}.xlsx"))
         {
-            var sheet = package.Workbook.Worksheets.Add("Weekly Timetable");
-            var generator = new TimetableGenerator(sheet, events);
-            generator.Generate();
+            var timetableSheet = package.Workbook.Worksheets.Add("Weekly Timetable");
+            var generator = new TimetableGenerator(timetableSheet, events);
+            generator.GenerateWeeklyTimetable();
+
+            var classesListSheet = package.Workbook.Worksheets.Add("Classes List");
+            generator.ExcelWorksheet = classesListSheet;
+            generator.GenerateListOfClasses();
 
             package.Save();
         }
