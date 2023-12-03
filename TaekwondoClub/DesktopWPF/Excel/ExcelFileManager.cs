@@ -26,13 +26,13 @@ internal static class ExcelFileManager
             package.Save();
         }
     }
-    internal static void GenerateAttendanceList(string filepath, List<Event> events)
+    internal static void GenerateAttendanceList(string filepath, List<Event> events, List<Attendance> attendances)
     {
         ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
         using (var package = new ExcelPackage($"{filepath}.xlsx"))
         {
             var attendanceSheet = package.Workbook.Worksheets.Add("Attendance List");
-            var generator = new AttendanceListGenerator(attendanceSheet, events);
+            var generator = new AttendanceListGenerator(attendanceSheet, events, attendances);
             generator.GenerateAttendanceList();
 
             package.Save();

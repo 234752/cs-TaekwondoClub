@@ -56,7 +56,7 @@ namespace DesktopWPF.Views
 
             } else if (documentTypeComboBox.SelectedIndex == 1)
             {
-                ExcelFileManager.GenerateAttendanceList(fullPath, DocumentsViewModel.Events);
+                ExcelFileManager.GenerateAttendanceList(fullPath, DocumentsViewModel.Events, DocumentsViewModel.Attendances);
             } else
             {
                 //ExcelFileManager.GenerateAttendanceList(fullPath, DocumentsViewModel.Events);
