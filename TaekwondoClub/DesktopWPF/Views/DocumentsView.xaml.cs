@@ -50,8 +50,18 @@ namespace DesktopWPF.Views
                 return;
             }
             string fullPath = System.IO.Path.Combine(folder, filename);
-            ExcelFileManager.GenerateTimetable(fullPath, DocumentsViewModel.Events);
-            //ExcelFileManager.WriteMessage(folder, filename);
+            if(documentTypeComboBox.SelectedIndex == 0)
+            {
+                ExcelFileManager.GenerateTimetable(fullPath, DocumentsViewModel.Events);
+
+            } else if (documentTypeComboBox.SelectedIndex == 1)
+            {
+                ExcelFileManager.GenerateAttendanceList(fullPath, DocumentsViewModel.Events);
+            } else
+            {
+                //ExcelFileManager.GenerateAttendanceList(fullPath, DocumentsViewModel.Events);
+            }
+
             MessageBox.Show($$"""File saved in: {{folder}}, as "{{filename}}.xslx" """);
         }
     }

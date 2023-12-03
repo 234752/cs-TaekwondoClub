@@ -39,7 +39,7 @@ public partial class MainWindow : Window
         _optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["pogconnectionstring2"].ConnectionString);
         _dataContext = new DataContext(_optionsBuilder.Options);
         _dataContext.Customers.Load();
-        _dataContext.Events.Include(e => e.Customers).Include(e => e.Attendances).Load();
+        _dataContext.Events.Include(e => e.Customers).Include(e => e.Attendances).ThenInclude(a => a.Customer).Load();
         _dataContext.Payments.Include(p => p.Customer).Load();
         _dataContext.Attendances.Load();
         Customers = _dataContext.Customers.Local.ToObservableCollection();
@@ -54,7 +54,7 @@ public partial class MainWindow : Window
     {
         _dataContext = new DataContext(_optionsBuilder.Options);
         _dataContext.Customers.Load();
-        _dataContext.Events.Include(e => e.Customers).Include(e => e.Attendances).Load();
+        _dataContext.Events.Include(e => e.Customers).Include(e => e.Attendances).ThenInclude(a => a.Customer).Load();
         _dataContext.Payments.Include(p => p.Customer).Load();
         _dataContext.Attendances.Load();
         Customers = _dataContext.Customers.Local.ToObservableCollection();
