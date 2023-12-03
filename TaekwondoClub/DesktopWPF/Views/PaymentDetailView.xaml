@@ -21,7 +21,7 @@
             <DatePicker SelectedDate="{Binding Payment.DueDate, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
 
             <TextBlock Text="Paid:"/>
-            <TextBox Text="{Binding Payment.Paid, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
+            <TextBox Text="{Binding Payment.Paid, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" />
 
             <TextBlock Text="Type:"/>
             <TextBox Text="{Binding Payment.Type, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>

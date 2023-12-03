@@ -59,7 +59,7 @@ namespace DesktopWPF.Views
                 ExcelFileManager.GenerateAttendanceList(fullPath, DocumentsViewModel.Events.OrderBy(e => e.Date).ToList(), DocumentsViewModel.Attendances);
             } else
             {
-                //ExcelFileManager.GenerateAttendanceList(fullPath, DocumentsViewModel.Events);
+                ExcelFileManager.GenerateExpensesSummary(fullPath, DocumentsViewModel.Payments);
             }
 
             MessageBox.Show($$"""File saved in: {{folder}}, as "{{filename}}.xslx" """);

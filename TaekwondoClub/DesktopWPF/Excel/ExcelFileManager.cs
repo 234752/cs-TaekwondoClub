@@ -38,4 +38,16 @@ internal static class ExcelFileManager
             package.Save();
         }
     }
+    internal static void GenerateExpensesSummary(string filepath, List<Payment> payments)
+    {
+        ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+        using (var package = new ExcelPackage($"{filepath}.xlsx"))
+        {
+            var expensesSheet = package.Workbook.Worksheets.Add("Expenses");
+            var generator = new ExpensesSummaryGenerator(expensesSheet, payments);
+            generator.GeneratePlannedExpensesSummary();
+
+            package.Save();
+        }
+    }
 }
