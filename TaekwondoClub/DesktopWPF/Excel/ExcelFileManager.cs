@@ -45,7 +45,7 @@ internal static class ExcelFileManager
         {
             var expensesSheet = package.Workbook.Worksheets.Add("Expenses");
             var generator = new ExpensesSummaryGenerator(expensesSheet, payments);
-            generator.GeneratePlannedExpensesSummary();
+            generator.GenerateExpensesSummary();
 
             package.Save();
         }

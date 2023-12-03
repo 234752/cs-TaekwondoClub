@@ -32,7 +32,7 @@ public class PaymentViewModel : BaseViewModel
     public void AddPayment()
     {
         var payment = new Payment(NewPayment);
-        payment.Customer = Customers.First(c => c.Id == payment.CustomerId);
+        payment.Customer = Customers.FirstOrDefault(c => c.Id == payment.CustomerId);
         MainWindow.Payments.Add(payment);
     }
     public void RemovePayment(Payment payment)
