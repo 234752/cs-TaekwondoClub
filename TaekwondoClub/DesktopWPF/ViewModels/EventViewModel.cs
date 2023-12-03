@@ -22,7 +22,7 @@ public class EventViewModel : BaseViewModel
         Events = events;
         Customers = customers;
         Attendances = attendances;
-        NewEvent = new() { Date = DateTime.UtcNow };
+        NewEvent = new() { Date = DateTime.UtcNow, Type = "One Time" };
         Attendances = attendances;
     }
     public Event NewEvent {  get; set; }

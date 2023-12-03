@@ -39,23 +39,36 @@ internal class AttendanceListGenerator
         }
         for (int i = 0; i < dates.Count(); i++) 
         {
-            ExcelWorksheet.Cells[2, i + 4].Value = dates[i].ToString("dd/MM/yyyy");
+            ExcelWorksheet.Cells[2, i + 4].Value = dates[i].ToString("dd/MM HH:mm");
         }
+        
+        var attendanceTable = CreateAttendanceTable(customers, dates);
+        for (int i = 0; i < attendanceTable.Count(); i++)
+        {
+            for (int j = 0; j < attendanceTable[i].Count(); j++)
+            {
+                ExcelWorksheet.Cells[i + 3, j + 1].Value = attendanceTable[i][j];
+
+            }
+        }
+    }
+    List<List<string>> CreateAttendanceTable(List<Customer> customers, List<DateTime> dates)
+    {
         var attendanceTable = new List<List<string>>();
         for (int i = 0; i < customers.Count(); i++)
         {
             var customer = customers[i];
             var row = new List<string>();
 
-            row.Add((i +1).ToString());
+            row.Add((i + 1).ToString());
             row.Add(customer.Name);
             row.Add(customer.Surname);
             for (int date = 0; date < dates.Count(); date++)
             {
-                
-                var ev = Events.Where(e => e.Date == dates[date]).First();
+
+                var ev = Events.Where(e => e.Date == dates[date]).Single();
                 var isPresent = Attendances.Where(a => a.EventId == ev.Id && a.CustomerId == customer.Id).FirstOrDefault();
-                if(isPresent != null)
+                if (isPresent != null)
                 {
                     row.Add("-");
                 }
@@ -66,13 +79,6 @@ internal class AttendanceListGenerator
             }
             attendanceTable.Add(row);
         }
-        for (int i = 0; i < attendanceTable.Count(); i++)
-        {
-            for (int j = 0; j < attendanceTable[i].Count(); j++)
-            {
-                ExcelWorksheet.Cells[i + 3, j + 1].Value = attendanceTable[i][j];
-
-            }
-        }
+        return attendanceTable;
     }
 }

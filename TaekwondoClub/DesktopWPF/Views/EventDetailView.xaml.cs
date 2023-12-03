@@ -29,6 +29,7 @@ namespace DesktopWPF.Views
             public Event Event { get; set; }
             public ObservableCollection<int> HourOptions { get; set; }
             public ObservableCollection<int> MinuteOptions { get; set; }
+            public List<string> EventTypes { get; set; }
             public int SelectedHour { get; set; }
             public int SelectedMinute { get; set; }
             public bool IsDetailedMinutes { get; set; }
@@ -50,7 +51,8 @@ namespace DesktopWPF.Views
                 SelectedMinute = ev.Date.Minute,
                 IsDetailedMinutes = true,
                 IncludedCustomers = new ObservableCollection<Customer>(ev.Customers),
-                ExcludedCustomers = new ObservableCollection<Customer>(excludedCustomers)
+                ExcludedCustomers = new ObservableCollection<Customer>(excludedCustomers),
+                EventTypes = new List<string>() { "One Time", "Timetable Class", "Class" }
             };
             DataContext = model;
             model.HourOptions = new ObservableCollection<int>();
@@ -72,7 +74,6 @@ namespace DesktopWPF.Views
         {
             DateTime selectedDateTime = (DateTime)model.Event.Date;
             selectedDateTime = selectedDateTime.Date + TimeSpan.FromHours(model.SelectedHour) + TimeSpan.FromMinutes(model.SelectedMinute);
-            //var modelref = model.Event;
             model.Event.Date = selectedDateTime;
 
             SaveChanges = true;
