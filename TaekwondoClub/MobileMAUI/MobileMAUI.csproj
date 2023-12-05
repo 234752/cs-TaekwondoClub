@@ -70,10 +70,16 @@
 	  <Compile Update="Pages\PaymentsPage.xaml.cs">
 	    <DependentUpon>PaymentsPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Pages\RemindersPage.xaml.cs">
+	    <DependentUpon>RemindersPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
 	  <MauiXaml Update="Pages\PaymentsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\RemindersPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

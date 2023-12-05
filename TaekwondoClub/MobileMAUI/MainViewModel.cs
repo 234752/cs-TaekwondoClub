@@ -14,7 +14,7 @@ public class MainViewModel
     public ObservableCollection<Event> Events { get; set; }
     public ObservableCollection<Payment> Payments { get; set; }
     public ObservableCollection<Payment> Costs { get; set; }
-    public ObservableCollection<Payment> Reminders { get; set; }
+    public ObservableCollection<Event> Reminders { get; set; }
     private RestService _restService { get; set; }
     public MainViewModel(RestService restService)
     {
@@ -23,7 +23,7 @@ public class MainViewModel
         Events = new ObservableCollection<Event>(restService.Events.Where(e => e.Type == "One Time"));
         Payments = new ObservableCollection<Payment>(restService.Payments.Where(p => p.Customer != null));
         Costs = new ObservableCollection<Payment>(restService.Payments.Where(p => p.Customer == null));
-        Reminders = new ObservableCollection<Payment>(restService.Payments.Where(p => p.Type == "Reminder"));
+        Reminders = new ObservableCollection<Event>(restService.Events.Where(p => p.Type == "Reminder" && p.Date >= DateTime.Now).OrderBy(r => r.Date));
         StartDate = DateTime.Now;
         EndDate = StartDate.AddDays(30);
         EndMonthYear = DateTime.Now;

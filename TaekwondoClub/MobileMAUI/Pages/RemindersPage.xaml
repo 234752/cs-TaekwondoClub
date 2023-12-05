@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="MobileMAUI.Pages.RemindersPage"
+             Title="Reminders">
+
+<ScrollView>
+<VerticalStackLayout>
+
+            <Label Text="Reminders were set to following actions:" HorizontalTextAlignment="Center" Padding="20" FontSize="18"/>
+            <CollectionView ItemsSource="{Binding Reminders}" >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <xct:Expander Padding="0,0,0,20">
+                            <xct:Expander.Header>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30" />
+                                    </Grid.RowDefinitions>
+
+                                    <Label Text="{Binding Name}" FontAttributes="Bold" Grid.Column="0" HorizontalTextAlignment="Center"/>
+
+                                    <Label Text="{Binding Date, StringFormat='{0:dd/MM/yyyy, HH:mm}'}" Grid.Column="1" HorizontalTextAlignment="Center"/>
+                                </Grid>
+
+                            </xct:Expander.Header>
+
+                        </xct:Expander>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+</ScrollView>
+</ContentPage>

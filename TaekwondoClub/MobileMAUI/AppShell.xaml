@@ -21,8 +21,8 @@
         <Tab Title="Costs" Icon="bag.ico">
             <ShellContent ContentTemplate="{DataTemplate pages:PaymentsPage}" />
         </Tab>
-        <Tab Title="Costs" Icon="reminder.ico">
-            <ShellContent ContentTemplate="{DataTemplate pages:PaymentsPage}" />
+        <Tab Title="Reminders" Icon="reminder.ico">
+            <ShellContent ContentTemplate="{DataTemplate pages:RemindersPage}" />
         </Tab>
         
 
