@@ -14,7 +14,7 @@ public partial class UpcomingEventsPage : ContentPage
         EndDatePicker.MinimumDate = StartDatePicker.Date;
         if (BindingContext is MainViewModel viewModel)
         {
-            viewModel.FilterEventsByDate();
+            viewModel.FilterEvents();
         }
     }
     private void OnEndDatePicker_DateSelected(object sender, DateChangedEventArgs e)
@@ -22,7 +22,7 @@ public partial class UpcomingEventsPage : ContentPage
         EndDatePicker.MinimumDate = StartDatePicker.Date;
         if (BindingContext is MainViewModel viewModel)
         {
-            viewModel.FilterEventsByDate();
+            viewModel.FilterEvents();
         }
     }
     private async void OnNotifyEventParticipantsButton_Clicked(object sender, EventArgs args)

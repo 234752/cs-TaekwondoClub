@@ -52,7 +52,7 @@ namespace DesktopWPF.Views
                 IsDetailedMinutes = true,
                 IncludedCustomers = new ObservableCollection<Customer>(ev.Customers),
                 ExcludedCustomers = new ObservableCollection<Customer>(excludedCustomers),
-                EventTypes = new List<string>() { "One Time", "Timetable Class", "Class" }
+                EventTypes = new List<string>() { "One Time", "Timetable Class", "Class", "Reminder" }
             };
             DataContext = model;
             model.HourOptions = new ObservableCollection<int>();
