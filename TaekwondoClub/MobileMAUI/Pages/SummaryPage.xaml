@@ -7,20 +7,26 @@
 
             <Label Text="Welcome to the Notification Center" FontSize="23" HorizontalOptions="Center" TextColor="LightBlue" />
 
-            <StackLayout>
-                <Label Text="Amount of Current Customers:" FontSize="18" HorizontalOptions="Center" />
-                <Label Text="{Binding Customers.Count}" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
-            </StackLayout>
+            <Border Style="{StaticResource PurpleBorder}">
+                <StackLayout>
+                    <Label Text="Amount of Current Customers:" FontSize="18" HorizontalOptions="Center" />
+                    <Label Text="{Binding Customers.Count}" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
+                </StackLayout>
+            </Border>
 
-            <StackLayout>
-                <Label Text="Upcoming Events:" FontSize="18" HorizontalOptions="Center" />
-                <Label Text="{Binding Events.Count}" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
-            </StackLayout>
+            <Border Style="{StaticResource PurpleBorder}">
+                <StackLayout>
+                    <Label Text="Upcoming Events:" FontSize="18" HorizontalOptions="Center" />
+                    <Label Text="{Binding Events.Count}" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
+                </StackLayout>
+            </Border>
 
-            <StackLayout>
-                <Label Text="Amount of Payments:" FontSize="18" HorizontalOptions="Center" />
-                <Label Text="{Binding Payments.Count}" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
-            </StackLayout>
+            <Border Style="{StaticResource PurpleBorder}">
+                <StackLayout>
+                    <Label Text="Amount of Payments:" FontSize="18" HorizontalOptions="Center" />
+                    <Label Text="{Binding Payments.Count}" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
+                </StackLayout>
+            </Border>
 
         </VerticalStackLayout>
     </ScrollView>

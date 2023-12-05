@@ -38,22 +38,23 @@
             <DataTemplate>
                 <xct:Expander Padding="0,0,0,20">
                     <xct:Expander.Header>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="30" />
-                            </Grid.RowDefinitions>
+                                <Border Style="{StaticResource PurpleBorder}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="30" />
+                                        </Grid.RowDefinitions>
 
-                        <Label Text="{Binding Name}" FontAttributes="Bold" Grid.Column="0" HorizontalTextAlignment="Center"/>
-                        <Label Text="{Binding Date, StringFormat='{0:dd/MM/yyyy, HH:mm}'}" Grid.Column="1" HorizontalTextAlignment="Center"/>
-                        <Label Text="{Binding}" Grid.Column="2" HorizontalTextAlignment="Center"/>
-                        </Grid>
-                                
-                    </xct:Expander.Header>
+                                        <Label Text="{Binding Name}" FontAttributes="Bold" Grid.Column="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                        <Label Text="{Binding Date, StringFormat='{0:dd/MM/yyyy, HH:mm}'}" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                        <Label Text="{Binding}" Grid.Column="2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                    </Grid>
+                                </Border>
+                            </xct:Expander.Header>
                     <StackLayout>
                         <CollectionView ItemsSource="{Binding Customers}" HorizontalOptions="CenterAndExpand">
                             <CollectionView.ItemTemplate>

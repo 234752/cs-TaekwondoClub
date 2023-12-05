@@ -14,7 +14,8 @@
                     <DataTemplate>
                         <xct:Expander Padding="0,0,0,20">
                             <xct:Expander.Header>
-                                <Grid>
+                                <Border Style="{StaticResource PurpleBorder}">
+                                    <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="*" />
@@ -22,11 +23,12 @@
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="30" />
                                     </Grid.RowDefinitions>
+                                    
+                                        <Label Text="{Binding Name}" FontAttributes="Bold" Grid.Column="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
 
-                                    <Label Text="{Binding Name}" FontAttributes="Bold" Grid.Column="0" HorizontalTextAlignment="Center"/>
-
-                                    <Label Text="{Binding Date, StringFormat='{0:dd/MM/yyyy, HH:mm}'}" Grid.Column="1" HorizontalTextAlignment="Center"/>
-                                </Grid>
+                                        <Label Text="{Binding Date, StringFormat='{0:dd/MM/yyyy, HH:mm}'}" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                    </Grid>
+                                    </Border>
 
                             </xct:Expander.Header>
 

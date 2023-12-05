@@ -9,6 +9,12 @@
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="Border" x:Key="PurpleBorder">
+                <Setter Property="StrokeShape">
+                    <RoundRectangle CornerRadius="20" />
+                </Setter>
+                <Setter Property="BackgroundColor" Value="#ac99ea" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

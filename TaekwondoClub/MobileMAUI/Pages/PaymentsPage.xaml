@@ -42,6 +42,7 @@
                     <DataTemplate>
                         <xct:Expander Padding="0,0,0,20">
                             <xct:Expander.Header>
+                                <Border Style="{DynamicResource PurpleBorder}">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
@@ -52,11 +53,11 @@
                                         <RowDefinition Height="30" />
                                     </Grid.RowDefinitions>
 
-                                    <Label Text="{Binding Name}" FontAttributes="Bold" Grid.Column="0" HorizontalTextAlignment="Center"/>
-                                    <Label Text="{Binding Type}" FontAttributes="Bold" Grid.Column="1" HorizontalTextAlignment="Center"/>
-                                    <Label Text="{Binding DueDate, StringFormat='{0:dd/MM/yyyy}'}" Grid.Column="2" HorizontalTextAlignment="Center"/>
+                                    <Label Text="{Binding Name}" FontAttributes="Bold" Grid.Column="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                    <Label Text="{Binding Type}" FontAttributes="Bold" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                    <Label Text="{Binding DueDate, StringFormat='{0:dd/MM/yyyy}'}" Grid.Column="2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                                 </Grid>
-
+                                </Border>
                             </xct:Expander.Header>
                             <StackLayout>
                                 <Label Text="{Binding Customer, StringFormat='Customer details: {0}'}" HorizontalTextAlignment="Center"/>
