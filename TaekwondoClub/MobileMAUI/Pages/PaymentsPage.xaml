@@ -59,7 +59,10 @@
 
                             </xct:Expander.Header>
                             <StackLayout>
-                                <Label Text="{Binding Customer}" HorizontalTextAlignment="Center"/>
+                                <Label Text="{Binding Customer, StringFormat='Customer details: {0}'}" HorizontalTextAlignment="Center"/>
+                                <Label Text="{Binding Price, StringFormat='Price: {0} PLN'}" HorizontalTextAlignment="Center"/>
+                                <Label Text="{Binding Amount, StringFormat='Units: {0}'}" HorizontalTextAlignment="Center"/>
+                                <Label Text="{Binding Paid, StringFormat='Units paid: {0}'}" HorizontalTextAlignment="Center"/>
                             </StackLayout>
                         </xct:Expander>
                     </DataTemplate>
