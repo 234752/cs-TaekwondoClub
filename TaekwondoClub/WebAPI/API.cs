@@ -32,8 +32,7 @@ app.MapGet("/events", async (DataContext db) =>
     await db.Events.Where(e => e.Type != "class")
     .Include(e => e.Customers).ToListAsync());
 app.MapGet("/payments", async (DataContext db) =>
-    await db.Payments.Where(p => p.Customer != null)
-    .Include(p => p.Customer).ToListAsync());
+    await db.Payments.Include(p => p.Customer).ToListAsync());
 app.MapGet("/expenses", async (DataContext db) =>
     await db.Payments.Where(p => p.Customer == null).ToListAsync());
 
