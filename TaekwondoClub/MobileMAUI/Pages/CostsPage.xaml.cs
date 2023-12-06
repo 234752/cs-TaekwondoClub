@@ -2,9 +2,9 @@ using DB.Entities;
 
 namespace MobileMAUI.Pages;
 
-public partial class UpcomingEventsPage : ContentPage
+public partial class CostsPage : ContentPage
 {
-	public UpcomingEventsPage()
+	public CostsPage()
 	{
 		InitializeComponent();
 	}
@@ -23,17 +23,6 @@ public partial class UpcomingEventsPage : ContentPage
         if (BindingContext is MainViewModel viewModel)
         {
             viewModel.FilterCollections();
-        }
-    }
-    private async void OnNotifyEventParticipantsButton_Clicked(object sender, EventArgs args)
-    {
-        var button = sender as Button;
-        if (BindingContext is MainViewModel viewModel)
-        {
-            button.IsEnabled = false;
-            await viewModel.SendEmailToEventParticipants();
-            button.IsEnabled = true;
-
         }
     }
 }

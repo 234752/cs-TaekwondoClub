@@ -73,6 +73,9 @@
 	  <Compile Update="Pages\RemindersPage.xaml.cs">
 	    <DependentUpon>RemindersPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Pages\CostsPage.xaml.cs">
+	    <DependentUpon>CostsPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -80,6 +83,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\RemindersPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\CostsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

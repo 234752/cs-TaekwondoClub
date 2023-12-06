@@ -20,16 +20,15 @@ public class MainViewModel
     {
         _restService = restService;
         Customers = new ObservableCollection<Customer>(restService.Customers);
-        Events = new ObservableCollection<Event>(restService.Events.Where(e => e.Type == "One Time"));
-        Payments = new ObservableCollection<Payment>(restService.Payments.Where(p => p.Customer != null));
-        Costs = new ObservableCollection<Payment>(restService.Payments.Where(p => p.Customer == null));
+        Events = new ObservableCollection<Event>(restService.Events);
+        Payments = new ObservableCollection<Payment>(restService.Payments);
+        Costs = new ObservableCollection<Payment>(restService.Payments);
         Reminders = new ObservableCollection<Event>(restService.Events.Where(p => p.Type == "Reminder" && p.Date >= DateTime.Now).OrderBy(r => r.Date));
         StartDate = DateTime.Now;
         EndDate = StartDate.AddDays(30);
         EndMonthYear = DateTime.Now;
         StartMonthYear = EndMonthYear.AddMonths(-1);
-        FilterEvents();
-        FilterPayments();
+        FilterCollections();
     }
 
     public DateTime StartDate { get; set; }
@@ -39,17 +38,24 @@ public class MainViewModel
     public bool UnpaidOnly { get; set; }
 
     #region data filters
-    public void FilterEvents()
+    public void FilterCollections()
     {
+        FilterEvents();
+        FilterPayments();
+        FilterCosts();
+    }
+    private void FilterEvents()
+    {
+        var allEvents = _restService.Events.Where(e => e.Type == "One Time");
         Events.Clear();
-        foreach (var e in _restService.Events.Where(e => e.Date >= StartDate && e.Date <= EndDate))
+        foreach (var e in allEvents.Where(e => e.Date >= StartDate && e.Date <= EndDate))
         {
             Events.Add(e);
         }
     }
-
-    public void FilterPayments()
+    private void FilterPayments()
     {
+        var allPayments = _restService.Payments.Where(p => p.Customer != null);
         int MonthYearToMonth(string monthYear)
         {
             var month = monthYear.Substring(0, 2);
@@ -76,9 +82,18 @@ public class MainViewModel
         }
 
         Payments.Clear();
-        foreach (var p in _restService.Payments.Where(p => IsInRange(p.Type) && (!UnpaidOnly || p.Paid=="no")))
+        foreach (var p in allPayments.Where(p => IsInRange(p.Type) && (!UnpaidOnly || p.Paid=="no")))
         {
             Payments.Add(p);
+        }
+    }
+    private void FilterCosts()
+    {
+        var allCosts = _restService.Payments.Where(p => p.Customer == null);
+        Costs.Clear();
+        foreach (var p in allCosts.Where(p => p.DueDate >= StartDate && p.DueDate <= EndDate))
+        {
+            Costs.Add(p);
         }
     }
     #endregion

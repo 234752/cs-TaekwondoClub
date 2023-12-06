@@ -12,7 +12,7 @@ public partial class PaymentsPage : ContentPage
         EndMonthYearPicker.MinimumDate = StartMonthYearPicker.Date;
         if (BindingContext is MainViewModel viewModel)
         {
-            viewModel.FilterPayments();
+            viewModel.FilterCollections();
         }
     }
     private void OnEndMonthYearPicker_DateSelected(object sender, DateChangedEventArgs e)
@@ -20,7 +20,7 @@ public partial class PaymentsPage : ContentPage
         EndMonthYearPicker.MinimumDate = StartMonthYearPicker.Date;
         if (BindingContext is MainViewModel viewModel)
         {
-            viewModel.FilterPayments();
+            viewModel.FilterCollections();
         }
     }
     private async void OnNotifyDuePaymentsButton_Clicked(object sender, EventArgs args)
@@ -38,7 +38,7 @@ public partial class PaymentsPage : ContentPage
     {
         if (BindingContext is MainViewModel viewModel)
         {
-            viewModel.FilterPayments();
+            viewModel.FilterCollections();
         }
     }
 }
