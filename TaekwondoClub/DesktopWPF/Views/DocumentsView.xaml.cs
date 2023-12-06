@@ -56,7 +56,7 @@ namespace DesktopWPF.Views
 
             } else if (documentTypeComboBox.SelectedIndex == 1)
             {
-                ExcelFileManager.GenerateAttendanceList(fullPath, DocumentsViewModel.Events.OrderBy(e => e.Date).ToList(), DocumentsViewModel.Attendances);
+                ExcelFileManager.GenerateAttendanceList(fullPath, DocumentsViewModel.Events, DocumentsViewModel.Attendances);
             } else
             {
                 ExcelFileManager.GenerateExpensesSummary(fullPath, DocumentsViewModel.Payments);

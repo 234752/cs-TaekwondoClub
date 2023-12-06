@@ -18,7 +18,7 @@ public class PaymentViewModel : BaseViewModel
     {
         Payments = payments;
         Customers = customers;
-        NewPayment = new Payment() { DueDate = DateTime.Now.Date, Type = "Customer Fee" };
+        NewPayment = new Payment() { DueDate = DateTime.Now.Date, Type = $"{DateTime.Now.Month}/{DateTime.Now.Year}" };
     }
     public Payment NewPayment { get; set; }
     public async Task SavePaymentsToDatabase()
