@@ -16,7 +16,7 @@ public class EventViewModel : BaseViewModel
     public ObservableCollection<Customer> Customers { get; set; }
     public ObservableCollection<Attendance> Attendances { get; set; }
 
-    public EventViewModel(MainWindow mainWindow, ObservableCollection<Event> events, ObservableCollection<Customer> customers, 
+    public EventViewModel(MainWindow mainWindow, ObservableCollection<Event> events, ObservableCollection<Customer> customers,
         ObservableCollection<Attendance> attendances) : base(mainWindow)
     {
         Events = events;
@@ -25,7 +25,7 @@ public class EventViewModel : BaseViewModel
         NewEvent = new() { Date = DateTime.UtcNow, Type = "One Time" };
         Attendances = attendances;
     }
-    public Event NewEvent {  get; set; }
+    public Event NewEvent { get; set; }
 
     public async Task SaveEventsToDatabase()
     {
@@ -41,6 +41,7 @@ public class EventViewModel : BaseViewModel
     {
         var ev = new Event(NewEvent);
         ev.Customers = NewEvent.Customers;
+        ev.Attendances = new();
         MainWindow.Events.Add(ev);
     }
 
@@ -60,6 +61,14 @@ public class EventViewModel : BaseViewModel
         foreach (var attendance in attendanceRecordsToRemove)
         {
             MainWindow.Attendances.Remove(attendance);
+        }
+    }
+    public void AddClasses(List<Event> events)
+    {
+        foreach (var ev in events)
+        {
+            ev.Attendances = new();
+            MainWindow.Events.Add(ev);
         }
     }
 }

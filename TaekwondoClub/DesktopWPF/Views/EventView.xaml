@@ -21,11 +21,12 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <StackPanel Margin="1659,10,10,752">
+        <StackPanel Margin="1659,10,10,727">
             <Button x:Name="addEventButton" Content="Add Event" Width="250" Height="40" Click="AddEventButton_Click" />
             <Button x:Name="editEventButton" Content="Edit Selected Event" Width="250" Height="40" Click="EditEventButton_Click" />
             <Button x:Name="removeEventButton" Content="Remove Selected Event" Width="250" Height="40" Click="RemoveEventButton_Click"/>
             <Button x:Name="checkAttendanceButton" Content="Check Attendance" Width="250" Height="40" Click="CheckAttendanceButton_Click"/>
+            <Button x:Name="addClassesButton" Content="Add Reccuring Classes" Width="250" Height="40" Click="AddClassesButton_Click"/>
         </StackPanel>
         <StackPanel Margin="1659,0,10,10" VerticalAlignment="Bottom">
             <Button x:Name="saveButton" Content="Save All" Width="250" Height="40" Click="SaveButton_Click"/>

@@ -43,7 +43,7 @@ namespace DesktopWPF.Views
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            model.Event.Attendances = model.AttendingCustomers;
+            //model.Event.Attendances = model.AttendingCustomers;
             SaveChanges = true;
             Close();
         }

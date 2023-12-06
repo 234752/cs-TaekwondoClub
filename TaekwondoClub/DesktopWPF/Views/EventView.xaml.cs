@@ -94,17 +94,39 @@ public partial class EventView : Page
         Event selectedEvent = (Event)eventListView.SelectedItem;
         if (selectedEvent != null)
         {
-            var attendances = EventViewModel.Attendances.Where(a => a.EventId == selectedEvent.Id).ToList();
-            var attendanceView = new AttendanceView(selectedEvent, attendances);
+            var editedEvent = new Event(selectedEvent);
+            editedEvent.Customers = new List<Customer>(selectedEvent.Customers);
+            editedEvent.Attendances = new List<Attendance>(selectedEvent.Attendances);
+            var attendanceView = new AttendanceView(editedEvent, editedEvent.Attendances);
             attendanceView.ShowDialog();
             if(attendanceView.SaveChanges) 
             {
-                EventViewModel.UpdateAttendance(selectedEvent, attendances);
+                selectedEvent.Attendances = editedEvent.Attendances;
+                //EventViewModel.UpdateAttendance(selectedEvent, editedEvent.Attendances);
             }
         }
         else
         {
             MessageBox.Show("Please select an event to check the attendance.");
+        }
+    }
+
+    private void AddClassesButton_Click(object sender, RoutedEventArgs e)
+    {
+        Event selectedEvent = (Event)eventListView.SelectedItem;
+        if (selectedEvent != null && selectedEvent.Type == "Timetable Class")
+        {
+            var classes = new List<Event>();
+            var classesView = new ClassesView(selectedEvent, classes);
+            classesView.ShowDialog();
+            if (classesView.SaveChanges)
+            {
+                EventViewModel.AddClasses(classes);
+            }
+        }
+        else
+        {
+            MessageBox.Show("Please select an 'Timetable Class' event to add reccuring classes");
         }
     }
 }
