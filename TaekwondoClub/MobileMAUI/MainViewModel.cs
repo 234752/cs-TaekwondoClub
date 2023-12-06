@@ -14,7 +14,9 @@ public class MainViewModel
     public ObservableCollection<Event> Events { get; set; }
     public ObservableCollection<Payment> Payments { get; set; }
     public ObservableCollection<Payment> Costs { get; set; }
+    public decimal TotalCosts { get; set; }
     public ObservableCollection<Event> Reminders { get; set; }
+    public string MostUrgentReminder { get; set; }
     private RestService _restService { get; set; }
     public MainViewModel(RestService restService)
     {
@@ -29,6 +31,9 @@ public class MainViewModel
         EndMonthYear = DateTime.Now;
         StartMonthYear = EndMonthYear.AddMonths(-1);
         FilterCollections();
+        TotalCosts = Costs.Sum(c => c.Amount * c.Price);
+        var mostUrgentReminder = Reminders.MinBy(r => r.Date);
+        MostUrgentReminder = $"{mostUrgentReminder.Name} \n({mostUrgentReminder.Date})";
     }
 
     public DateTime StartDate { get; set; }

@@ -9,22 +9,36 @@
 
             <Border Style="{StaticResource PurpleBorder}">
                 <StackLayout>
-                    <Label Text="Amount of Current Customers:" FontSize="18" HorizontalOptions="Center" />
+                    <Label Text="Amount of Current Customers" FontSize="18" HorizontalOptions="Center" />
                     <Label Text="{Binding Customers.Count}" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
                 </StackLayout>
             </Border>
 
             <Border Style="{StaticResource PurpleBorder}">
                 <StackLayout>
-                    <Label Text="Upcoming Events:" FontSize="18" HorizontalOptions="Center" />
+                    <Label Text="Upcoming Events" FontSize="18" HorizontalOptions="Center" />
                     <Label Text="{Binding Events.Count}" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
                 </StackLayout>
             </Border>
 
             <Border Style="{StaticResource PurpleBorder}">
                 <StackLayout>
-                    <Label Text="Amount of Payments:" FontSize="18" HorizontalOptions="Center" />
+                    <Label Text="Amount of Due Payments" FontSize="18" HorizontalOptions="Center" />
                     <Label Text="{Binding Payments.Count}" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
+                </StackLayout>
+            </Border>
+
+            <Border Style="{StaticResource PurpleBorder}">
+                <StackLayout>
+                    <Label Text="Total Costs" FontSize="18" HorizontalOptions="Center" />
+                    <Label Text="{Binding TotalCosts}" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
+                </StackLayout>
+            </Border>
+
+            <Border Style="{StaticResource PurpleBorder}">
+                <StackLayout>
+                    <Label Text="Most Urgent Reminder" FontSize="18" HorizontalOptions="Center" />
+                    <Label Text="{Binding MostUrgentReminder}" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
                 </StackLayout>
             </Border>
 
