@@ -11,9 +11,9 @@
             </ResourceDictionary.MergedDictionaries>
             <Style TargetType="Border" x:Key="PurpleBorder">
                 <Setter Property="StrokeShape">
-                    <RoundRectangle CornerRadius="20" />
+                    <RoundRectangle CornerRadius="10" />
                 </Setter>
-                <Setter Property="BackgroundColor" Value="#ac99ea" />
+                <Setter Property="BackgroundColor" Value="teal" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>
