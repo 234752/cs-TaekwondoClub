@@ -9,7 +9,8 @@
       Title="PaymentView">
 
     <Grid>
-        <DataGrid Name="paymentListView" ItemsSource="{Binding Payments}" Margin="10,10,275,10" AutoGenerateColumns="False" CanUserAddRows="False" >
+        <DataGrid Name="paymentListView" ItemsSource="{Binding Payments}" Margin="10,10,300,10" AutoGenerateColumns="False" CanUserAddRows="False" 
+                  BorderBrush="LightBlue" BorderThickness="3">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Amount" Width="*" Binding="{Binding Amount}" IsReadOnly="True"/>
@@ -20,14 +21,14 @@
                 <DataGridTextColumn Header="Customer" Width="*" Binding="{Binding CustomerId}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Margin="1659,10,10,752">
-            <Button x:Name="addPaymentButton" Content="Add Payment" Width="250" Height="40" Click="AddPaymentButton_Click" />
-            <Button x:Name="editPaymentButton" Content="Edit Selected Payment" Width="250" Height="40" Click="EditPaymentButton_Click" />
-            <Button x:Name="removePaymentButton" Content="Remove Selected Payment" Width="250" Height="40" Click="RemovePaymentButton_Click"/>
+        <StackPanel Margin="1640,10,10,752">
+            <Button x:Name="addPaymentButton" Content="Add Payment" Width="250" Height="40" Click="AddPaymentButton_Click" BorderBrush="LightBlue" BorderThickness="3" Margin="10"/>
+            <Button x:Name="editPaymentButton" Content="Edit Payment" Width="250" Height="40" Click="EditPaymentButton_Click" BorderBrush="LightBlue" BorderThickness="3" Margin="10"/>
+            <Button x:Name="removePaymentButton" Content="Remove Payment" Width="250" Height="40" Click="RemovePaymentButton_Click" BorderBrush="LightBlue" BorderThickness="3" Margin="10"/>
         </StackPanel>
-        <StackPanel Margin="1659,0,10,10" VerticalAlignment="Bottom">
-            <Button x:Name="saveButton" Content="Save All" Width="250" Height="40" Click="SaveButton_Click"/>
-            <Button x:Name="revertButton" Content="Revert Changes" Width="250" Height="40" Click="RevertButton_Click"/>
+        <StackPanel Margin="1640,0,10,10" VerticalAlignment="Bottom">
+            <Button x:Name="saveButton" Content="Apply Changes to Database" Width="250" Height="40" Click="SaveButton_Click" BorderBrush="LightBlue" BorderThickness="3" Margin="10"/>
+            <Button x:Name="revertButton" Content="Revert Changes" Width="250" Height="40" Click="RevertButton_Click" BorderBrush="LightBlue" BorderThickness="3" Margin="10"/>
         </StackPanel>
     </Grid>
 </Page>

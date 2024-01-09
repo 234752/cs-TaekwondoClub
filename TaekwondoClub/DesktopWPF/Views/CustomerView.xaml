@@ -9,7 +9,8 @@
       Title="CustomerView">
 
     <Grid>
-        <DataGrid Name="customerListView" ItemsSource="{Binding}" Margin="10,10,276,10" AutoGenerateColumns="False" CanUserAddRows="False">
+        <DataGrid Name="customerListView" ItemsSource="{Binding}" Margin="10,10,300,10" AutoGenerateColumns="False" CanUserAddRows="False"
+                  BorderBrush="LightBlue" BorderThickness="3">
             <DataGrid.Columns>
 
                 <DataGridTextColumn  Header="Name" Width="*" Binding="{Binding Name}" IsReadOnly="True"/>
@@ -20,14 +21,14 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Margin="1659,10,10,752">
-            <Button x:Name="addCustomerButton" Content="Add Customer" Width="250" Height="40" Click="AddCustomerButton_Click" />
-            <Button x:Name="editCustomerButton" Content="Edit Selected Customer" Width="250" Height="40" Click="EditCustomerButton_Click" />
-            <Button x:Name="removeCustomerButton" Content="Remove Selected Customer" Width="250" Height="40" Click="RemoveCustomerButton_Click"/>
+        <StackPanel Margin="1640,10,10,752">
+            <Button x:Name="addCustomerButton" Content="Add Customer" Width="250" Height="40" Click="AddCustomerButton_Click" BorderBrush="LightBlue" BorderThickness="3" Margin="10"/>
+            <Button x:Name="editCustomerButton" Content="Edit Customer" Width="250" Height="40" Click="EditCustomerButton_Click" BorderBrush="LightBlue" BorderThickness="3" Margin="10"/>
+            <Button x:Name="removeCustomerButton" Content="Remove Customer" Width="250" Height="40" Click="RemoveCustomerButton_Click" BorderBrush="LightBlue" BorderThickness="3" Margin="10"/>
         </StackPanel>
-        <StackPanel Margin="1659,0,10,10" VerticalAlignment="Bottom">
-            <Button x:Name="saveButton" Content="Save All" Width="250" Height="40" Click="SaveButton_Click"/>
-            <Button x:Name="revertButton" Content="Revert Changes" Width="250" Height="40" Click="RevertButton_Click"/>
+        <StackPanel Margin="1640,0,10,10" VerticalAlignment="Bottom">
+            <Button x:Name="saveButton" Content="Apply Changes to Database" Width="250" Height="40" Click="SaveButton_Click" BorderBrush="LightBlue" BorderThickness="3" Margin="10"/>
+            <Button x:Name="revertButton" Content="Revert Changes" Width="250" Height="40" Click="RevertButton_Click" BorderBrush="LightBlue" BorderThickness="3" Margin="10"/>
         </StackPanel>
     </Grid>
 </Page>
