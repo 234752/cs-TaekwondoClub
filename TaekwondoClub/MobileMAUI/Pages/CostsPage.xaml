@@ -50,7 +50,7 @@
                                         </Grid.RowDefinitions>
 
                                         <Label Text="{Binding Name}" FontAttributes="Bold" Grid.Column="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                                        <Label Text="{Binding Type}" FontAttributes="Bold" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                        <Label Text="{Binding Price}" FontAttributes="Bold" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                                         <Label Text="{Binding DueDate, StringFormat='{0:dd/MM/yyyy}'}" Grid.Column="2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                                     </Grid>
                                 </Border>

@@ -5,11 +5,11 @@
     <ScrollView>
         <VerticalStackLayout Spacing="10" Padding="10,20" >
 
-            <Label Text="Welcome to the Notification Center" FontSize="23" HorizontalOptions="Center" TextColor="LightBlue" />
+            <Label Text="Welcome to the Notification Centre" FontSize="23" HorizontalOptions="Center" HorizontalTextAlignment="Center" TextColor="Teal" />
 
             <Border Style="{StaticResource PurpleBorder}">
                 <StackLayout>
-                    <Label Text="Amount of Current Customers" FontSize="18" HorizontalOptions="Center" />
+                    <Label Text="Number of Current Customers" FontSize="18" HorizontalOptions="Center" />
                     <Label Text="{Binding Customers.Count}" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
                 </StackLayout>
             </Border>
@@ -23,7 +23,7 @@
 
             <Border Style="{StaticResource PurpleBorder}">
                 <StackLayout>
-                    <Label Text="Amount of Due Payments" FontSize="18" HorizontalOptions="Center" />
+                    <Label Text="Number of Due Payments" FontSize="18" HorizontalOptions="Center" />
                     <Label Text="{Binding Payments.Count}" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
                 </StackLayout>
             </Border>

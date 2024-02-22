@@ -9,8 +9,12 @@
       Title="CustomerView">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="49*"/>
+            <RowDefinition Height="426*"/>
+        </Grid.RowDefinitions>
         <DataGrid Name="customerListView" ItemsSource="{Binding}" Margin="10,10,300,10" AutoGenerateColumns="False" CanUserAddRows="False"
-                  BorderBrush="LightBlue" BorderThickness="3">
+                  BorderBrush="LightBlue" BorderThickness="3" Grid.RowSpan="2">
             <DataGrid.Columns>
 
                 <DataGridTextColumn  Header="Name" Width="*" Binding="{Binding Name}" IsReadOnly="True"/>
@@ -21,12 +25,12 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Margin="1640,10,10,752">
+        <StackPanel Margin="0,10,10,0" Grid.RowSpan="2" HorizontalAlignment="Right" Width="270" Height="188" VerticalAlignment="Top">
             <Button x:Name="addCustomerButton" Content="Add Customer" Width="250" Height="40" Click="AddCustomerButton_Click" BorderBrush="LightBlue" BorderThickness="3" Margin="10"/>
             <Button x:Name="editCustomerButton" Content="Edit Customer" Width="250" Height="40" Click="EditCustomerButton_Click" BorderBrush="LightBlue" BorderThickness="3" Margin="10"/>
             <Button x:Name="removeCustomerButton" Content="Remove Customer" Width="250" Height="40" Click="RemoveCustomerButton_Click" BorderBrush="LightBlue" BorderThickness="3" Margin="10"/>
         </StackPanel>
-        <StackPanel Margin="1640,0,10,10" VerticalAlignment="Bottom">
+        <StackPanel Margin="0,0,10,10" VerticalAlignment="Bottom" Grid.Row="1" HorizontalAlignment="Right" Width="270">
             <Button x:Name="saveButton" Content="Apply Changes to Database" Width="250" Height="40" Click="SaveButton_Click" BorderBrush="LightBlue" BorderThickness="3" Margin="10"/>
             <Button x:Name="revertButton" Content="Revert Changes" Width="250" Height="40" Click="RevertButton_Click" BorderBrush="LightBlue" BorderThickness="3" Margin="10"/>
         </StackPanel>

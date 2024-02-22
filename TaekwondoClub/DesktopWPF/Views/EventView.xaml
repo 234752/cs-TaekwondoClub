@@ -22,14 +22,14 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <StackPanel Margin="1640,10,10,630">
+        <StackPanel Margin="0,10,10,0" HorizontalAlignment="Right" Width="270" Height="310" VerticalAlignment="Top">
             <Button x:Name="addEventButton" Content="Add Event" Width="250" Height="40" Click="AddEventButton_Click" BorderBrush="LightBlue" BorderThickness="3" Margin="10"/>
             <Button x:Name="editEventButton" Content="Edit Event" Width="250" Height="40" Click="EditEventButton_Click" BorderBrush="LightBlue" BorderThickness="3" Margin="10"/>
             <Button x:Name="removeEventButton" Content="Remove Event" Width="250" Height="40" Click="RemoveEventButton_Click" BorderBrush="LightBlue" BorderThickness="3" Margin="10"/>
             <Button x:Name="checkAttendanceButton" Content="Check Attendance" Width="250" Height="40" Click="CheckAttendanceButton_Click" BorderBrush="LightBlue" BorderThickness="3" Margin="10"/>
             <Button x:Name="addClassesButton" Content="Add Recurring Classes" Width="250" Height="40" Click="AddClassesButton_Click" BorderBrush="LightBlue" BorderThickness="3" Margin="10"/>
         </StackPanel>
-        <StackPanel Margin="1640,0,10,10" VerticalAlignment="Bottom">
+        <StackPanel Margin="0,0,10,10" HorizontalAlignment="Right" Width="270" Height="120" VerticalAlignment="Bottom">
             <Button x:Name="saveButton" Content="Apply Changes to Database" Width="250" Height="40" Click="SaveButton_Click" BorderBrush="LightBlue" BorderThickness="3" Margin="10"/>
             <Button x:Name="revertButton" Content="Revert Changes" Width="250" Height="40" Click="RevertButton_Click" BorderBrush="LightBlue" BorderThickness="3" Margin="10"/>
         </StackPanel>
